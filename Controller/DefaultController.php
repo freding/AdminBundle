@@ -16,7 +16,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        
+        \Zend_Debug::dump(null);
         return $this->render('FredbAdminBundle:Default:index.html.twig', array());
     }
 }
