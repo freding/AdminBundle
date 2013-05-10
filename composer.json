@@ -1,5 +1,5 @@
 {
-    "name": "fredb/adminBundle",
+    "name": "fredb/admin-bundle",
     "type": "symfony-bundle",
     "description": "Create Back-office by annotations in Entities",
     "keywords": ["Create Back-office", "Annotations"],
