@@ -1,0 +1,25 @@
+{
+    "name": "fredb - adminbundle",
+    "type": "symfony-bundle",
+    "description": "Create Back-office by annotations in Entities",
+    "keywords": ["Create Back-office", "Annotations"],
+    "homepage": "http://github.com/NewbridgeGreen/TestBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frédéric Bourbigot",
+            "email": "frederic.bourbigot@laposte.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": ">=2.1,<2.2-dev"
+    },
+    "autoload": {
+        "psr-0": { "Fredb\\AdminBundle": "" }
+    },
+    "minimum-stability": "dev",
+    "target-dir": "Fredb/AdminBundle"
+}

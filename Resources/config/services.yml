@@ -1,0 +1,7 @@
+parameters:
+#    fredb_admin.example.class: Fredb\AdminBundle\Example
+
+services:
+#    fredb_admin.example:
+#        class: %fredb_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
