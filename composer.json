@@ -1,5 +1,5 @@
 {
-    "name": "fredb - adminbundle",
+    "name": "fredb_adminbundle",
     "type": "symfony-bundle",
     "description": "Create Back-office by annotations in Entities",
     "keywords": ["Create Back-office", "Annotations"],
@@ -12,7 +12,8 @@
         }
     ],
     "require": {
-        "php": ">=5.3.2"
+        "php": ">=5.3.2",
+        "zendframework/zendframework1": "1.12.3"
     },
     "require-dev": {
         "symfony/framework-bundle": ">=2.1,<2.2-dev"
