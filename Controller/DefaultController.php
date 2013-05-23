@@ -17,6 +17,9 @@ class DefaultController extends Controller
     public function indexAction()
     {
        
+        
+        
+        
         return $this->render('FredbAdminBundle:Default:index.html.twig', array());
     }
 }
