@@ -19,7 +19,17 @@
     </testsuites>
     
     
-
+    <filter>
+        <whitelist>
+            <directory>.</directory>
+            <exclude>
+                <directory>./Build</directory>
+                <directory>./DependencyInjection</directory>
+                <directory>./Resources</directory>
+                <directory>./Tests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
  
     
 </phpunit>
