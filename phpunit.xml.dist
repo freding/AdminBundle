@@ -21,13 +21,9 @@
     
     <filter>
         <whitelist>
-            <directory>.</directory>
-            <exclude>
-                <directory>./Build</directory>
-                <directory>./DependencyInjection</directory>
-                <directory>./Resources</directory>
-                <directory>./Tests</directory>
-            </exclude>
+                        <directory>./Controller</directory>
+                        <directory>./Entity</directory>
+                        <directory>./Repository</directory>
         </whitelist>
     </filter>
  
