@@ -39,7 +39,7 @@
 
 
 <target name="phpunit">
-    <exec logoutput="true" dir="${project.basedir}/workspace/app" command="phpunit" escape="false" />
+    <exec logoutput="true" dir="${project.basedir}/workspace" command="phpunit" escape="false" />
 </target>
 
 
