@@ -21,9 +21,9 @@
     
     <filter>
         <whitelist>
-                        <directory>./Controller</directory>
                         <directory>./Entity</directory>
                         <directory>./Repository</directory>
+                        <directory>./Controller</directory> 
         </whitelist>
     </filter>
  
