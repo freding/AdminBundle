@@ -19,14 +19,17 @@
     </testsuites>
     
     
-    
-    <logging>
-        <log type="coverage-html" target="./Build/coverage" title="Admin - annotations"
-             charset="UTF-8" yui="true" highlight="true"
-             lowUpperBound="35" highLowerBound="70"/>
-        <log type="coverage-clover" target="./Build/logs/clover.xml"/>
-        <log type="junit" target="./Build/logs/junit.xml" logIncompleteSkipped="false"/>
-    </logging>
-    
+    <filter>
+        <whitelist>
+            <directory>./</directory>
+            <exclude>
+                <directory>./Build</directory>
+                <directory>./DependencyInjection</directory>
+                <directory>./Resources</directory>
+                <directory>./Tests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+ 
     
 </phpunit>
