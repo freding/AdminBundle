@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="TestJenkins" default="ci" basedir="../">
+    <property name="source" value="src" />
+
+    <target name="ci"
+        description="Tâche principale d'intégration continue"
+        depends="clean,qa"
+    />
+
+    <target name="clean" description="Vide les répertoires d'artefacts">
+            <delete dir="${project.basedir}/workspace/src/Build/api" />
+            <delete dir="${project.basedir}/workspace/src/Build/code-browser" />
+            <delete dir="${project.basedir}/workspace/src/Build/coverage" />
+            <delete dir="${project.basedir}/workspace/src/Build/logs" />
+            <delete dir="${project.basedir}/workspace/src/Build/pdepend" />
+
+            <mkdir dir="${project.basedir}/workspace/src/Build/api" />
+            <mkdir dir="${project.basedir}/workspace/src/Build/code-browser" />
+            <mkdir dir="${project.basedir}/workspace/src/Build/coverage" />
+            <mkdir dir="${project.basedir}/workspace/src/Build/logs" />
+            <mkdir dir="${project.basedir}/workspace/src/Build/pdepend" />
+    </target>
+
+    <target name="qa" description="Lance les outils d'analyse">
+            <phingcall target="pdepend" />
+            <phingcall target="phpmd" />
+            <phingcall target="phpcpd" />
+            <phingcall target="phploc" />
+            <phingcall target="phpcs" />
+            <phingcall target="phpdoc" />
+            <phingcall target="phpcb" />
+            <phingcall target="phpunit" />
+    </target>
+
+
+
+
+
+
+
+<target name="phpunit">
+    <exec logoutput="true" dir="${project.basedir}/workspace/app" command="phpunit" escape="false" />
+</target>
+
+
+<target name="pdepend">
+    <phpdepend file="${project.basedir}/workspace/src/Fred">
+        <logger type="jdepend-xml" outfile="${project.basedir}/workspace/src/Build/logs/jdepend.xml" />
+        <logger type="jdepend-chart" outfile="${project.basedir}/workspace/src/Build/pdepend/dependencies.svg" />
+        <logger type="overview-pyramid" outfile="${project.basedir}/workspace/src/Build/pdepend/overview-pyramid.svg" />
+    </phpdepend>
+</target>
+
+
+<target name="phpmd">
+    <phpmd file="${project.basedir}/workspace/src/Fred">
+        <formatter type="xml" outfile="${project.basedir}/workspace/src/Build/phpmd.xml" />
+    </phpmd>
+</target>
+
+<target name="phpcpd">
+    <phpcpd file="${project.basedir}/workspace/src/Fred">
+        <formatter type="pmd" outfile="${project.basedir}/workspace/src/Build/logs/pmd-cpd.xml"/>
+    </phpcpd>
+</target>
+
+<target name="phploc">
+    <exec logoutput="true" dir="${project.basedir}" command="phploc --log-csv '${project.basedir}/workspace/src/Build/logs/phploc.csv' '${project.basedir}/workspace/src/Fred'" escape="false" />
+</target>
+
+
+<target name="phpcs">
+    <phpcodesniffer standard="Zend">
+        <fileset dir="${project.basedir}/workspace/src/Fred">
+            <include name="**/*.php"/>
+        </fileset>
+        <formatter type="checkstyle" outfile="${project.basedir}/workspace/src/Build/logs/checkstyle.xml"/>
+    </phpcodesniffer>
+</target>
+
+
+<target name="phpdoc">
+    <phpdoc title="API Documentation"
+            destdir="${project.basedir}/workspace/src/Build/api"
+            sourcecode="false"
+            output="HTML:Smarty:PHP">
+        <fileset dir="${project.basedir}/workspace/src/Fred">
+            <include name="**/*.php"/>
+        </fileset>
+        <projdocfileset dir=".">
+            <include name="README"/>
+            <include name="INSTALL"/>
+            <include name="CHANGELOG"/>
+        </projdocfileset>
+    </phpdoc>
+</target>
+
+<target name="phpcb">
+    <exec logoutput="true" command="phpcb --log '${project.basedir}/workspace/src/Build/logs' --source '${project.basedir}/workspace/src/Fred' --output '${project.basedir}/workspace/src/Build/code-browser'" escape="false" />
+</target>
+
+
+
+
+</project>
