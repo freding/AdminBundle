@@ -9,7 +9,7 @@ class DefaultControllerTest extends WebTestCase
     public function testIndex()
     {
 
- 
+        $this->assertTrue(false);    
         
         $this->assertTrue(true);
     }
