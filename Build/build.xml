@@ -53,38 +53,38 @@
 
 
 <target name="phpmd">
-    <phpmd file="${project.basedir}/workspace/src/Fred">
-        <formatter type="xml" outfile="${project.basedir}/workspace/src/Build/phpmd.xml" />
+    <phpmd file="${project.basedir}/workspace">
+        <formatter type="xml" outfile="${project.basedir}/workspace/Build/phpmd.xml" />
     </phpmd>
 </target>
 
 <target name="phpcpd">
-    <phpcpd file="${project.basedir}/workspace/src/Fred">
-        <formatter type="pmd" outfile="${project.basedir}/workspace/src/Build/logs/pmd-cpd.xml"/>
+    <phpcpd file="${project.basedir}/workspace">
+        <formatter type="pmd" outfile="${project.basedir}/workspace/Build/logs/pmd-cpd.xml"/>
     </phpcpd>
 </target>
 
 <target name="phploc">
-    <exec logoutput="true" dir="${project.basedir}" command="phploc --log-csv '${project.basedir}/workspace/src/Build/logs/phploc.csv' '${project.basedir}/workspace/src/Fred'" escape="false" />
+    <exec logoutput="true" dir="${project.basedir}" command="phploc --log-csv '${project.basedir}/workspace/Build/logs/phploc.csv' '${project.basedir}/workspace'" escape="false" />
 </target>
 
 
 <target name="phpcs">
     <phpcodesniffer standard="Zend">
-        <fileset dir="${project.basedir}/workspace/src/Fred">
+        <fileset dir="${project.basedir}/workspace">
             <include name="**/*.php"/>
         </fileset>
-        <formatter type="checkstyle" outfile="${project.basedir}/workspace/src/Build/logs/checkstyle.xml"/>
+        <formatter type="checkstyle" outfile="${project.basedir}/workspace/Build/logs/checkstyle.xml"/>
     </phpcodesniffer>
 </target>
 
 
 <target name="phpdoc">
     <phpdoc title="API Documentation"
-            destdir="${project.basedir}/workspace/src/Build/api"
+            destdir="${project.basedir}/workspace/Build/api"
             sourcecode="false"
             output="HTML:Smarty:PHP">
-        <fileset dir="${project.basedir}/workspace/src/Fred">
+        <fileset dir="${project.basedir}/workspace">
             <include name="**/*.php"/>
         </fileset>
         <projdocfileset dir=".">
@@ -96,7 +96,7 @@
 </target>
 
 <target name="phpcb">
-    <exec logoutput="true" command="phpcb --log '${project.basedir}/workspace/src/Build/logs' --source '${project.basedir}/workspace/src/Fred' --output '${project.basedir}/workspace/src/Build/code-browser'" escape="false" />
+    <exec logoutput="true" command="phpcb --log '${project.basedir}/workspace/Build/logs' --source '${project.basedir}/workspace' --output '${project.basedir}/workspace/Build/code-browser'" escape="false" />
 </target>
 
 
