@@ -8,7 +8,7 @@ before_script:
 
 script: 
   - phpunit --coverage-text
-  
+  - bin/phpcs --extensions=php
 
 notifications:
   email:
