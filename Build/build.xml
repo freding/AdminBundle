@@ -8,17 +8,17 @@
     />
 
     <target name="clean" description="Vide les répertoires d'artefacts">
-            <delete dir="${project.basedir}/workspace/src/Build/api" />
-            <delete dir="${project.basedir}/workspace/src/Build/code-browser" />
-            <delete dir="${project.basedir}/workspace/src/Build/coverage" />
-            <delete dir="${project.basedir}/workspace/src/Build/logs" />
-            <delete dir="${project.basedir}/workspace/src/Build/pdepend" />
+            <delete dir="${project.basedir}/workspace/Build/api" />
+            <delete dir="${project.basedir}/workspace/Build/code-browser" />
+            <delete dir="${project.basedir}/workspace/Build/coverage" />
+            <delete dir="${project.basedir}/workspace/Build/logs" />
+            <delete dir="${project.basedir}/workspace/Build/pdepend" />
 
-            <mkdir dir="${project.basedir}/workspace/src/Build/api" />
-            <mkdir dir="${project.basedir}/workspace/src/Build/code-browser" />
-            <mkdir dir="${project.basedir}/workspace/src/Build/coverage" />
-            <mkdir dir="${project.basedir}/workspace/src/Build/logs" />
-            <mkdir dir="${project.basedir}/workspace/src/Build/pdepend" />
+            <mkdir dir="${project.basedir}/workspace/Build/api" />
+            <mkdir dir="${project.basedir}/workspace/Build/code-browser" />
+            <mkdir dir="${project.basedir}/workspace/Build/coverage" />
+            <mkdir dir="${project.basedir}/workspace/Build/logs" />
+            <mkdir dir="${project.basedir}/workspace/Build/pdepend" />
     </target>
 
     <target name="qa" description="Lance les outils d'analyse">
