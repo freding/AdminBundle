@@ -16,7 +16,8 @@
             <exclude>
                 <directory>./Resources</directory>
                 <directory>./Tests</directory>
-                <directory>./vendor</directory>
+                <directory>./Build</directory>
+                <directory>./DependencyInjection</directory>
             </exclude>
         </whitelist>
     </filter>
