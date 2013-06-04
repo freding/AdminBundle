@@ -44,10 +44,10 @@
 
 
 <target name="pdepend">
-    <phpdepend file="${project.basedir}/workspace/src/Fred">
-        <logger type="jdepend-xml" outfile="${project.basedir}/workspace/src/Build/logs/jdepend.xml" />
-        <logger type="jdepend-chart" outfile="${project.basedir}/workspace/src/Build/pdepend/dependencies.svg" />
-        <logger type="overview-pyramid" outfile="${project.basedir}/workspace/src/Build/pdepend/overview-pyramid.svg" />
+    <phpdepend file="${project.basedir}/workspace">
+        <logger type="jdepend-xml" outfile="${project.basedir}/workspace/Build/logs/jdepend.xml" />
+        <logger type="jdepend-chart" outfile="${project.basedir}/workspace/Build/pdepend/dependencies.svg" />
+        <logger type="overview-pyramid" outfile="${project.basedir}/workspace/Build/pdepend/overview-pyramid.svg" />
     </phpdepend>
 </target>
 
