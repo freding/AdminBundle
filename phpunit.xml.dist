@@ -17,7 +17,6 @@
                 <directory>./Resources</directory>
                 <directory>./Tests</directory>
                 <directory>./Build</directory>
-                <directory>./DependencyInjection</directory>
             </exclude>
         </whitelist>
     </filter>
