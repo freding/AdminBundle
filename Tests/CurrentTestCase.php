@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\Common\Persistence\PersistentObject;
 use Doctrine\ORM\Tools\SchemaTool;
 
+
 class CurrentTestCase extends \PHPUnit_Framework_Testcase
 {
     protected $em, $tool;
@@ -33,7 +34,7 @@ class CurrentTestCase extends \PHPUnit_Framework_Testcase
     {
         $isDevMode      = true;
         $doctrineConfig = Setup::createAnnotationMetadataConfiguration(
-            array('Fredb\AdminBundle\Entity'),
+            array('Fredb/AdminBundle/Entity'),
             $isDevMode
         );
 
