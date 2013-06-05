@@ -9,15 +9,9 @@
     </testsuites>
     
     
-    <filter>
-        <whitelist>
-            <directory>./</directory>
-            <exclude>
-                <directory>./Resources</directory>
-                <directory>./Tests</directory>
-            </exclude>
-        </whitelist>
-    </filter>
- 
+ <logging>
+    <log type="coverage-text" target="php://stdout"/>
+  </logging>
+
     
 </phpunit>
