@@ -9,7 +9,12 @@
     </testsuites>
     
     
+    <filter>
+        <whitelist>
+            <directory>./</directory>
 
+        </whitelist>
+    </filter>
  
     
 </phpunit>
