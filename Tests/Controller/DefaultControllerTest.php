@@ -3,7 +3,7 @@
 namespace Fredb\AdminBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Fredb\AdminBundle\Test\CurrentTestCase;
+use Fredb\AdminBundle\Tests\CurrentTestCase;
 
 class DefaultControllerTest extends CurrentTestCase
 {
