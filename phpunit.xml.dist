@@ -11,11 +11,10 @@
     
     <filter>
         <whitelist>
-            <directory>.</directory>
+            <directory>./</directory>
             <exclude>
                 <directory>./Resources</directory>
                 <directory>./Tests</directory>
-                <directory>./Build</directory>
             </exclude>
         </whitelist>
     </filter>
