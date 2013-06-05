@@ -17,10 +17,8 @@
 
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
-      <directory suffix=".php">./</directory>
-      <exclude>
-            <directory>Build</directory>
-      </exclude>
+      <directory suffix=".php">./Controller</directory>
+
     </whitelist>
   </filter>
     
