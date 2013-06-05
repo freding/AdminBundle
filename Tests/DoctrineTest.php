@@ -34,7 +34,7 @@ class DoctrineTest extends WebTestCase{
         $this->entityManager =  \Doctrine\ORM\EntityManager::create($params, $config);  
 
         $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($this->entityManager);
-
+        /**
         $classes = array(
             $this->entityManager->getClassMetadata("\Fredb\AdminBundle\Entity\Test")
             //$this->entityManager->getClassMetadata("\Fredb\AdminBundle\Entity\User"),
@@ -42,7 +42,9 @@ class DoctrineTest extends WebTestCase{
         );
 
         $schemaTool->dropSchema($classes);
-        $schemaTool->createSchema($classes);    
+        $schemaTool->createSchema($classes); 
+         * 
+         */   
     }
   
 }  

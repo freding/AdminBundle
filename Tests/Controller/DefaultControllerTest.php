@@ -8,7 +8,7 @@ class DefaultControllerTest extends DoctrineTest
 {
     public function testIndex()
     {
-
+        
         
         $this->assertTrue(true);
     }
