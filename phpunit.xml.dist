@@ -9,16 +9,12 @@
     </testsuites>
     
     
- <logging>
-    <log type="coverage-text" target="php://stdout"/>
-  </logging>
-
-    
 
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
       <directory suffix=".php">./Controller</directory>
-
+      <directory suffix=".php">./Entity</directory>
+      <directory suffix=".php">./Repository</directory>      
     </whitelist>
   </filter>
     
