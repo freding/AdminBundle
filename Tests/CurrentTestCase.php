@@ -11,6 +11,7 @@ class CurrentTestCase extends \PHPUnit_Framework_Testcase
 {
     protected $em, $tool;
 
+
     public function setUp()
     {
         $this->setUpDatabase(); // wrap this again
