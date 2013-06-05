@@ -5,7 +5,7 @@ php:
 
 before_script:
   - composer install --dev
-  - "mysql -e 'create database admin-annotation;'"
+  - "mysql -e 'create database admin_annotation;'"
 
 script: phpunit --coverage-text
 
