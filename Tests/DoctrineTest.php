@@ -3,7 +3,9 @@
 namespace Fredb\AdminBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use Doctrine\Common\Annotations\IndexedReader;
 
 class DoctrineTest extends WebTestCase{
 
