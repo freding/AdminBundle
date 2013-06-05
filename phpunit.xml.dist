@@ -3,12 +3,6 @@
 <phpunit colors="true" bootstrap="./Tests/bootstrap.php">
 
 
-    <php>
-        <var name="db_dsn" value="mysql:dbname=admin_annotation;host=localhost"/>
-        <var name="db_username" value="root"/>
-        <var name="db_password" value=""/>
-    </php>
-
 
     <testsuites>
         <testsuite name="TestBundle Test Suite">
