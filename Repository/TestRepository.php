@@ -5,7 +5,7 @@ use Doctrine\ORM\EntityRepository;
 /**
  * TestRepository
  */
-class testRepository extends EntityRepository
+class TestRepository extends EntityRepository
 {
 
     
