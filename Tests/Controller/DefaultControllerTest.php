@@ -10,6 +10,6 @@ class DefaultControllerTest extends WebTestCase
     {
   
         
-        $this->assertTrue(true);
+        $this->assertTrue(false);
     }
 }
