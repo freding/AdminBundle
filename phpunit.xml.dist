@@ -9,16 +9,7 @@
     </testsuites>
     
     
-    <filter>
-        <whitelist>
-            <directory>./</directory>
-            <exclude>
-                <directory>./Resources</directory>
-                <directory>./Tests</directory>
-                <directory>./Build</directory>
-            </exclude>
-        </whitelist>
-    </filter>
+
  
     
 </phpunit>
