@@ -2,60 +2,35 @@
 
 namespace Fredb\AdminBundle\Tests;
 
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
-use Doctrine\Common\Persistence\PersistentObject;
-use Doctrine\ORM\Tools\SchemaTool;
+use Doctrine\Tests\OrmTestCase;
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\ORM\Mapping\Driver\DriverChain;
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 
-
-class CurrentTestCase extends \PHPUnit_Framework_Testcase
+class CurrentTestCase extends OrmTestCase
 {
-    protected $em, $tool;
+    private $_em;
 
-
-    public function setUp()
+    protected function setUp()
     {
-        $this->setUpDatabase(); // wrap this again
-        $this->setUpSchema();
-        /* more setup here */
-    }
+        $reader = new AnnotationReader();
+        $reader->setIgnoreNotImportedAnnotations(true);
+        $reader->setEnableParsePhpImports(true);
 
-    public function tearDown()
-    {
-        $classes = array(
-            $this->em->getClassMetadata('Fredb\AdminBundle\Entity\Test'),
-        );
-        $this->tool->dropSchema($classes);
-        unset($tool);
-        unset($em);
-    }
-
-    public function setUpDatabase()
-    {
-        $isDevMode      = true;
-        $doctrineConfig = Setup::createAnnotationMetadataConfiguration(
-            array('Fredb/AdminBundle/Entity'),
-            $isDevMode
+        $metadataDriver = new AnnotationDriver(
+            $reader,
+            // provide the namespace of the entities you want to tests
+            'Fredb\\AdminBundle\\Entity'
         );
 
-        // database configuration parameters
-        $dbConfig = array(
-            'host'     => '127.0.0.1',
-            'user'     => 'root',
-            'password' => '',
-            'dbname'   => 'admin_annotation',
-        );
+        $this->_em = $this->_getTestEntityManager();
 
-        $this->em = EntityManager::create($dbConfig, $doctrineConfig);
-        PersistentObject::setObjectManager($this->em);
-    }
+        $this->_em->getConfiguration()
+            ->setMetadataDriverImpl($metadataDriver);
 
-    public function setUpSchema()
-    {
-        $this->tool = new SchemaTool($this->em);
-        $classes = array(
-            $this->em->getClassMetadata('Fredb\AdminBundle\Entity\Test'),
-        );
-        $this->tool->createSchema($classes);
+        // allows you to use the AcmeProductBundle:Product syntax
+        $this->_em->getConfiguration()->setEntityNamespaces(array(
+            'FredbAdminBundle' => 'Fredb\\AdminBundle\\Entity'
+        ));
     }
 }
