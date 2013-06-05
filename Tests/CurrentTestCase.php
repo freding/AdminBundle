@@ -1,6 +1,6 @@
 <?php
 
-namespace Fredb\AdminBundle\Test;
+namespace Fredb\AdminBundle\Tests;
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
