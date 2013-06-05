@@ -14,4 +14,15 @@
   </logging>
 
     
+
+  <filter>
+    <whitelist processUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">./</directory>
+      <exclude>
+            <directory>Build</directory>
+      </exclude>
+    </whitelist>
+  </filter>
+    
+    
 </phpunit>
