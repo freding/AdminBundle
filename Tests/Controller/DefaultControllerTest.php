@@ -2,14 +2,13 @@
 
 namespace Fredb\AdminBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Fredb\AdminBundle\Tests\DoctrineTest;
 
-class DefaultControllerTest extends WebTestCase
+class DefaultControllerTest extends DoctrineTest
 {
     public function testIndex()
     {
-        $em = $this->kernel->getContainer()->get('doctrine.orm.entity_manager');
-        var_dump($em);
+
         
         $this->assertTrue(true);
     }
