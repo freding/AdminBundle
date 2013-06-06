@@ -2,4 +2,3 @@ FredFoBundle:
     resource: "@FredbAdminBundle/Controller/"
     type:     annotation
     prefix:   /
-
