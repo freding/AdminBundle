@@ -49,6 +49,7 @@ class Test {
 
     public function setChaine($chaine) {
         // comment 4
+        // comment 44
         $this->chaine = $chaine;
     }
 
