@@ -33,7 +33,6 @@ class Test {
     
 	
     public function getId() {
-        //test commentaire 2
         return $this->id;
     }
 
