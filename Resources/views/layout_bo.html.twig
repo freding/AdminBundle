@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	
+
+{% stylesheets 
+        'bundles/fredbadmin/ui/css/custom-theme/jquery-ui-1.8.5.custom.css'
+        'bundles/fredbadmin/css/layout.css'
+        'bundles/fredbadmin/css/admin/login.css'
+        'bundles/fredbadmin/fredbadmin/css/ie.css'
+        'bundles/fredbadmin/fredbadmin/css/ie6.css'
+        'bundles/fredbadmin/fredbadmin/css/ie7.css'
+        'bundles/fredbadmin/fredbadmin/css/ie8.css'
+   filter="cssrewrite" %}
+  <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+{% endstylesheets %}
+
+{% javascripts
+    'bundles/fredbadmin/js/jquery.js'
+    'bundles/fredbadmin/ui/js/jquery-ui-1.8.5.custom.min.js'
+ %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+
+
+<title>Back-office</title>
+</head>
+<body>
+
+
+ {% block body %}{% endblock %}
+
+
+
+
+</body>
+</html>

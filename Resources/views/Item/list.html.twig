@@ -1,0 +1,93 @@
+{% extends 'FredbAdminBundle::layout_inside_bo.html.twig' %}
+
+{% block body %}
+
+	<h1>{{module_name | trans}} / {% trans %}List{% endtrans %}</h1>
+
+
+
+<br />
+
+
+
+{% if item_type != "Pub" and item_type != "Download" %}
+<form action="{{ path('admin_item_create',{'_locale':app.request.get('_locale'),'item_type':item_type}) }}" ><button class="btnGeneric">{% trans %}Create a new item{% endtrans %}</button></form>
+<br/>
+{% endif %}
+
+{% if item_type == "product" %}
+<form action="" method="get" id="id_form">
+    <select name="id_designer" id="change-designer-for-product" onchange="this.form.submit();">
+        <option value="none">Tous les designers</option>
+        {% for oDesigner in aDesigners %}
+            <option value="{{ oDesigner.id }}" {% if selectedDesignerId == oDesigner.id %}selected="selected"{% endif %}>{{ translation(oDesigner,"getName",lang) }}</option>
+        {% endfor %}
+    </select>
+</form>
+{% endif %}
+        <div id="div_sort" rel="{{entity_to_manage}}">
+		<table width="100%" border="0" cellspacing="2" cellpadding="2" class="tlisting" id="tbl_sort">
+			<thead>	
+			  <tr>
+			  	{% if is_list_sorteable %}
+				<th width="20">&nbsp;</th>
+				<th width="20">{% trans %}Order{% endtrans %}</th>
+				{% endif %}
+				<th>{% trans %}Name{% endtrans %}</th>
+				<th>{% trans %}Creation date{% endtrans %}</th>
+				{% if is_item_list_deleteable %}
+				<th width="100">{% trans %}Delete{% endtrans %}</th>
+				{% endif %}
+			  </tr>
+			</thead>
+			<tbody>
+			{% set boucle =1 %}
+			{% set classe_name = "alt" %}
+			{% for oItem in aItems %}
+						
+						
+                                        <tr class="{{classe_name}}" {% if classe_name == "alt" %}{% set classe_name ="" %}{% else %}{% set classe_name ="alt" %}{% endif %} id="channel_row_{{oItem.getId}}">
+                                        	{% if is_list_sorteable %}
+							<input type="hidden" id="path_ajax_sort_list_all" value="{{path('sort_complete_list')}}">
+							<td class="item"><div class="item ui-state-default ui-corner-all"><span class="btnSort ui-icon ui-icon-arrow-4">&nbsp;</span></div></td>
+							<td align="center"><span class='count' id="channelid_{{oItem.getId}}" rel="{{ boucle }}">{{boucle}}{% set boucle=boucle+1 %}</span></td>
+						{% endif %}
+
+                                            <td><a href="{{path('admin_item_modify',{'_locale':lang,'item_type':item_type,'id_item':oItem.getId})}}" title="{% trans %}Click to edit{% endtrans %}">
+						 {{ translation(oItem,"getAdminName",lang) }}
+					    </a></td>
+
+                                            <td><a href="{{path('admin_item_modify',{'_locale':lang,'item_type':item_type,'id_item':oItem.getId})}}" title="{% trans %}Click to edit{% endtrans %}">
+						 {% if oItem.getAdminCreationDate %}{{ oItem.getAdminCreationDate |date("m/d/Y") }}{% else %}{% trans%}No date available{% endtrans %}{% endif%}
+					    </a></td>
+
+					   {% if is_item_list_deleteable %}
+						<input type="hidden" id="path_ajax_delete_list_all" value="{{path('delete_item_from_full_list')}}">
+                                                <td align="center">
+							<a class="item_delete" rel='{{oItem.getId}}'>
+							      <div class="btnBin">{% trans %}Delete{% endtrans %}</div>
+                                                        </a>
+						</td>
+					    {% endif %}		
+                                        </tr>   
+											
+			{% else %}
+				<tr><td colspan="5" align="center"><strong>
+					{% trans %}No Item Yet{% endtrans %}
+				</strong></td></tr>
+			{% endfor %}
+
+			</tbody>
+		</table>
+
+	</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

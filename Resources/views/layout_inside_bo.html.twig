@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+
+
+
+
+{% stylesheets 
+        'bundles/fredbadmin/css/admin/style.css'
+        'bundles/fredbadmin/css/popup.css'
+        'bundles/fredbadmin/css/jquery.alerts.css'
+        'bundles/fredbadmin/ui/css/custom-theme/jquery-ui-1.8.5.custom.css'
+        'bundles/fredbadmin/css/admin/jquery.fancybox.css'
+        'bundles/fredbadmin/js/colorpicker/css/colorpicker.css'
+        'bundles/fredbadmin/css/timepicker_plug.css'
+        'bundles/fredbadmin/js/uploadify/uploadify.css'
+        'bundles/fredbadmin/css/jquery.jstree.css'
+        'bundles/fredbadmin/fredbadmin/css/ie.css'
+        'bundles/fredbadmin/fredbadmin/css/ie6.css'
+        'bundles/fredbadmin/fredbadmin/css/ie7.css'
+        'bundles/fredbadmin/fredbadmin/css/ie8.css'
+   filter="cssrewrite" %}
+  <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+{% endstylesheets %}
+
+{% javascripts
+    'bundles/fredbadmin/js/jquery.js'
+    'bundles/fredbadmin/js/jquery.jstree.js'
+    'bundles/fredbadmin/js/uploadify/swfobject.js' 
+    'bundles/fredbadmin/js/uploadify/jquery.uploadify.v2.1.0.min.js'
+    'bundles/fredbadmin/js/popup.js'
+    'bundles/fredbadmin/js/colorpicker.js'
+    'bundles/fredbadmin/js/timepicker.js'
+    'bundles/fredbadmin/js/admin/tinymce.editor.js'
+    'bundles/fredbadmin/js/tiny_mce/tiny_mce.js'
+    'bundles/fredbadmin/js/ddaccordion.js'
+    'bundles/fredbadmin/js/jquery.pngFix.js'
+    'bundles/fredbadmin/js/jquery.alerts.js'
+    'bundles/fredbadmin/js/jquery.fancybox.js'
+    'bundles/fredbadmin/ui/js/jquery-ui-1.8.5.custom.min.js'
+    'bundles/fredbadmin/js/admin/admin_generic.js' 
+ %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+
+
+<script type="text/javascript">
+g_variables = {};
+g_variables.lang = '';
+g_variables.lang_url = '';
+
+$(function () {
+	var menu_counter = 1;
+	var list_counter = 1;
+	$(".menu").each(function() {
+		$(this).attr('id', 'menu_' + menu_counter);
+		$(this).find('li').each(function() {
+			$(this).attr('id', 'list_' + list_counter);
+			list_counter++;
+		});
+		
+		if($(this).hasClass('selected')){
+			var parent_id = $(this).attr('id');
+			var open_id = $('#'+parent_id+' li:first').attr('id');
+			$(this).jstree({ 
+				"core" : { "initially_open" : [ open_id ] },
+				"themes" : {"theme" : "classic"},
+				"plugins" : [ "themes", "html_data"]
+			});
+		} else {
+			$(this).jstree({ 
+				"themes" : {"theme" : "classic"},
+				"plugins" : [ "themes", "html_data"]
+			});
+		}
+		
+		$(this).click(function(){
+			accordion_menu($(this).attr('id'));
+		});
+		
+		menu_counter++;
+	});
+
+	$(".btnGeneric").button();
+	
+	$(".selected").find('button').addClass('ui-state-focus');
+	
+	function accordion_menu(self_node){
+		for(var i = 1; i < menu_counter; i++){
+			if('menu_'+i != self_node){
+				var node_id = $('#menu_'+i+' li:first').attr('id');
+				$('#menu_'+i).jstree('close_all', node_id);
+			}
+		}
+	}
+
+});
+
+</script>
+
+<!--[if IE 6]>
+<script type="text/javascript">
+//li hover fix for ie6
+$(function() {
+        $('ul.categoryitems li').hover(function(){
+               $(this).addClass('hover');
+        }, function() {
+               $(this).removeClass('hover');
+        });
+});
+</script>
+<![endif]-->
+
+
+
+
+
+
+
+
+
+
+
+<title>Back-office</title>
+</head>
+<body>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<div id="wrap">
+	<div id="header">
+		<div id="project_header">
+			<div id="project_title">
+				<p class="project_title">Project</p>
+				<p class="welcome_title">{% trans %}Welcome to{% endtrans %} <span class="welcome_title_bold">B</span>ack <span class="welcome_title_bold">O</span>ffice </p>
+			</div>
+			<div><img src="" style="width:226px;float:right;margin-right:27px;"></div>
+			<div class="clear"></div>
+		</div>
+		<div id="header_border"></div>
+		<div style="clear:right"></div>
+		<div id="breadcrumb"><div id="breadcrumb-cell"></div></div>
+		<div class="clear"></div>
+		
+	</div>
+	
+    <div id="leftcol">
+	
+
+
+
+
+             
+		{#% render "FredbAdminBundle:Common:getactivemodule" %#}
+
+
+	
+
+		<div>
+			<button class="btnGeneric" onClick="window.open('/')">{% trans %}See web site{% endtrans %}</button>
+		</div>
+		
+		<div>
+			<a href="{#{ path('logout') }#}"><button class="btnGeneric">{% trans %}Logout{% endtrans %}</button></a>
+		</div>
+    </div>
+    
+</div>    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ <div id="rLeftcontainer"><br />   
+ {% block body %}{% endblock %}
+</div>
+
+    
+    
+    
+    
+    
+    
+  <div class="clear"></div>
+
+    
+
+
+
+
+</body>
+</html>

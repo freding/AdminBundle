@@ -1,0 +1,11 @@
+.s3sliderImage span {
+	behavior:url(/css/border-radius.htc);
+}
+
+.fondtranslucide {
+	behavior:url(/css/border-radius.htc);
+}
+
+.texteopaque {
+	behavior:url(/css/border-radius.htc);
+}

@@ -1,0 +1,44 @@
+
+
+{% extends 'FredbAdminBundle::layout_bo.html.twig' %}
+
+{% block body %}
+
+	<div id="content_container">
+		<div id="wrap">
+			<div id="logo"></div>
+			<div id="right_container">
+				<div id="project_container"><div>Back-office</div></div>
+				<div id="project_shadow">{% if error %}{{ error.message }}{% endif %}</div>
+				<div id="login_container">
+					<form action="{{ path('login_check') }}" method="post">
+						<div id="loginRow">
+							Username :
+							<input type="text" id="username" name="_username" value="{{ last_username }}" />
+						</div>
+
+						<div id="loginRow">
+							Password:
+							<input type="password" id="password" name="_password" />
+							<input type="hidden" name="language" value="fr" />
+							<input type="hidden" name="_target_path" value="/admin" />
+
+						</div>
+
+
+						<div id="loginRow">
+							<button type="submit" name="login" class="btnGeneric">Entrez</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+{% endblock %}
+
+
+

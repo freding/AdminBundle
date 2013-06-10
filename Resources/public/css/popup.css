@@ -1,0 +1,17 @@
+#blanket {
+	background-color:#111;
+	opacity: 0.65;
+	filter:alpha(opacity=65);
+	position:absolute;
+	z-index: 9001;
+	top:0px;
+	left:0px;
+	width:100%;
+}
+#popUpDiv {
+	position:absolute;
+	background-color:#eeeeee;
+	width:400px;
+	height:120px;
+	z-index: 9002;
+}

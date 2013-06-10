@@ -1,0 +1,30 @@
+{% extends 'FredbAdminBundle::layout_inside_bo.html.twig' %}
+
+{% block body %}
+
+	<h1>{{module_name | trans}} / {{ mode | trans }}</h1>
+		
+<br />
+<form action="{{ path('admin_item_list',{'_locale':app.request.get('_locale'),'item_type':item_type}) }}" ><button class="btnGeneric">{% trans %}Back to list{% endtrans %}</button></form>
+<br/>
+	{#% include 'FredAdminBundle:ViewBlock:admin_form_errors.html.twig' with {'aErrors': aErrors} %#}
+	<span class="validation_ok">{{ app.session.flash('update_ok') | trans }}</span>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+
+{% for oRow in aRows %}
+  {% if oRow.getTemplate != "" %}
+	{% include oRow.getTemplate with {'oRow': oRow} %}
+  {% endif %}   
+{% endfor %}
+
+	
+	
+	<input type="submit" name="valider">
+	
+</form>	
+	
+	
+
+{% endblock %}

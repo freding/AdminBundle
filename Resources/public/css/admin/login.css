@@ -1,0 +1,58 @@
+*{margin:0; padding:0;}
+a{color:#ffffff;}
+a img{border:0;}
+html{height: 100%;}
+body{ background:url('/image/bg_repeat.gif') repeat-x top; font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:12px; color:#535353;}
+div#content_container{width:473px; height:100%; margin:0 auto;}
+div#wrap{margin-top:66px}
+div#logo{background:url('/image/zgroupe_logo.png') no-repeat top left; width:122px; height:213px; float:left;padding-right:7px;}
+div#right_container{width:344px; float:left;}
+p{font-size:14px; color:#000000; padding-top: 20px; padding-bottom: 5px;}
+div#project_container{
+	width:344px; 
+	height:68px; 
+	background: #000000; 
+	font-size:30px; 
+	color:#fff; 
+	display:table-cell; 
+	vertical-align:middle; 
+	text-align: center; 
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	behavior:url(/css/border-radius.htc);
+}
+div#project_shadow{width:344px; height:42px; background:url('/image/project_shadow.png'); margin-top: 5px}
+div#login_container{
+	width:344px; 
+	min-height:134px; 
+	background: #000000; 
+	color:#ffffff; 
+	display:table; 
+	vertical-align:middle; 
+	-moz-border-radius:8px; 
+	-webkit-border-radius:8px;
+	behavior:url(/css/border-radius.htc);
+}
+div#login_container form{ float:left; padding:22px 0 10px 0; text-align: center;}
+
+
+div#loginRow{padding:0 26px 16px 0; float:right; font-weight: normal;}
+div#loginRow input{width:207px; height:16px;}
+div#loginRow select{width:210px; height:20px;}
+
+/* OVERLAY */
+div#inline1{width:580px;height:161px;}
+div#inline2{width:580px;height:161px;}
+div#insert_email{padding:25px 0 0 0;}
+div#email{padding:25px 0 0 0;}
+div#incorrect{padding:50px 0 0 0;}
+div#overlayButton{ padding:35px 0 0 86px; float:left;}
+div#overlayContent{ font:Arial, Helvetica, sans-serif; font-size:14px; color:#535353; text-align:center; clear:both; font-weight:normal; padding:0 0 10px 0;}
+div#overlayContent input{ width:282px; height:19px; border:1px solid #b0cff8;}
+div#overlayContent input.button{border:0; width:58px; height:24px;}
+
+.displayNone{display: none;}
+button.btnGeneric{border:0; width:145px; height:18px; float:right; margin:0 0 0 30px;}
+button.ui-corner-all{height: 20px;}
+button.ui-corner-all span.ui-button-text{ padding: 2px 0;}
+#various1{float:left}
