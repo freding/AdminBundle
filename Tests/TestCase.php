@@ -51,6 +51,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $this->loadSchemas(array('Fredb\AdminBundle\Entity\Test'));
     }
 
+    
     /**
      * Tear down process run after tests
      * @return void
