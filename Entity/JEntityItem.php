@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="JNT_entity_item")
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Fred\DatasBundle\Repository\JEntityItemRepository")
+ * @ORM\Entity(repositoryClass="Fredb\AdminBundle\Repository\JEntityItemRepository")
  */
 class JEntityItem {
 
