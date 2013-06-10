@@ -52,7 +52,6 @@ class TestCase extends \PHPUnit_Framework_TestCase
         
         //fixtures
         //$this->loadFixture('DataFixtures\ORM\MyFixture');
-        
     }
 
     
