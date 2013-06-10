@@ -9,7 +9,7 @@ class DefaultControllerTest extends TestCase
     public function testIndex()
     {
             
-        var_dump($this->getContainer());
+        var_dump($this->getEntityManager());
         
         $this->assertTrue(true);
     }
