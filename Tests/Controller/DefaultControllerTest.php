@@ -2,13 +2,15 @@
 
 namespace Fredb\AdminBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Fredb\AdminBundle\Tests\TestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
-
+            
+        var_dump($this->getContainer());
+        
         $this->assertTrue(true);
     }
 }
