@@ -3,7 +3,6 @@
 namespace Fredb\AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  * Fredb\AdminBundle\Entity\JEntityItem
  *
