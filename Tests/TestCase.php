@@ -49,6 +49,10 @@ class TestCase extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->loadSchemas(array('Fredb\AdminBundle\Entity\Test'));
+        
+        //fixtures
+        //$this->loadFixture('DataFixtures\ORM\MyFixture');
+        
     }
 
     

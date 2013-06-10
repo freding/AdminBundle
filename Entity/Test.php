@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Test {
 
-	
 	/**
 	 * @var integer $id
 	 * @ORM\Id 
