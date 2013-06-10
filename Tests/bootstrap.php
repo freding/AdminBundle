@@ -1,8 +1,7 @@
 <?php
 
-$file = __DIR__.'/../vendor/autoload.php';
-if (!file_exists($file)) {
-    throw new RuntimeException('Install dependencies to run test suite. "php composer.phar install --dev"');
+if (file_exists($file = __DIR__.'/autoload.php')) {
+    require_once $file;
+} elseif (file_exists($file = __DIR__.'/autoload.php.dist')) {
+    require_once $file;
 }
-
-require_once $file;
