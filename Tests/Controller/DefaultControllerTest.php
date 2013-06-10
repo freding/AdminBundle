@@ -9,7 +9,7 @@ class DefaultControllerTest extends TestCase
     public function testIndex()
     {
             
-        var_dump($this->getEntityManager());
+        var_dump($this->getEntityManager()->getRepository("FredbAdmin:Test")->findOneById(1));
         
         $this->assertTrue(true);
     }
