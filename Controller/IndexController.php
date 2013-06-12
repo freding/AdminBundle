@@ -39,8 +39,11 @@ class IndexController extends Controller
      */
     public function adminhomeAction()
     {        
-
+        $oAdmin_form_service = $this->get("admin_form_service");
     
+        $oItem = new Acme\DemoBundle\Entity\Test();
+        
+        echo $oAdmin_form_service->getRows($oItem);
         return array();
     }	
 	

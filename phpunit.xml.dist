@@ -15,10 +15,6 @@
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
       <directory suffix=".php">./Controller</directory>
-      <directory suffix=".php">./Entity</directory>
-      <directory suffix=".php">./Repository</directory>  
-      <directory suffix=".php">./Builder</directory>     
-      <directory suffix=".php">./Lang</directory>
       <directory suffix=".php">./Services</directory>   
     </whitelist>
   </filter>

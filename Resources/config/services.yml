@@ -2,6 +2,18 @@ parameters:
 #    fredb_admin.example.class: Fredb\AdminBundle\Example
 
 services:
-#    fredb_admin.example:
-#        class: %fredb_admin.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    annotations_reader_brut:
+        class:        Doctrine\Common\Annotations\AnnotationReader
+    annotations_apc:
+        class:        Doctrine\Common\Cache\ApcCache 
+        
+    annotations_reader:
+        class:          Doctrine\Common\Annotations\CachedReader
+        arguments:    ["@annotations_reader_brut","@annotations_apc",true]
+      
+    admin_form_service:
+        class:        Fredb\AdminBundle\Services\AdminFormService    
+        arguments:    ["@annotations_reader","@doctrine.orm.entity_manager"]
+    annotations_zgroupe_service:
+        class:        Fredb\Services\AnnotationsServices
+        arguments:    ["@annotations_reader"]
