@@ -2,9 +2,9 @@
 
 namespace Fredb\AdminBundle\Tests\Controller;
 
-use Fredb\AdminBundle\Tests\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends TestCase
+class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
