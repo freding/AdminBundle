@@ -9,26 +9,26 @@ namespace Fredb\AdminBundle\Services\Row\AbstractRow;
  */
 abstract class RowAbstract{
 	
-    protected $type;
-    protected $annotation_namespace;
+    protected $name;
+    
+    
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
         
-    
-    
     public function getType() {
-        return $this->type;
+        return get_class($this);
     }
 
-    public function setType($type) {
-        $this->type = $type;
+    public function getUrlType() {
+        return urlencode($this->getType());
     }
 
-    public function getAnnotation_namespace() {
-        return $this->annotation_namespace;
-    }
-
-    public function setAnnotation_namespace($annotation_namespace) {
-        $this->annotation_namespace = $annotation_namespace;
-    }
 
 
 }

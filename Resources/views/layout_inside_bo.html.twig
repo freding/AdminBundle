@@ -162,27 +162,8 @@ $(function() {
 		
 	</div>
 	
-    <div id="leftcol">
-	
-
-
-
-
-             
-		{#% render "FredbAdminBundle:Common:getactivemodule" %#}
-
-
-	
-
-		<div>
-			<button class="btnGeneric" onClick="window.open('/')">{% trans %}See web site{% endtrans %}</button>
-		</div>
-		
-		<div>
-			<a href="{#{ path('logout') }#}"><button class="btnGeneric">{% trans %}Logout{% endtrans %}</button></a>
-		</div>
-    </div>
-    
+ 
+    {{ render(controller('FredbAdminBundle:Layouts:menu',{"lang":app.request.locale})) }}
 </div>    
     
     

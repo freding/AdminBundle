@@ -1,5 +1,5 @@
 parameters:
-#    fredb_admin.example.class: Fredb\AdminBundle\Example
+    aLangs: ["fr","en"]        
 
 services:
     annotations_reader_brut:
@@ -11,9 +11,15 @@ services:
         class:          Doctrine\Common\Annotations\CachedReader
         arguments:    ["@annotations_reader_brut","@annotations_apc",true]
       
+    row_factory:
+        class:        Fredb\AdminBundle\Services\Row\RowFactory    
+        arguments:    ["@doctrine.orm.entity_manager"]
     admin_form_service:
         class:        Fredb\AdminBundle\Services\AdminFormService    
-        arguments:    ["@annotations_reader","@doctrine.orm.entity_manager"]
+        arguments:    ["@annotations_reader","@doctrine.orm.entity_manager","@row_factory"]
     annotations_zgroupe_service:
         class:        Fredb\Services\AnnotationsServices
         arguments:    ["@annotations_reader"]
+    admin_class_service:
+        class:        Fredb\AdminBundle\Services\AdminClassService    
+        arguments:    ["@annotations_reader","@doctrine.orm.entity_manager","@row_factory",%aLangs%]

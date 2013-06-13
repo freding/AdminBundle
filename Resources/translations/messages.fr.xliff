@@ -1,0 +1,880 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+
+
+            <trans-unit id="1">
+                <source>Symfony2 is great</source>
+                <target>J'aime Symfony2</target>
+            </trans-unit>
+
+            <trans-unit id="2">
+                <source>Symfony22 is great</source>
+                <target>J'aime Symfony22</target>
+            </trans-unit>
+
+            <trans-unit id="3">
+                <source>See web site</source>
+                <target>Voir le site</target>
+            </trans-unit>
+
+            <trans-unit id="4">
+                <source>Logout</source>
+                <target>Déconnexion</target>
+            </trans-unit>
+
+            <trans-unit id="5">
+                <source>Welcome to</source>
+                <target>Bienvenue sur le</target>
+            </trans-unit>
+
+
+            <trans-unit id="6">
+                <source>Welcome to root</source>
+                <target>Bienvenue sur le gestionnaire de</target>
+            </trans-unit>
+
+            <trans-unit id="7">
+                <source>Languages</source>
+                <target>Langues</target>
+            </trans-unit>
+
+            <trans-unit id="8">
+                <source>Manage</source>
+                <target>Gérer</target>
+            </trans-unit>
+
+            <trans-unit id="9">
+                <source>Video</source>
+                <target>Vidéo</target>
+            </trans-unit>
+
+
+            <trans-unit id="10">
+                <source>List</source>
+                <target>Liste</target>
+            </trans-unit>
+
+            <trans-unit id="11">
+                <source>Create</source>
+                <target>Créer</target>
+            </trans-unit>
+
+           <trans-unit id="12">
+                <source>Add / Modify</source>
+                <target>Ajout / Modification</target>
+            </trans-unit>
+
+           <trans-unit id="13">
+                <source>Name</source>
+                <target>Nom</target>
+            </trans-unit>
+
+
+           <trans-unit id="14">
+                <source>Seo Description</source>
+                <target>Description Seo</target>
+            </trans-unit>
+
+           <trans-unit id="15">
+                <source>Seo Keyword</source>
+                <target>Mots clefs Seo</target>
+            </trans-unit>
+
+           <trans-unit id="16">
+                <source>Please fill this field</source>
+                <target>Veuillez compléter ce champ</target>
+            </trans-unit>
+
+           <trans-unit id="17">
+                <source>Activated</source>
+                <target>Activer</target>
+            </trans-unit>			
+
+
+           <trans-unit id="18">
+                <source>At least one require field is missing</source>
+                <target>Au moins un champ obligatoire est manquant</target>
+            </trans-unit>
+			
+           <trans-unit id="19">
+                <source>The name already exist in our dataBase</source>
+                <target>Le nom existe déjà dans la base de données</target>
+            </trans-unit>
+
+           <trans-unit id="20">
+                <source>The name is empty</source>
+                <target>Le nom est vide</target>
+            </trans-unit>
+		
+           <trans-unit id="21">
+                <source>Modify</source>
+                <target>Modifier</target>
+            </trans-unit>
+
+
+           <trans-unit id="22">
+                <source>Videos</source>
+                <target>Vidéos</target>
+            </trans-unit>
+
+           <trans-unit id="23">
+                <source>News</source>
+                <target>News</target>
+            </trans-unit>
+
+           <trans-unit id="24">
+                <source>Channels</source>
+                <target>Chaînes</target>
+            </trans-unit>
+
+
+           <trans-unit id="25">
+                <source>Documents</source>
+                <target>Documents</target>
+            </trans-unit>
+
+           <trans-unit id="26">
+                <source>Pictures</source>
+                <target>Photos</target>
+            </trans-unit>
+
+           <trans-unit id="27">
+                <source>Click to edit</source>
+                <target>Cliquez pour éditer</target>
+            </trans-unit>
+
+           <trans-unit id="28">
+                <source>Delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+
+           <trans-unit id="29">
+                <source>Creation date</source>
+                <target>Date de création</target>
+            </trans-unit>
+
+           <trans-unit id="30">
+                <source>No date available</source>
+                <target>Pas de date disponible</target>
+            </trans-unit>
+	
+           <trans-unit id="31">
+                <source>Choose item to add</source>
+                <target>Choisir l'item à lier</target>
+            </trans-unit>
+
+
+           <trans-unit id="32">
+                <source>Detach Item</source>
+                <target>Détacher l'item</target>
+            </trans-unit>
+
+           <trans-unit id="33">
+                <source>No Item Yet</source>
+                <target>Pas encore d'item</target>
+            </trans-unit>
+
+           <trans-unit id="34">
+                <source>Link news</source>
+                <target>Lier des News</target>
+            </trans-unit>
+
+           <trans-unit id="35">
+                <source>Link channel</source>
+                <target>Lier des Chaînes</target>
+            </trans-unit>
+
+           <trans-unit id="36">
+                <source>You must save before link items</source>
+                <target>Vous devez sauvegarder avant de lier des items</target>
+            </trans-unit>
+
+
+           <trans-unit id="37">
+                <source>Link an image</source>
+                <target>Lier une image</target>
+            </trans-unit>
+
+           <trans-unit id="38">
+                <source>Picture for video</source>
+                <target>Image pour vidéo</target>
+            </trans-unit>
+
+           <trans-unit id="39">
+                <source>The file is not right</source>
+                <target>Le fichier n'est pas au bon format</target>
+            </trans-unit>
+
+           <trans-unit id="40">
+                <source>Choose video</source>
+                <target>Choisir une vidéo</target>
+            </trans-unit>
+
+
+           <trans-unit id="41">
+                <source>Upload</source>
+                <target>Uploader</target>
+            </trans-unit>
+
+           <trans-unit id="42">
+                <source>Upload a video</source>
+                <target>Uploader une vidéo</target>
+            </trans-unit>
+
+          <trans-unit id="43">
+                <source>if upload fail, please check your antivirus configuration</source>
+                <target>si l'upload échoue, verifiez la configuration de votre anti-virus</target>
+            </trans-unit>
+
+          <trans-unit id="44">
+                <source>Upload</source>
+                <target>Uploader</target>
+            </trans-unit>
+
+
+          <trans-unit id="45">
+                <source>The permalink is not valid</source>
+                <target>Le format du permalien n'est pas valide</target>
+            </trans-unit>
+
+          <trans-unit id="46">
+                <source>Video format is wrong</source>
+                <target>Le format de la vidéo n'est pas supporté</target>
+            </trans-unit>
+
+
+
+          <trans-unit id="47">
+                <source>Back to list</source>
+                <target>Retour à la liste</target>
+            </trans-unit>
+
+          <trans-unit id="48">
+                <source>Create a new item</source>
+                <target>Créer un nouvel item</target>
+            </trans-unit>
+
+
+          <trans-unit id="49">
+                <source>Save Ok</source>
+                <target>La sauvegarde a été réalisé</target>
+            </trans-unit>
+
+
+          <trans-unit id="50">
+                <source>Please specify a video</source>
+                <target>Merci d'indiquer une vidéo</target>
+            </trans-unit>
+
+
+
+
+
+
+
+          <trans-unit id="51">
+                <source>Channel color</source>
+                <target>Couleur pour les chaînes</target>
+            </trans-unit>
+
+          <trans-unit id="52">
+                <source>Highlight color</source>
+                <target>Couleur pour les highlights</target>
+            </trans-unit>
+
+
+
+          <trans-unit id="53">
+                <source>Background color</source>
+                <target>Couleur de fond</target>
+            </trans-unit>
+
+
+          <trans-unit id="54">
+                <source>Validate</source>
+                <target>Valider</target>
+            </trans-unit>
+
+
+          <trans-unit id="55">
+                <source>Choose background</source>
+                <target>Choisir le fond</target>
+            </trans-unit>
+
+
+          <trans-unit id="56">
+                <source>Choose header</source>
+                <target>Choisir le header</target>
+            </trans-unit>
+
+
+          <trans-unit id="57">
+                <source>Choose jquery ui</source>
+                <target>Choisir style jquery ui</target>
+            </trans-unit>
+
+          <trans-unit id="58">
+                <source>Header color</source>
+                <target>Couleur du header</target>
+            </trans-unit>
+
+          <trans-unit id="59">
+                <source>Choose video for home</source>
+                <target>Choisissez une vidéo pour la home</target>
+            </trans-unit>
+
+
+          <trans-unit id="60">
+                <source>Change video for home</source>
+                <target>Changer la vidéo pour la home</target>
+            </trans-unit>
+
+          <trans-unit id="61">
+                <source>Current video for home</source>
+                <target>Vidéo actuellement en Home</target>
+            </trans-unit>
+
+
+          <trans-unit id="62">
+                <source>Link highlight</source>
+                <target>Lier des highlight</target>
+            </trans-unit>
+
+          <trans-unit id="63">
+                <source>Link to a playlist</source>
+                <target>Lier à une playlist</target>
+            </trans-unit>
+
+
+          <trans-unit id="64">
+                <source>Link playlists</source>
+                <target>Lier des playlists</target>
+            </trans-unit>
+
+          <trans-unit id="65">
+                <source>Link videos</source>
+                <target>Lier des vidéos</target>
+            </trans-unit>
+
+
+          <trans-unit id="66">
+                <source>Picture</source>
+                <target>Photo</target>
+            </trans-unit>
+
+
+          <trans-unit id="67">
+                <source>Choose picture</source>
+                <target>Choisir l'image</target>
+            </trans-unit>
+
+          <trans-unit id="68">
+                <source>Link photos</source>
+                <target>Lier des photos</target>
+            </trans-unit>
+
+
+          <trans-unit id="69">
+                <source>Hightlight</source>
+                <target>Grands titres</target>
+            </trans-unit>
+
+
+          <trans-unit id="70">
+                <source>Beginning date</source>
+                <target>Date de début</target>
+            </trans-unit>
+
+          <trans-unit id="71">
+                <source>Ending date</source>
+                <target>Date de fin</target>
+            </trans-unit>
+
+          <trans-unit id="72">
+                <source>Ending date</source>
+                <target>Date de fin</target>
+            </trans-unit>
+
+
+          <trans-unit id="73">
+                <source>First name</source>
+                <target>Prénom</target>
+            </trans-unit>
+
+          <trans-unit id="74">
+                <source>Answer</source>
+                <target>Réponse</target>
+            </trans-unit>
+
+          <trans-unit id="75">
+                <source>Picture for download</source>
+                <target>Image pour download</target>
+            </trans-unit>
+
+
+          <trans-unit id="76">
+                <source>File for download</source>
+                <target>Fichier pour download</target>
+            </trans-unit>
+
+          <trans-unit id="77">
+                <source>Save</source>
+                <target>Sauvegarder</target>
+            </trans-unit>
+
+
+          <trans-unit id="78">
+                <source>Border</source>
+                <target>Bordure</target>
+            </trans-unit>
+
+          <trans-unit id="79">
+                <source>Link url</source>
+                <target>Lien url</target>
+            </trans-unit>
+
+          <trans-unit id="80">
+                <source>Picture for block</source>
+                <target>Image pour le block</target>
+            </trans-unit>
+
+
+
+          <trans-unit id="81">
+                <source>Block location</source>
+                <target>Place des blocks</target>
+            </trans-unit>
+
+          <trans-unit id="82">
+                <source>Choose a page</source>
+                <target>Choissez une page</target>
+            </trans-unit>
+
+
+          <trans-unit id="83">
+                <source>Not removeable</source>
+                <target>Ne peut être supprimé</target>
+            </trans-unit>
+
+
+          <trans-unit id="84">
+                <source>Left Blocks</source>
+                <target>Blocks de gauche</target>
+            </trans-unit>
+
+
+          <trans-unit id="85">
+                <source>Right Blocks</source>
+                <target>Blocks de droite</target>
+            </trans-unit>
+
+          <trans-unit id="86">
+                <source>Choose a block to add</source>
+                <target>Choisissez un block à ajouter</target>
+            </trans-unit>
+
+
+
+
+          <trans-unit id="87">
+                <source>Project name</source>
+                <target>Nom du projet</target>
+            </trans-unit>
+
+
+          <trans-unit id="88">
+                <source>Twitter link</source>
+                <target>Lien twitter</target>
+            </trans-unit>
+
+          <trans-unit id="89">
+                <source>Facebook link</source>
+                <target>Lien facebook</target>
+            </trans-unit>
+
+          <trans-unit id="90">
+                <source>Facebook Key</source>
+                <target>Clé Facebook</target>
+            </trans-unit>
+
+
+          <trans-unit id="91">
+                <source>Twitter Password</source>
+                <target>Mot de passe twitter</target>
+            </trans-unit>
+
+
+          <trans-unit id="92">
+                <source>Search/lang box style</source>
+                <target>Style block de recherche/langue</target>
+            </trans-unit>
+
+
+
+
+
+          <trans-unit id="93">
+                <source>black</source>
+                <target>noir</target>
+            </trans-unit>
+
+
+          <trans-unit id="94">
+                <source>black + transparent</source>
+                <target>noir + transparence</target>
+            </trans-unit>
+
+
+          <trans-unit id="95">
+                <source>choose color</source>
+                <target>Choisir la couleur</target>
+            </trans-unit>
+
+          <trans-unit id="96">
+                <source>Modules available</source>
+                <target>Modules disponibles</target>
+            </trans-unit>
+
+
+          <trans-unit id="97">
+                <source>Price</source>
+                <target>Prix</target>
+            </trans-unit>
+
+
+          <trans-unit id="98">
+                <source>E-shop Channels</source>
+                <target>Rayons E-commerce</target>
+            </trans-unit>
+
+          <trans-unit id="99">
+                <source>Product</source>
+                <target>Produit</target>
+            </trans-unit>
+
+
+
+          <trans-unit id="100">
+                <source>Shop color</source>
+                <target>Couleur boutique</target>
+            </trans-unit>
+
+          <trans-unit id="101">
+                <source>Link products</source>
+                <target>Lier des produits</target>
+            </trans-unit>
+
+
+          <trans-unit id="102">
+                <source>Url for bank</source>
+                <target>Url à transmettre à la banque</target>
+            </trans-unit>
+
+
+          <trans-unit id="103">
+                <source>Manage order</source>
+                <target>Gérer les commandes</target>
+            </trans-unit>
+
+
+          <trans-unit id="104">
+                <source>Manage</source>
+                <target>Gérer</target>
+            </trans-unit>
+
+          <trans-unit id="105">
+                <source>Order</source>
+                <target>Commande</target>
+            </trans-unit>
+
+
+
+
+          <trans-unit id="106">
+                <source>Order Id</source>
+                <target>Id Commande</target>
+            </trans-unit>
+
+
+          <trans-unit id="107">
+                <source>Order Status</source>
+                <target>Status Commande</target>
+            </trans-unit>
+
+
+          <trans-unit id="108">
+                <source>Order Date</source>
+                <target>Date Commande</target>
+            </trans-unit>
+
+          <trans-unit id="109">
+                <source>Order Name</source>
+                <target>Nom Commande</target>
+            </trans-unit>
+
+
+
+
+          <trans-unit id="110">
+                <source>Validate by user</source>
+                <target>Validé par l'utilisateur</target>
+            </trans-unit>
+
+
+          <trans-unit id="111">
+                <source>Validate by bank</source>
+                <target>Validé par la banque</target>
+            </trans-unit>
+
+          <trans-unit id="112">
+                <source>Annulated by bank</source>
+                <target>Annulé par la banque</target>
+            </trans-unit>
+
+
+          <trans-unit id="113">
+                <source>Back to order list</source>
+                <target>Retour à la liste des commandes</target>
+            </trans-unit>
+
+
+
+          <trans-unit id="114">
+                <source>Order date</source>
+                <target>Date de commande</target>
+            </trans-unit>
+
+
+
+          <trans-unit id="115">
+                <source>Status</source>
+                <target>Status</target>
+            </trans-unit>
+
+          <trans-unit id="116">
+                <source>User login</source>
+                <target>Login</target>
+            </trans-unit>
+
+          <trans-unit id="117">
+                <source>User last name</source>
+                <target>Nom</target>
+            </trans-unit>
+
+          <trans-unit id="118">
+                <source>Content</source>
+                <target>Descriptif</target>
+            </trans-unit>
+
+          <trans-unit id="119">
+                <source>Reference</source>
+                <target>Référence</target>
+            </trans-unit>
+
+          <trans-unit id="120">
+                <source>Price</source>
+                <target>Prix</target>
+            </trans-unit>
+
+          <trans-unit id="121">
+                <source>Quantity</source>
+                <target>Quantité</target>
+            </trans-unit>
+
+          <trans-unit id="122">
+                <source>Delivery address</source>
+                <target>Addresse de livraison</target>
+            </trans-unit>
+
+          <trans-unit id="123">
+                <source>Civility</source>
+                <target>Civilité</target>
+            </trans-unit>
+
+          <trans-unit id="124">
+                <source>Name</source>
+                <target>nom</target>
+            </trans-unit>
+
+          <trans-unit id="125">
+                <source>Num</source>
+                <target>numéro</target>
+            </trans-unit>
+
+          <trans-unit id="126">
+                <source>Complement</source>
+                <target>adresse</target>
+            </trans-unit>
+
+          <trans-unit id="127">
+                <source>Zipcode</source>
+                <target>Code postal</target>
+            </trans-unit>
+
+          <trans-unit id="128">
+                <source>Town</source>
+                <target>Ville</target>
+            </trans-unit>
+
+          <trans-unit id="129">
+                <source>Country</source>
+                <target>Pays</target>
+            </trans-unit>
+
+          <trans-unit id="130">
+                <source>Billing address</source>
+                <target>Adresse de facturation</target>
+            </trans-unit>
+
+
+          <trans-unit id="131">
+                <source>Bill Pdf</source>
+                <target>Facture en pdf</target>
+            </trans-unit>
+
+
+          <trans-unit id="132">
+                <source>Taken into account</source>
+                <target>Pris en compte</target>
+            </trans-unit>
+
+          <trans-unit id="133">
+                <source>Taken into account by seller</source>
+                <target>Pris en compte par le vendeur</target>
+            </trans-unit>
+
+
+
+          <trans-unit id="134">
+                <source>Without image</source>
+                <target>Sans image</target>
+            </trans-unit>
+
+
+
+
+
+          <trans-unit id="135">
+                <source>Footer color</source>
+                <target>Couleur du footer</target>
+            </trans-unit>
+
+          <trans-unit id="136">
+                <source>Font color for search/nav bar</source>
+                <target>Couleur des textes dans navigation</target>
+            </trans-unit>
+
+          <trans-unit id="137">
+                <source>Font color for title in footer</source>
+                <target>Couleur des titres dans footer</target>
+            </trans-unit>
+
+          <trans-unit id="138">
+                <source>Font color for footer</source>
+                <target>Couleur des textes dans footer</target>
+            </trans-unit>
+
+
+          <trans-unit id="139">
+                <source>Link medias</source>
+                <target>Lier des médias</target>
+            </trans-unit>
+
+
+          <trans-unit id="140">
+                <source>Shop</source>
+                <target>Boutique</target>
+            </trans-unit>
+
+
+          <trans-unit id="141">
+                <source>Organize</source>
+                <target>Organiser</target>
+            </trans-unit>
+
+
+          <trans-unit id="142">
+                <source>Add</source>
+                <target>Ajouter</target>
+            </trans-unit>
+
+
+
+          <trans-unit id="143">
+                <source>Create new page</source>
+                <target>Créer une nouvelle page</target>
+            </trans-unit>
+
+
+          <trans-unit id="144">
+                <source>Url name</source>
+                <target>Nom dans l'url</target>
+            </trans-unit>
+
+
+          <trans-unit id="145">
+                <source>Content page</source>
+                <target>Contenu de la page</target>
+            </trans-unit>
+
+          <trans-unit id="146">
+                <source>Page Name</source>
+                <target>Nom de la page</target>
+            </trans-unit>
+
+
+          <trans-unit id="147">
+                <source>Name already exist</source>
+                <target>Le nom existe déjà</target>
+            </trans-unit>
+
+          <trans-unit id="148">
+                <source>Name cannot be empty</source>
+                <target>Un nom ne peut être vide</target>
+            </trans-unit>
+
+
+          <trans-unit id="149">
+                <source>edit</source>
+                <target>éditer</target>
+            </trans-unit>
+
+         <trans-unit id="150">
+                <source>Page Content</source>
+                <target>Contenu de la page</target>
+            </trans-unit>
+
+
+         <trans-unit id="151">
+                <source>Link activated</source>
+                <target>Lien activé</target>
+            </trans-unit>
+
+
+         <trans-unit id="152">
+                <source>Save</source>
+                <target>Sauvegarder</target>
+            </trans-unit>
+
+
+         <trans-unit id="153">
+                <source>These items will be permanently deleted and cannot be recovered. Are you sure</source>
+                <target>Ces éléments seront supprimé définitivement.Etes-vous sur</target>
+            </trans-unit>
+
+         <trans-unit id="154">
+                <source>Slideshow</source>
+                <target>Slideshow</target>
+            </trans-unit>
+
+
+
+
+
+
+
+        </body>
+    </file>
+</xliff>

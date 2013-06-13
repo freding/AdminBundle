@@ -4,6 +4,16 @@ use Doctrine\Common\Annotations\Annotation;
 /** @Annotation */
 Abstract class AbstractAnnotation extends Annotation
 {
+    
+    
+	const TYPE_MANAGE_BY_BO   = "Fredb\AdminBundle\Annotations\ManageByBo";
+        
+	static $aAnnotationsClass = array(
+		self::TYPE_MANAGE_BY_BO
+	);
+    
+    
+    
 	const TYPE_CLASS      = "class"; 
 	const TYPE_PROPERTY   = "property";
         const TYPE_LINK       = "link";

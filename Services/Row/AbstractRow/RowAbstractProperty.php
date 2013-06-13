@@ -9,7 +9,7 @@ namespace Fredb\AdminBundle\Services\Row\AbstractRow;
  */
 abstract class RowAbstractProperty extends RowAbstract{
 	
-    protected $name;
+
     protected $is_langueable;
     protected $lang;
     protected $property_name;
@@ -24,13 +24,6 @@ abstract class RowAbstractProperty extends RowAbstract{
 
         
         
-        public function getName() {
-            return $this->name;
-        }
-
-        public function setName($name) {
-            $this->name = $name;
-        }
 
         public function getIs_langueable() {
             return $this->is_langueable;
