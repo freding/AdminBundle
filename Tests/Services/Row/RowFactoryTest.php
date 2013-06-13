@@ -12,7 +12,7 @@ class RowFactoryTest extends WebTestCase
 
         
         $finder = new Finder();
-        $finder->files()->in(__DIR__."../../../../Annotations/");
+        $finder->files()->in(__DIR__."/../../../../Annotations/");
 
         foreach ($finder as $file) {
             \Zend_Debug::dump($file);
