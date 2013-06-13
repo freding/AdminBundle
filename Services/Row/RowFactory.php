@@ -23,7 +23,7 @@ class RowFactory {
         
 	public function getRowClass($oAnnotation){
                 $oRow = null;  
-                if(get_class($oAnnotation) == "Fredb\AdminBundle\Annotations\ManageByBo"){
+                if(get_class($oAnnotation) == "Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow\ManageByBo"){
                     $class_row = $oAnnotation->getRowClass();
                     /** @var \Fredb\AdminBundle\Services\Row\ConcretRow\ClassRow\ManageByBoRow $oRow */
                     $oRow = new $class_row();

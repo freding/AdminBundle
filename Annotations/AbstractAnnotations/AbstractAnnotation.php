@@ -6,7 +6,7 @@ Abstract class AbstractAnnotation extends Annotation
 {
     
     
-	const TYPE_MANAGE_BY_BO   = "Fredb\AdminBundle\Annotations\ManageByBo";
+	const TYPE_MANAGE_BY_BO   = "Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow\ManageByBo";
         
 	static $aAnnotationsClass = array(
 		self::TYPE_MANAGE_BY_BO

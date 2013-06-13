@@ -1,5 +1,5 @@
 <?php 
-namespace Fredb\AdminBundle\Annotations;
+namespace Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow;
 use Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractNoVisualAnnotation;
 
 /** @Annotation */
