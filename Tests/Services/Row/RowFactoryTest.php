@@ -28,7 +28,7 @@ class RowFactoryTest extends BaseTestCase
         //$this->_em->persist($oTest);
         //$this->_em->flush();
         \Zend_Debug::dump($oTest);
-\Zend_Debug::dump($thi->_em);
+\Zend_Debug::dump($this->_em);
 
         $oRowFactory = new \Fredb\AdminBundle\Services\Row\RowFactory($this->_em);
         
