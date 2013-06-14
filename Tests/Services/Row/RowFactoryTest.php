@@ -9,23 +9,24 @@ class RowFactoryTest extends WebTestCase
 {
     public function testGetRowClass()
     {
-
+        $oEntityManager = new \Doctrine\ORM\EntityManager();
+        $oRowFactory = new \Fredb\AdminBundle\Services\Row\RowFactory($oEntityManager);
         
         $finder = new Finder();
         $finder->files()->in(__DIR__."/../../../Annotations/ConcretAnnotations/ClassRow/");
 
         foreach ($finder as $file) {
-            
-            $classes = get_declared_classes();
-            include $file;
-            $diff = array_diff(get_declared_classes(), $classes);
-            $class = reset($diff);
-            
-            \Zend_Debug::dump($class);
-
+            $class_name = "Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow\\".str_replace(".php", "", "ManageByBo.php");
+            $oAnnotation = new $class_name(array()); 
+            $this->assertTrue($oRowFactory->getRowClass($oAnnotation) instanceof Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractNoVisualAnnotation);
         }
         
         
-        $this->assertTrue(true);
+        
     }
+    
+    
+    
+    
+    
 }
