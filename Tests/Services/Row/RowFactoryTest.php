@@ -28,7 +28,7 @@ class RowFactoryTest extends BaseTestCase
         $finder->files()->in(__DIR__."/../../../Annotations/ConcretAnnotations/ClassRow/");
 
         foreach ($finder as $file) {
-            $class_name = "Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow\\".str_replace(".php", "", "ManageByBo.php");
+            $class_name = "Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow\\".str_replace(".php", "", $file);
             $oAnnotation = new $class_name(array()); 
             $this->assertTrue($oRowFactory->getRowClass($oAnnotation) instanceof Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractNoVisualAnnotation);
         }
