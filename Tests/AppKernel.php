@@ -42,7 +42,7 @@ class AppKernel extends Kernel
     }
 
     public function getCacheDir()
-    {
-        //return sys_get_temp_dir().'/JMSPaymentCoreBundle';
+    { //.'/AdminBundle'
+       return sys_get_temp_dir();
     }
 }
