@@ -7,6 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BaseTestCase extends WebTestCase
 {
+    
+    /** @var \Doctrine\ORM\EntityManager $oEntityManager  */
+    protected $_em;   
+    
     static protected function createKernel(array $options = array())
     {
         return self::$kernel = new AppKernel(
@@ -22,11 +26,11 @@ class BaseTestCase extends WebTestCase
 
     protected final function importDatabaseSchema()
     {
-        $em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $this->em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
 
-        $metadata = $em->getMetadataFactory()->getAllMetadata();
+        $metadata = $this->em->getMetadataFactory()->getAllMetadata();
         if (!empty($metadata)) {
-            $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($em);
+            $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($this->em);
             $schemaTool->dropDatabase();
             $schemaTool->createSchema($metadata);
         }

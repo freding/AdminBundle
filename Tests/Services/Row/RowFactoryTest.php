@@ -17,12 +17,14 @@ class RowFactoryTest extends BaseTestCase
     
     public function testGetRowClass()
     {
-        $this->createClient();
-        $this->importDatabaseSchema();
-        $c = self::$kernel->getContainer();
-        $oEntityManager = $c->get('doctrine.orm.entity_manager');
+        $oTest = new \Acme\DemoBundle\Entity\Test2();
+        $oTest->setChaine("test");
+        $this->_em->persist($oTest);
+        $this->_em->flush();
+        \Zend_Debug::dump($oTest);
+        $this->assertTrue($oTest->getId()>=0);
 
-        $oRowFactory = new \Fredb\AdminBundle\Services\Row\RowFactory($oEntityManager);
+        $oRowFactory = new \Fredb\AdminBundle\Services\Row\RowFactory($this->_em);
         
         $finder = new Finder();
         $finder->files()->in(__DIR__."/../../../Annotations/ConcretAnnotations/ClassRow/");
@@ -33,7 +35,7 @@ class RowFactoryTest extends BaseTestCase
             $size           =sizeof($aFilePart);
             $class_name     = "Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow\\".str_replace(".php", "", $aFilePart[$size-1]);
             $oAnnotation    = new $class_name(array());
-            var_dump($oRowFactory->getRowClass($oAnnotation));
+
             $this->assertTrue($oRowFactory->getRowClass($oAnnotation) instanceof \Fredb\AdminBundle\Services\Row\AbstractRow\RowAbstractClass);
         }
         
