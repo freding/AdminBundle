@@ -1,6 +1,6 @@
 <?php
 
-namespace FredB\AdminBundle\Tests;
+namespace Fredb\AdminBundle\Tests;
 
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Config\Loader\LoaderInterface;
