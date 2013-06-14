@@ -7,9 +7,23 @@ use Symfony\Component\Finder\Finder;
 
 class RowFactoryTest extends WebTestCase
 {
+    
+    
+    
+    
+    
+    
+    
+    
     public function testGetRowClass()
     {
-        $oEntityManager = new \Doctrine\ORM\EntityManager();
+        
+        
+        
+        $kernel = static::createKernel();
+        $kernel->boot();
+        $oEntityManager = $kernel->getContainer()->get('doctrine.orm.entity_manager');
+   
         $oRowFactory = new \Fredb\AdminBundle\Services\Row\RowFactory($oEntityManager);
         
         $finder = new Finder();
@@ -24,6 +38,20 @@ class RowFactoryTest extends WebTestCase
         
         
     }
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
