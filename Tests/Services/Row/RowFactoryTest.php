@@ -18,6 +18,16 @@ class RowFactoryTest extends BaseTestCase
     public function testGetRowClass()
     {
         
+        
+        
+        $this->createClient();
+        $this->importDatabaseSchema();
+
+        $c = self::$kernel->getContainer();
+
+        $em = $c->get('doctrine.orm.entity_manager');
+        \Zend_Debug::dump($em);
+        
         $this->assertTrue(true);die();
         
         
