@@ -15,7 +15,13 @@ class RowFactoryTest extends WebTestCase
         $finder->files()->in(__DIR__."/../../../Annotations/ConcretAnnotations/ClassRow/");
 
         foreach ($finder as $file) {
-            \Zend_Debug::dump($file);
+            
+            $classes = get_declared_classes();
+            include $file;
+            $diff = array_diff(get_declared_classes(), $classes);
+            $class = reset($diff);
+            
+            \Zend_Debug::dump($class);
 
         }
         
