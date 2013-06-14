@@ -18,7 +18,6 @@ class RowFactoryTest extends WebTestCase
     public function testGetRowClass()
     {
         
-        
         $client = static::createClient();
         $kernel = static::createKernel();
         $kernel->boot();
