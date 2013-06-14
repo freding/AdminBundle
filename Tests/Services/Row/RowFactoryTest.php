@@ -27,6 +27,7 @@ class RowFactoryTest extends BaseTestCase
         $finder = new Finder();
         $finder->files()->in(__DIR__."/../../../Annotations/ConcretAnnotations/ClassRow/");
 
+        
         foreach ($finder as $file) {
             $class_name = "Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow\\".str_replace(".php", "", $file);
             $oAnnotation = new $class_name(array()); 
