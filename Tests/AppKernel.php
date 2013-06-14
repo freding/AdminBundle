@@ -41,6 +41,7 @@ class AppKernel extends Kernel
         $loader->load($this->config);
     }
 
+    
     public function getCacheDir()
     { //.'/AdminBundle'
        return sys_get_temp_dir();
