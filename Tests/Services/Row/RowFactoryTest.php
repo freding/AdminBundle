@@ -17,6 +17,7 @@ class RowFactoryTest extends BaseTestCase
     
     public function testGetRowClass()
     {
+        
         $oTest = new \Acme\DemoBundle\Entity\Test2();
         $oTest->setChaine("test");
         $this->_em->persist($oTest);
