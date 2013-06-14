@@ -34,7 +34,7 @@ class RowFactoryTest extends BaseTestCase
             $class_name     = "Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow\\".str_replace(".php", "", $aFilePart[$size-1]);
             $oAnnotation    = new $class_name(array());
             var_dump($oRowFactory->getRowClass($oAnnotation));
-            $this->assertTrue($oRowFactory->getRowClass($oAnnotation) instanceof Fredb\AdminBundle\Services\Row\AbstractRow\RowAbstractClass);
+            $this->assertTrue($oRowFactory->getRowClass($oAnnotation) instanceof \Fredb\AdminBundle\Services\Row\AbstractRow\RowAbstractClass);
         }
         
         
