@@ -18,12 +18,17 @@ class RowFactoryTest extends BaseTestCase
     public function testGetRowClass()
     {
         
-        $oTest = new \Acme\DemoBundle\Entity\Test2();
-        $oTest->setChaine("test");
+        $oTest = new \Fredb\AdminBundle\Entity\JEntityItem();
+        $oTest->setIdEntity(1);
+        $oTest->setIdItem(1);
+        $oTest->setTypeEntity("r");
+        $oTest->setTypeItem("e");
+        $oTest->setOrderId(1);
+        $oTest->setTag("tag");
         $this->_em->persist($oTest);
         $this->_em->flush();
         \Zend_Debug::dump($oTest);
-        $this->assertTrue($oTest->getId()>=0);
+
 
         $oRowFactory = new \Fredb\AdminBundle\Services\Row\RowFactory($this->_em);
         
