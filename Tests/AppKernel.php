@@ -32,11 +32,6 @@ class AppKernel extends Kernel
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
-            new \JMS\Payment\CoreBundle\Tests\Functional\TestBundle\TestBundle(),
-            new \JMS\Payment\CoreBundle\JMSPaymentCoreBundle(),
-            new \JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
-            new \JMS\AopBundle\JMSAopBundle(),
-            new \JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new \Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
         );
     }
@@ -48,6 +43,6 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        return sys_get_temp_dir().'/JMSPaymentCoreBundle';
+        //return sys_get_temp_dir().'/JMSPaymentCoreBundle';
     }
 }
