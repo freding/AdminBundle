@@ -29,7 +29,6 @@ class RowFactoryTest extends BaseTestCase
         
         $finder = new Finder();
         $finder->files()->in(__DIR__."/../../../Annotations/ConcretAnnotations/ClassRow/");
-
         
         foreach ($finder as $file) {
             $aFilePart      = explode("/", $file);
