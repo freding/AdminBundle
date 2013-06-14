@@ -17,22 +17,11 @@ class RowFactoryTest extends BaseTestCase
     
     public function testGetRowClass()
     {
-        
-        
-        
         $this->createClient();
         $this->importDatabaseSchema();
-
         $c = self::$kernel->getContainer();
+        $oEntityManager = $c->get('doctrine.orm.entity_manager');
 
-        $em = $c->get('doctrine.orm.entity_manager');
-        \Zend_Debug::dump($em);
-        
-        $this->assertTrue(true);die();
-        
-        
-        $oEntityManager = $kernel->getContainer()->get('doctrine.orm.entity_manager');
-   
         $oRowFactory = new \Fredb\AdminBundle\Services\Row\RowFactory($oEntityManager);
         
         $finder = new Finder();
