@@ -19,7 +19,7 @@ class RowFactoryTest extends WebTestCase
     {
         
         
-        
+        $client = static::createClient();
         $kernel = static::createKernel();
         $kernel->boot();
         $oEntityManager = $kernel->getContainer()->get('doctrine.orm.entity_manager');
