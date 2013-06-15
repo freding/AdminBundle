@@ -23,9 +23,9 @@ class BaseTestCase extends WebTestCase
     protected final function importDatabaseSchema()
     {
         $em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-
+\Zend_Debug::dump($em);die();
         $metadata = $em->getMetadataFactory()->getAllMetadata();
-        \Zend_Debug::dump($metadata);die();
+        
                 
         if (!empty($metadata)) {
             $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($em);

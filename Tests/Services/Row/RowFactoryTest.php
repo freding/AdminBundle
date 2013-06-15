@@ -19,7 +19,7 @@ class RowFactoryTest extends BaseTestCase
     {
         
         $this->createClient();
-        //$this->importDatabaseSchema();
+        $this->importDatabaseSchema();
 /**
         $c = self::$kernel->getContainer();
         $em = $c->get('doctrine.orm.entity_manager');  
