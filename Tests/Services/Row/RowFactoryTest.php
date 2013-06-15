@@ -25,10 +25,9 @@ class RowFactoryTest extends BaseTestCase
         $oTest->setTypeItem("e");
         $oTest->setOrderId(1);
         $oTest->setTag("tag");
-        //$this->_em->persist($oTest);
-        //$this->_em->flush();
-        \Zend_Debug::dump($oTest);
-\Zend_Debug::dump($this->_em);
+        $this->_em->persist($oTest);
+        $this->_em->flush();
+
 
         $oRowFactory = new \Fredb\AdminBundle\Services\Row\RowFactory($this->_em);
         

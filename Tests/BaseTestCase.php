@@ -26,11 +26,11 @@ class BaseTestCase extends WebTestCase
 
     protected final function importDatabaseSchema()
     {
-        $this->em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $this->_em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
 
-        $metadata = $this->em->getMetadataFactory()->getAllMetadata();
+        $metadata = $this->_em->getMetadataFactory()->getAllMetadata();
         if (!empty($metadata)) {
-            $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($this->em);
+            $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($this->_em);
             $schemaTool->dropDatabase();
             $schemaTool->createSchema($metadata);
         }
