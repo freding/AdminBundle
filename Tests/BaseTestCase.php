@@ -13,16 +13,20 @@ class BaseTestCase extends WebTestCase
     
     static protected function createKernel(array $options = array())
     {
-        return self::$kernel = new AppKernel(
+
+        
+        
+        $oKernel = self::$kernel = new AppKernel(
             isset($options['config']) ? $options['config'] : 'default.yml'
         );
-       
+        $this->_em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        return $oKernel;
         
     }
 
     protected function setUp()
     {
-        $this->_em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager'); 
+         
         $fs = new Filesystem();
         //$fs->remove(sys_get_temp_dir().'/JMSPaymentCoreBundle/');
     }
