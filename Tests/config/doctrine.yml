@@ -6,7 +6,10 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: false
         mappings:
-            FredbAdminBundle: { type: annotation, dir: Entity/ }
+            FredbAdminBundle: { type: annotation, dir: Entity/, prefix: Fredb\AdminBundle\Entity }
 
 services:
     em: "@doctrine.orm.entity_manager"
+    
+    
+    
