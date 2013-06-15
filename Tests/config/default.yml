@@ -2,3 +2,7 @@ imports:
     - { resource: framework.yml }
     - { resource: doctrine.yml }
     - { resource: twig.yml }
+
+jms_di_extra:
+    locations:
+        bundles: [FredbAdminBundle]
