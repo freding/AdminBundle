@@ -1,6 +1,5 @@
 
-
-TestBundle:
-    resource: "@TestBundle/Controller/"
-    type: annotation
-    
+FredFoBundle:
+    resource: "@FredbAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
