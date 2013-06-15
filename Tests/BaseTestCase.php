@@ -18,7 +18,7 @@ class BaseTestCase extends WebTestCase
         $oKernel = self::$kernel = new AppKernel(
             isset($options['config']) ? $options['config'] : 'default.yml'
         );
-        $this->_em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $this->_em = $oKernel->getContainer()->get('doctrine.orm.entity_manager');
         return $oKernel;
         
     }
