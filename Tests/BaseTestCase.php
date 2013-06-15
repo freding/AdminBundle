@@ -16,6 +16,7 @@ class BaseTestCase extends WebTestCase
         return self::$kernel = new AppKernel(
             isset($options['config']) ? $options['config'] : 'default.yml'
         );
+        echo "passe";die();
         $this->_em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
     }
 
