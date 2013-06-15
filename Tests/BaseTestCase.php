@@ -26,7 +26,7 @@ class BaseTestCase extends WebTestCase
 
     protected function setUp()
     {
-         echo "ted2";die();
+         echo "ted2";
         $fs = new Filesystem();
         //$fs->remove(sys_get_temp_dir().'/JMSPaymentCoreBundle/');
     }
