@@ -1,5 +1,4 @@
-
-FredFoBundle:
+fredb_admin:
     resource: "@FredbAdminBundle/Controller/"
     type:     annotation
     prefix:   /
