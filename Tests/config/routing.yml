@@ -1,4 +1,2 @@
-fredb_admin:
-    resource: "@FredbAdminBundle/Controller/"
-    type:     annotation
-    prefix:   /
+JMSPaymentCoreBundle:
+    resource: "@FredbAdminBundle/Resources/config/routing.yml"
