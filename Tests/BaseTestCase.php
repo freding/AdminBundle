@@ -16,13 +16,13 @@ class BaseTestCase extends WebTestCase
         return self::$kernel = new AppKernel(
             isset($options['config']) ? $options['config'] : 'default.yml'
         );
-        echo "passe";die();
+       
         $this->_em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
     }
 
     protected function setUp()
     {
-         
+         echo "passe";die();
         $fs = new Filesystem();
         //$fs->remove(sys_get_temp_dir().'/JMSPaymentCoreBundle/');
     }
