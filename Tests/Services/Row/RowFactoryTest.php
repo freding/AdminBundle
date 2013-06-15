@@ -18,6 +18,13 @@ class RowFactoryTest extends BaseTestCase
     public function testGetRowClass()
     {
         
+        $this->createClient();
+        $this->importDatabaseSchema();
+
+        $c = self::$kernel->getContainer();
+        $em = $c->get('doctrine.orm.entity_manager');  
+        
+        
         $oTest = new \Fredb\AdminBundle\Entity\JEntityItem();
         $oTest->setIdEntity(1);
         $oTest->setIdItem(1);
@@ -25,11 +32,11 @@ class RowFactoryTest extends BaseTestCase
         $oTest->setTypeItem("e");
         $oTest->setOrderId(1);
         $oTest->setTag("tag");
-        $this->_em->persist($oTest);
-        $this->_em->flush();
+        $em->persist($oTest);
+        $em->flush();
 
 
-        $oRowFactory = new \Fredb\AdminBundle\Services\Row\RowFactory($this->_em);
+        $oRowFactory = new \Fredb\AdminBundle\Services\Row\RowFactory($em);
         
         $finder = new Finder();
         $finder->files()->in(__DIR__."/../../../Annotations/ConcretAnnotations/ClassRow/");

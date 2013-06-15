@@ -8,36 +8,25 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class BaseTestCase extends WebTestCase
 {
     
-    /** @var \Doctrine\ORM\EntityManager $oEntityManager  */
-    protected $_em;   
-    
     static protected function createKernel(array $options = array())
     {
-        
-        
-        $oKernel = self::$kernel = new AppKernel(
+        return self::$kernel = new AppKernel(
             isset($options['config']) ? $options['config'] : 'default.yml'
         );
-        \Zend_Debug::dump($oKernel->getContainer());die();
-        $this->_em = $oKernel->getContainer()->get('doctrine.orm.entity_manager');
-        return $oKernel;
-        
     }
 
     protected function setUp()
     {
-        self::createKernel();
         $fs = new Filesystem();
-        //$fs->remove(sys_get_temp_dir().'/JMSPaymentCoreBundle/');
     }
 
     protected final function importDatabaseSchema()
     {
-       
+        $em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
 
-        $metadata = $this->_em->getMetadataFactory()->getAllMetadata();
+        $metadata = $em->getMetadataFactory()->getAllMetadata();
         if (!empty($metadata)) {
-            $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($this->_em);
+            $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($em);
             $schemaTool->dropDatabase();
             $schemaTool->createSchema($metadata);
         }
