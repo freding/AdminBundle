@@ -4,7 +4,9 @@ imports:
 doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+        auto_mapping: false
+        mappings:
+            FredbAdminBundle: { type: annotation, dir: Entity/ }
 
 services:
     em: "@doctrine.orm.entity_manager"
