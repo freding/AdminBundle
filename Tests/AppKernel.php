@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             new \Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
             new \Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new \Fredb\AdminBundle\FredbAdminBundle(),
         );
     }
 
