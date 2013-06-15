@@ -4,9 +4,7 @@ imports:
 doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        entity_managers:
-            default:
-                auto_mapping: true
+        auto_mapping: true
 
 services:
     em: "@doctrine.orm.entity_manager"

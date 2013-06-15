@@ -25,7 +25,6 @@ class BaseTestCase extends WebTestCase
         $em = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
 
         $metadata = $em->getMetadataFactory()->getAllMetadata();
-        \Zend_Debug::dump($metadata);die();
         if (!empty($metadata)) {
             $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($em);
             $schemaTool->dropDatabase();
