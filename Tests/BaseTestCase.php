@@ -13,7 +13,7 @@ class BaseTestCase extends WebTestCase
     
     static protected function createKernel(array $options = array())
     {
-
+        echo "ted";die();
         
         
         $oKernel = self::$kernel = new AppKernel(
@@ -26,7 +26,7 @@ class BaseTestCase extends WebTestCase
 
     protected function setUp()
     {
-         
+         echo "ted2";die();
         $fs = new Filesystem();
         //$fs->remove(sys_get_temp_dir().'/JMSPaymentCoreBundle/');
     }
