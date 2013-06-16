@@ -1,5 +1,5 @@
 imports:
-    - { resource: '@FredbAdminBundle/Resources/config/security.yml' }   
+    - { resource: security.yml }   
     - { resource: framework.yml }
     - { resource: doctrine.yml }
     - { resource: twig.yml }
