@@ -1,7 +1,7 @@
 framework:
     #esi:             ~
-    translator:      { fallback: %locale% }
-    secret:          %secret%
+    translator:      { fallback: en }
+    secret:          dfsfdsdfsdf
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: %kernel.debug%
@@ -11,7 +11,7 @@ framework:
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
-    default_locale:  "%locale%"
+    default_locale:  "en"
     trusted_proxies: ~
     session:         ~
     fragments:       ~
