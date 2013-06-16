@@ -1,2 +1,2 @@
-JMSPaymentCoreBundle:
+fredb_admin_bundle:
     resource: "@FredbAdminBundle/Resources/config/routing.yml"
