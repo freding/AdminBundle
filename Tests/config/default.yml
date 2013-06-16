@@ -5,6 +5,3 @@ imports:
     - { resource: twig.yml }
    
 
-jms_di_extra:
-    locations:
-        bundles: [FredbAdminBundle]
