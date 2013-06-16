@@ -24,7 +24,7 @@ class RowFactoryTest extends BaseTestCase
         $c = self::$kernel->getContainer();
         $em = $c->get('doctrine.orm.entity_manager');  
         
-     /**   
+       
         $oTest = new \Fredb\AdminBundle\Entity\JEntityItem();
         $oTest->setIdEntity(1);
         $oTest->setIdItem(1);
@@ -34,7 +34,7 @@ class RowFactoryTest extends BaseTestCase
         $oTest->setTag("tag");
         $em->persist($oTest);
         $em->flush();
-*/
+
 
         $oRowFactory = new \Fredb\AdminBundle\Services\Row\RowFactory($em);
         
