@@ -20,11 +20,11 @@ class RowFactoryTest extends BaseTestCase
         
         $this->createClient();
         $this->importDatabaseSchema();
-/**
+
         $c = self::$kernel->getContainer();
         $em = $c->get('doctrine.orm.entity_manager');  
         
-        
+     /**   
         $oTest = new \Fredb\AdminBundle\Entity\JEntityItem();
         $oTest->setIdEntity(1);
         $oTest->setIdItem(1);
