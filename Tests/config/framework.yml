@@ -1,4 +1,5 @@
 framework:
+    test: ~  
     #esi:             ~
     translator:      { fallback: en }
     secret:          dfsfdsdfsdf
