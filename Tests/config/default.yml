@@ -1,8 +1,9 @@
 imports:
+    - { resource: '@FredbAdminBundle/Resources/config/security.yml' }   
     - { resource: framework.yml }
     - { resource: doctrine.yml }
     - { resource: twig.yml }
-    - { resource: '@FredbAdminBundle/Resources/config/security.yml' }    
+   
 
 jms_di_extra:
     locations:
