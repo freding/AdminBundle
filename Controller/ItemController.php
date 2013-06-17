@@ -9,12 +9,16 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Doctrine\Common\Util\Debug;
 use Symfony\Component\HttpFoundation\Request;
-use Zgroupe\ToolBox;
+use Fredb\AdminBundle\Services\ToolBox;
 
 class ItemController extends Controller
 {
 
 	
+
+    
+    
+    
 	
     /**
      * @Secure(roles="ROLE_ADMIN")
@@ -24,59 +28,24 @@ class ItemController extends Controller
     public function listAction()
     {   
         
-        //ToolBox::cropImage("/image/zgroupe_header.png", "/image/test.png", 20, 20);
-        
-		$entity_type_to_manage = ucfirst($this->getRequest()->get("item_type"));
-		$oModule = $this->getDoctrine()->getRepository("FredDatasBundle:Module")->findOneBy( array("class_name"=>$entity_type_to_manage) );
-		$repos_name			=  "FredDatasBundle:".$entity_type_to_manage;
-		$class_name			=  "Fred\DatasBundle\Entity\\".$entity_type_to_manage;
-		if($oModule){
-                    
-                    
-                        $aDesigners = "";
-                        $selectedDesignerId = "none";
-                        if($entity_type_to_manage == "Product"){
-                            $aDesigners = $this->getDoctrine()->getRepository("FredDatasBundle:Designer")->findAll();
-                            
-                            $id_designer = $this->getRequest()->get("id_designer");
-                            if(!empty($id_designer) and ($id_designer != "none")){
-                                $oDesigner          = $this->getDoctrine()->getRepository("FredDatasBundle:Designer")->findOneById($id_designer);
-                                $oProductType       = new \Fred\DatasBundle\Entity\Product();
-                                $oEntityItemService = \Fred\DatasBundle\FredDatasBundle::getContainer()->get("entity_item_service");
-                                $aItems             = $oEntityItemService->getEntitiesFromItem($oProductType, $oDesigner);
-                                $selectedDesignerId = $id_designer;
-                            }else{
-                                $aItems = $this->getDoctrine()->getRepository($repos_name)->findBy(array(),array("order" =>"asc"));
-                            }   
-                            
-                            
-                        }else{
-                            $aItems = $this->getDoctrine()->getRepository($repos_name)->findBy(array(),array("order" =>"asc"));
-                        }
-                    
-                    
-			
-			// Check annotations on class
-			/* @var $oZgroupeAnnotationsService Zgroupe\Annotations\Services\AnnotationsServices */
-			$oZgroupeAnnotationsService = $this->get("annotations_zgroupe_service");
-			$oZgroupeAnnotationsService->setClass($class_name);
-			$is_list_sorteable		= $oZgroupeAnnotationsService->isAnnotationEnable("Zgroupe\Annotations\AllListSorteableClass");
-			$is_item_list_deleteable  = $oZgroupeAnnotationsService->isAnnotationEnable("Zgroupe\Annotations\AllListDeleteableClass");
-			
-			$lang = "fr";
-			
+                $lang = $this->getRequest()->get("_locale");
+		$entity_type_to_manage  = urldecode($this->getRequest()->get("item_type"));
+                /* @var $oAdmin_class_service Fredb\AdminBundle\Services\AdminClassService  */
+                $oAdmin_class_service = $this->get("admin_class_service");
+		$oModule                = $oAdmin_class_service->getEntityToManage($entity_type_to_manage);
+                $is_list_sorteable      = $oAdmin_class_service->isEntitySortable($entity_type_to_manage);
 
-                        
-                        
+		if($oModule){
+                    $aSortable = array();
+                    if($is_list_sorteable)
+                        $aSortable = array("order" =>"asc");  
+                    $aItems = $this->getDoctrine()->getRepository($entity_type_to_manage)->findBy(array(),$aSortable);
+
 			return array(           "aItems"			=> $aItems, 
-						"module_name"                   =>$oModule->getEnglishName(),
+						"module_name"                   => $oAdmin_class_service->getUserName($entity_type_to_manage, $lang),
 						"is_list_sorteable"		=> $is_list_sorteable,
-						"is_item_list_deleteable"       => $is_item_list_deleteable,
 						"lang"				=> $lang,
-						"item_type"			=> $this->getRequest()->get("item_type"),
-						"entity_to_manage"              => $class_name,
-                                                "aDesigners"                    => $aDesigners,
-                                                "selectedDesignerId"            => $selectedDesignerId
+						"item_type"			=> $this->getRequest()->get("item_type")
 					   );
 		}else{
 			throw $this->createNotFoundException('You cannot manage this entity');
@@ -94,25 +63,27 @@ class ItemController extends Controller
      */
     public function createAction(Request $request)
     {   
-		$entity_type_to_manage = ucfirst($this->getRequest()->get("item_type"));
-		$oModule = $this->getDoctrine()->getRepository("FredDatasBundle:Module")->findOneBy( array("class_name"=>$entity_type_to_manage) );
-		$repos_name			=  "FredDatasBundle:".$entity_type_to_manage;
-		$class_name			=  "Fred\DatasBundle\Entity\\".$entity_type_to_manage;
-                
-                $current_language = "fr";
+		$lang = $this->getRequest()->get("_locale");
+		$entity_type_to_manage  = urldecode($this->getRequest()->get("item_type"));
+                /* @var $oAdmin_class_service Fredb\AdminBundle\Services\AdminClassService  */
+                $oAdmin_class_service = $this->get("admin_class_service");
+		$oModule                = $oAdmin_class_service->getEntityToManage($entity_type_to_manage);
 		if($oModule){
 			$mode_edition ="";
 			$id_item = $request->get("id_item");
+                        
 			if(isset($id_item)){
 				$mode_edition = ToolBox::MODE_MODIFY;
-				$oItem = $this->getDoctrine()->getRepository($repos_name)->findOneById($id_item);
+				$oItem = $this->getDoctrine()->getRepository($entity_type_to_manage)->findOneById($id_item);
 				if(!$oItem){
 					$mode_edition = ToolBox::MODE_CREATE;
-					$oItem = new $class_name();
+					$oItem = new $entity_type_to_manage();
 				}
 			}else{
+                        
 				$mode_edition = ToolBox::MODE_CREATE;
-				$oItem = new $class_name();
+				$oItem = new $entity_type_to_manage();
+                  
 			}
 
 			/* @var $oAdminFormService Zgroupe\AdminForm\AdminFormService */

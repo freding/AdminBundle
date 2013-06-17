@@ -8,6 +8,7 @@ use Doctrine\Common\Annotations\CachedReader;
  *
  * @author fredericbourbigot
  */
+
 class AdminClassService{
 	
         /** @var \Doctrine\ORM\EntityManager $oEntityManager  */
@@ -29,6 +30,7 @@ class AdminClassService{
                 $this->oRowFactory       = $oRowFactory; 
                 $this->aLangsAvailable   = $aLangs;
                 $this->aEntityNamespaces = $this->_em->getConfiguration()->getMetadataDriverImpl()->getAllClassNames();
+                $this->getRowClass();
 	}	
 	
 	
@@ -49,33 +51,73 @@ class AdminClassService{
 	 * @return array of RowAbstractClass
 	 */
 	public function getRowClass(){
-   
+            $this->aRowsClass = array();
             foreach($this->aEntityNamespaces as $entity_namespace){
                 $reflectionClass  = new \ReflectionClass($entity_namespace);		
                 foreach(AbstractAnnotation::$aAnnotationsClass as $annotation_type){
                     $oAnnotationClass = $this->oAnnotationReader->getClassAnnotation($reflectionClass, $annotation_type); 
-                    if($oAnnotationClass)
-                        $this->aRowsClass[] = $this->oRowFactory->getRowClass($oAnnotationClass); 			
+                    if($oAnnotationClass){
+                        $oRow = $this->oRowFactory->getRowClass($oAnnotationClass,$entity_namespace); 
+                        $this->aRowsClass[$oRow->getClass_namespace()] = $oRow; 
+                    }    
                 }	
             }    
             
-            $this->sortRows();
+            //$this->sortRows();
             
             return $this->aRowsClass;
 	}
 	
 
         
-
+        public function isClassNamespaceIsManageable($class_namespace){
+            $find = false;
+            foreach ($this->aRowsClass as $oClassRow){ 
+                if($oClassRow->getClass_namespace() == $class_namespace)
+                    return true;
+  
+            }
+            return $find;
+            
+        }
+        
+        
+        public function getEntityToManage($namespace_class){
+            if($this->isClassNamespaceIsManageable($namespace_class) == true){
+                return new $namespace_class();
+            }
+            throw new \Exception("You cannot manage this entity");
+        }
         
         
         
+        public function isEntitySortable($namespace_class){
+            try{
+                $oEntity = new $namespace_class();
+                
+                return ($oEntity instanceof \Fredb\AdminBundle\Services\AdministrableEntity\SortableEntity);
+            }catch(\Exception $e){
+                \Zend_Debug::dump($e); 
+            }
+            
+            
+            
+        }
         
-        
-        
-        
-        
-        
+        public function getUserName($namespace_class, $lang){
+ 
+           if(isset($this->aRowsClass[$namespace_class])){
+               $aLang = $this->aRowsClass[$namespace_class]->getName();
+               if(isset($aLang[$lang])){
+                   return $aLang[$lang];
+               }else{
+                    throw new \Exception($lang." is not defined for this entity");           
+               }
+           }else{
+               throw new \Exception("You cannot manage this entity");
+           }
+           
+        }
 	
 	
 	

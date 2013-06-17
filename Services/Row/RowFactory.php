@@ -21,7 +21,7 @@ class RowFactory {
 	}
 
         
-	public function getRowClass($oAnnotation){
+	public function getRowClass($oAnnotation,$entity_namespace){
                 $oRow = null;  
                 if(get_class($oAnnotation) == "Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow\ManageByBo"){
                     $class_row = $oAnnotation->getRowClass();
@@ -31,6 +31,7 @@ class RowFactory {
                     $oRow->setOrder($oAnnotation->order);
                     $oRow->setMother_node($oAnnotation->mother_node);
                     $oRow->setLang_class_namespace($oAnnotation->lang_class_namespace);
+                    $oRow->setClass_namespace($entity_namespace);
                     
                 }else{
 			throw new \Exception("Can not create RowClass from Annotation:".\Zend_Debug::dump($oAnnotation));
@@ -42,21 +43,20 @@ class RowFactory {
         
         
 
-	public function getRowProperty(){
+	public function getRowProperty($oAnnotation){
                 $oRow = null;
 		$aValueSubmited    = $request->get($propertie_name);
 		$is_form_submited = ($request->getMethod() == 'POST');
                 
                 
-		if($type == ""){
-				
-			$oRow = new ConcretRow\ColorRow();
-			$oRow->setName($oAnnotation->name);
+		if(get_class($oAnnotation) == "Fredb\AdminBundle\Annotations\ConcretAnnotations\Property\Text"){
+                    
+			
 				
 				
 				
                 }else{
-			throw new \Exception("Can not create Row from type : ".$type);
+			throw new \Exception("Can not create Row from type : ".\Zend_Debug::dump($oAnnotation));
 		}
                 
 		return $oRow;

@@ -1,0 +1,115 @@
+<input type="hidden" id="page" value="{{ page }}">
+
+<input type="hidden" id="path_ajax_delete_link_block" value="{{path('admin_remove_block')}}">
+<input type="hidden" id="path_ajax_add_block" value="{{path('admin_add_block')}}">
+<input type="hidden" id="path_ajax_sort_block" value="{{path('admin_ajax_sort_block')}}">
+
+	<div id="left">
+		<div class="title_block_position"><h2>{% trans %}Left Blocks{% endtrans %}</h2></div>
+		<div class="div_block" rel="">
+			<table width="100%" border="0" cellspacing="2" cellpadding="2" class="tlisting">
+				<thead>
+					<tr>
+						<th width="20">&nbsp;</th>
+						<th>{% trans %}Position{% endtrans %}</th>
+						<th>{% trans %}Name{% endtrans %}</th>
+						<th>{% trans %}Delete{% endtrans %}</th>
+					</tr>
+				</thead>	
+				<tbody id="{{ constant('Fred\\DatasBundle\\Entity\\Block::POSITION_LEFT') }}">
+				{% set i =1 %}
+				{% set classe_name = "alt" %}
+				{% for oBlocksPositionLeft in aBlocksPositionLeft  %}
+					<tr class="{{classe_name}}" {% if classe_name == "alt" %}{% set classe_name ="" %}{% else %}{% set classe_name ="alt" %}{% endif %}>
+
+
+						<td class="item"><div class="item ui-state-default ui-corner-all"><span class="btnSort ui-icon ui-icon-arrow-4">&nbsp;</span></div></td>
+						<td><span class='count' id="left_{{ oBlocksPositionLeft.getId }}" rel="{{ i }}">{{ i }}</span></td>
+						{% if oBlocksPositionLeft.deleteable == constant('Fred\\DatasBundle\\Entity\\BlockManager::IS_REMOVEABLE_BLOCK') %}	
+							<td>{% set oBlock = oBlocksPositionLeft.getBlock %}
+								{% if oBlock != "" %}
+									{{ translation(oBlock,"getName",lang) }}
+								{% endif %}		
+							</td>
+							<td>
+                                                                {% set delete_info = {'id_block': oBlocksPositionLeft.blockid,'position':constant('Fred\\DatasBundle\\Entity\\Block::POSITION_LEFT')  } %}
+								<a class="item_delete" rel='{{delete_info | json_encode}}'>
+									  <div class="btnBin">{% trans %}Delete{% endtrans %}</div>
+								</a>
+							</td>
+						{% else %}
+							<td>{{ oBlocksPositionLeft.name }}</td>
+							<td>{% trans%}Not removeable{% endtrans %}</td>
+						{% endif %}
+					</tr>
+					{% set i=i+1 %}	
+				{% endfor%}
+				</tbody>
+			</table>	
+		</div>	
+
+		<div class="block_add">
+			<select name="select_block" class="add_block" rel="{{ constant('Fred\\DatasBundle\\Entity\\Block::POSITION_LEFT') }}">	
+				<option value="{{ constant('Fred\\DatasBundle\\Entity\\Block::EMPTY_VALUE_PAGE') }}">{% trans %}Choose a block to add{% endtrans %}</option>
+				{% for oBlock in aBlockAddeable %}
+					<option value="{{ oBlock.getId }}">{{ translation(oBlock,"getName",lang) }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		
+	</div>
+
+
+	<div id="right">
+		<div class="title_block_position"><h2>{% trans %}Right Blocks{% endtrans %}</h2></div>
+		<div class="div_block" rel="">
+			<table width="100%" border="0" cellspacing="2" cellpadding="2" class="tlisting">
+				<thead>
+					<tr>
+						<th width="20">&nbsp;</th>
+						<th>{% trans %}Position{% endtrans %}</th>
+						<th>{% trans %}Name{% endtrans %}</th>
+						<th>{% trans %}Delete{% endtrans %}</th>
+					</tr>
+				</thead>	
+				<tbody id="{{ constant('Fred\\DatasBundle\\Entity\\Block::POSITION_RIGHT') }}">
+				{% set i =1 %}
+				{% set classe_name = "alt" %}
+				{% for oBlocksPositionRight in aBlocksPositionRight  %}
+					<tr class="{{classe_name}}" {% if classe_name == "alt" %}{% set classe_name ="" %}{% else %}{% set classe_name ="alt" %}{% endif %}>
+						<td class="item"><div class="item ui-state-default ui-corner-all"><span class="btnSort ui-icon ui-icon-arrow-4">&nbsp;</span></div></td>
+						<td><span class='count' id="right_{{ oBlocksPositionRight.getId }}" rel="{{ i }}">{{ i }}</span></td>
+						{% if oBlocksPositionRight.deleteable == constant('Fred\\DatasBundle\\Entity\\BlockManager::IS_REMOVEABLE_BLOCK') %}	
+							<td>{% set oBlock = oBlocksPositionRight.getBlock %}
+								{% if oBlock != "" %}
+									{{ translation(oBlock,"getName",lang) }}
+								{% endif %}		
+							</td>
+							<td>
+                                                                {% set delete_info = {'id_block': oBlocksPositionRight.blockid,'position':constant('Fred\\DatasBundle\\Entity\\Block::POSITION_RIGHT')  } %}
+								<a class="item_delete" rel='{{delete_info | json_encode}}'>
+									  <div class="btnBin">{% trans %}Delete{% endtrans %}</div>
+								</a>
+							</td>
+						{% else %}
+							<td>{{ oBlocksPositionRight.name }}</td>
+							<td>{% trans%}Not removeable{% endtrans %}</td>
+						{% endif %}
+					</tr>
+					{% set i=i+1 %}	
+				{% endfor%}
+				</tbody>
+			</table>	
+		</div>
+
+
+		<div class="block_add">
+			<select name="select_block" class="add_block" rel="{{ constant('Fred\\DatasBundle\\Entity\\Block::POSITION_RIGHT') }}">	
+				<option value="{{ constant('Fred\\DatasBundle\\Entity\\Block::EMPTY_VALUE_PAGE') }}">{% trans %}Choose a block to add{% endtrans %}</option>
+				{% for oBlock in aBlockAddeable %}
+					<option value="{{ oBlock.getId }}">{{ translation(oBlock,"getName",lang) }}</option>
+				{% endfor %}
+			</select>
+		</div>
+
+	</div>

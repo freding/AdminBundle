@@ -10,22 +10,13 @@
 
 
 
-{% if item_type != "Pub" and item_type != "Download" %}
+
 <form action="{{ path('admin_item_create',{'_locale':app.request.get('_locale'),'item_type':item_type}) }}" ><button class="btnGeneric">{% trans %}Create a new item{% endtrans %}</button></form>
 <br/>
-{% endif %}
 
-{% if item_type == "product" %}
-<form action="" method="get" id="id_form">
-    <select name="id_designer" id="change-designer-for-product" onchange="this.form.submit();">
-        <option value="none">Tous les designers</option>
-        {% for oDesigner in aDesigners %}
-            <option value="{{ oDesigner.id }}" {% if selectedDesignerId == oDesigner.id %}selected="selected"{% endif %}>{{ translation(oDesigner,"getName",lang) }}</option>
-        {% endfor %}
-    </select>
-</form>
-{% endif %}
-        <div id="div_sort" rel="{{entity_to_manage}}">
+
+
+        <div id="div_sort" rel="{{item_type}}">
 		<table width="100%" border="0" cellspacing="2" cellpadding="2" class="tlisting" id="tbl_sort">
 			<thead>	
 			  <tr>
@@ -35,9 +26,7 @@
 				{% endif %}
 				<th>{% trans %}Name{% endtrans %}</th>
 				<th>{% trans %}Creation date{% endtrans %}</th>
-				{% if is_item_list_deleteable %}
 				<th width="100">{% trans %}Delete{% endtrans %}</th>
-				{% endif %}
 			  </tr>
 			</thead>
 			<tbody>
@@ -54,21 +43,19 @@
 						{% endif %}
 
                                             <td><a href="{{path('admin_item_modify',{'_locale':lang,'item_type':item_type,'id_item':oItem.getId})}}" title="{% trans %}Click to edit{% endtrans %}">
-						 {{ translation(oItem,"getAdminName",lang) }}
+						 {#{ translation(oItem,"getAdminName",lang) }#}
 					    </a></td>
 
                                             <td><a href="{{path('admin_item_modify',{'_locale':lang,'item_type':item_type,'id_item':oItem.getId})}}" title="{% trans %}Click to edit{% endtrans %}">
-						 {% if oItem.getAdminCreationDate %}{{ oItem.getAdminCreationDate |date("m/d/Y") }}{% else %}{% trans%}No date available{% endtrans %}{% endif%}
+						 {% if oItem.getCreationDate %}{{ oItem.getCreationDate |date("m/d/Y") }}{% else %}{% trans%}No date available{% endtrans %}{% endif%}
 					    </a></td>
 
-					   {% if is_item_list_deleteable %}
 						<input type="hidden" id="path_ajax_delete_list_all" value="{{path('delete_item_from_full_list')}}">
                                                 <td align="center">
 							<a class="item_delete" rel='{{oItem.getId}}'>
 							      <div class="btnBin">{% trans %}Delete{% endtrans %}</div>
                                                         </a>
-						</td>
-					    {% endif %}		
+						</td>	
                                         </tr>   
 											
 			{% else %}
