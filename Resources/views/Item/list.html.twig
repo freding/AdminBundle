@@ -43,7 +43,7 @@
 						{% endif %}
 
                                             <td><a href="{{path('admin_item_modify',{'_locale':lang,'item_type':item_type,'id_item':oItem.getId})}}" title="{% trans %}Click to edit{% endtrans %}">
-						 {#{ translation(oItem,"getAdminName",lang) }#}
+						 {{ oItem.getNameIdentifier(lang) }}
 					    </a></td>
 
                                             <td><a href="{{path('admin_item_modify',{'_locale':lang,'item_type':item_type,'id_item':oItem.getId})}}" title="{% trans %}Click to edit{% endtrans %}">

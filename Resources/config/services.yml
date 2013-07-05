@@ -1,5 +1,6 @@
 parameters:
-    aLangs: ["fr","en"]        
+    aLangs: ["fr","en"]
+    default_lang : "fr"
 
 services:
     annotations_reader_brut:
@@ -23,3 +24,7 @@ services:
     admin_class_service:
         class:        Fredb\AdminBundle\Services\AdminClassService    
         arguments:    ["@annotations_reader","@doctrine.orm.entity_manager","@row_factory",%aLangs%]
+        
+    entity_item_service:
+        class:        Fredb\AdminBundle\Services\AdministrableEntity\EntityItemService
+        arguments:    ["@doctrine.orm.entity_manager"]

@@ -39,10 +39,12 @@ class IndexController extends Controller
      */
     public function adminhomeAction()
     {        
-        $oAdmin_form_service = $this->get("admin_form_service");
-        $oItem = new \Acme\DemoBundle\Entity\Test();
-        $oAdmin_form_service->setEntity($oItem);
+        //$oAdmin_form_service = $this->get("admin_form_service");
+        //$oItem = new \Acme\DemoBundle\Entity\Test();
+        //$oAdmin_form_service->setEntity($oItem);
 
+       
+        
         return array();
     }	
 	

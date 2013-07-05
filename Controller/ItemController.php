@@ -27,11 +27,15 @@ class ItemController extends Controller
      */
     public function listAction()
     {   
+        //$oItem = $this->getDoctrine()->getRepository("AcmeDemoBundle:Test2")->findOneById(5);
+        //$oEntityItemService = $this->get("entity_item_service");
+        //$oEntityItemService->removeCompletlyEntity($oItem);
+        
         
                 $lang = $this->getRequest()->get("_locale");
 		$entity_type_to_manage  = urldecode($this->getRequest()->get("item_type"));
                 /* @var $oAdmin_class_service Fredb\AdminBundle\Services\AdminClassService  */
-                $oAdmin_class_service = $this->get("admin_class_service");
+                $oAdmin_class_service   = $this->get("admin_class_service");
 		$oModule                = $oAdmin_class_service->getEntityToManage($entity_type_to_manage);
                 $is_list_sorteable      = $oAdmin_class_service->isEntitySortable($entity_type_to_manage);
 
@@ -67,8 +71,9 @@ class ItemController extends Controller
 		$entity_type_to_manage  = urldecode($this->getRequest()->get("item_type"));
                 /* @var $oAdmin_class_service Fredb\AdminBundle\Services\AdminClassService  */
                 $oAdmin_class_service = $this->get("admin_class_service");
-		$oModule                = $oAdmin_class_service->getEntityToManage($entity_type_to_manage);
-		if($oModule){
+		$oItem                = $oAdmin_class_service->getEntityToManage($entity_type_to_manage);
+
+		if($oItem){
 			$mode_edition ="";
 			$id_item = $request->get("id_item");
                         

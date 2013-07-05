@@ -21,7 +21,7 @@ class AjaxController extends Controller
     public function sortcompetelistAction()
     {        
         
-		$class_name = $this->getRequest()->get("class_name");
+		$class_name = urldecode($this->getRequest()->get("class_name"));
 		$ids_ranking = $this->getRequest()->get("ids_ranking");
 		$ids_record   =$this->getRequest()->get("ids_record");
                 $aRankings   = explode("_",$ids_ranking);
@@ -30,10 +30,11 @@ class AjaxController extends Controller
 
                 foreach ($aRecords as $key => $id_record){
                         $oItem = $this->getDoctrine()->getRepository($class_name)->findOneById($id_record); 
-                        $oItem->setOrder($aRankings[$key]);
+                        $oItem->setOrderId($aRankings[$key]);
                         $this->getDoctrine()->getEntityManager()->flush();
+
                 }	
-				
+			
 
         
         return new Response('');
@@ -49,10 +50,9 @@ class AjaxController extends Controller
     public function deleteitemfromfulllistAction()
     {        
 		$id_item = $this->getRequest()->get("id_item");
-		$class_name = $this->getRequest()->get("class_name");
+		$class_name = urldecode($this->getRequest()->get("class_name"));
 		$oItem = $this->getDoctrine()->getRepository($class_name)->findOneById($id_item);
 		if($oItem){
-			/* @var $oEntityItemService \Zgroupe\EntityItem\EntityItemService */
 			$oEntityItemService = $this->get("entity_item_service");
 			$oEntityItemService->removeCompletlyEntity($oItem);
 		}		

@@ -11,7 +11,7 @@ interface AdministrableEntity {
     public function getTag();
     public function getCreationDate();
     public function setCreationDate($date);
-    
+    public function getNameIdentifier($lang);
     
 }
 
