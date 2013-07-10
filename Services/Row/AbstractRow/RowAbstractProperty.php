@@ -26,7 +26,7 @@ abstract class RowAbstractProperty extends RowAbstract{
     
 	abstract public function getErrorMessages();
 
-	abstract public function prepareSave(AdministrableEntity &$oClass, AdministrableLangEntity $oEntityLang, \Doctrine\ORM\EntityManager $oEntityManager);
+	abstract public function prepareSave(&$oClass);
 
         
         

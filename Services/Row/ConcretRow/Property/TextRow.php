@@ -2,8 +2,7 @@
 namespace Fredb\AdminBundle\Services\Row\ConcretRow\Property;
 
 use Fredb\AdminBundle\Services\Row\AbstractRow\RowAbstractProperty;
-use Fredb\AdminBundle\Services\AdministrableEntity\AdministrableEntity;
-use Fredb\AdminBundle\Services\AdministrableEntity\AdministrableLangEntity;
+
 
 /**
  * @author fredericbourbigot
@@ -43,23 +42,16 @@ class TextRow extends RowAbstractProperty {
         return $status;
     }
     
-    public function prepareSave(AdministrableEntity &$oClass, AdministrableLangEntity $oEntityLang, \Doctrine\ORM\EntityManager $oEntityManager) {
+    public function prepareSave(&$oClass) {
+        $reflClass = new \ReflectionClass(get_class($oClass));
+        $attribut = $reflClass->getProperty($this->getProperty_name());
+        $attribut->setAccessible(true);   
+        
         if($this->is_langueable){
-            $reflClass = new \ReflectionClass($oEntityLang);
-            $attribut = $reflClass->getProperty($this->getProperty_name());
-            $attribut->setAccessible(true);
             $aValues = $this->getValue();
             $value_field = $aValues[$this->lang];
-            $attribut->setValue($oEntityLang, $value_field);
-            $oEntityLang->setId($oClass->getId());
-            $oEntityLang->setLang($this->lang);
-            $oEntityManager->persist($oEntityLang);
-            $oEntityManager->flush();
-            $oEntityManager->detach($oEntityLang);
+            $attribut->setValue($oClass, $value_field);
         }else{
-            $reflClass = new \ReflectionClass(get_class($oClass));
-            $attribut = $reflClass->getProperty($this->getProperty_name());
-            $attribut->setAccessible(true);
             $attribut->setValue($oClass, $this->getValue());
         }    
     }

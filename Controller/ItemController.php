@@ -58,6 +58,21 @@ class ItemController extends Controller
         return array();
     }	
 	
+    
+    private function modeEdition($id_item, $oEntity){
+        if(isset($id_item)){
+            $id = $oEntity->getId();
+            if(!empty($id) or $id === 0){
+                $mode_edition = ToolBox::MODE_MODIFY;  
+            }else{
+                $mode_edition = ToolBox::MODE_CREATE;
+            }
+
+        }else{
+            $mode_edition = ToolBox::MODE_CREATE;            
+        }    
+        return $mode_edition;
+    }
 	
     /**
      * @Secure(roles="ROLE_ADMIN")
@@ -67,54 +82,42 @@ class ItemController extends Controller
      */
     public function createAction(Request $request)
     {   
-		$lang = $this->getRequest()->get("_locale");
+		$lang                   = $this->getRequest()->get("_locale");
 		$entity_type_to_manage  = urldecode($this->getRequest()->get("item_type"));
+                $id_item                = $request->get("id_item"); 
+                
                 /* @var $oAdmin_class_service Fredb\AdminBundle\Services\AdminClassService  */
-                $oAdmin_class_service = $this->get("admin_class_service");
-		$oItem                = $oAdmin_class_service->getEntityToManage($entity_type_to_manage);
-                $oItemLang            = $oAdmin_class_service->getLangClass($entity_type_to_manage);
-                $aLangsAvailable      = $oAdmin_class_service->getALangsAvailable();
-                        
-		if($oItem){
-			$mode_edition ="";
-			$id_item = $request->get("id_item");
-                        
-			if(isset($id_item)){
-				$mode_edition = ToolBox::MODE_MODIFY;
-				$oItem = $this->getDoctrine()->getRepository($entity_type_to_manage)->findOneById($id_item);
-                                if($oItemLang){
-                                    $oItemLangTest = $this->getDoctrine()->getRepository($oAdmin_class_service->getLangClassNamespace($entity_type_to_manage))->findOneById(array("id"=>$id_item,"lang"=>$lang));
-                                    if($oItemLangTest)
-                                        $oItemLang = $oItemLangTest;
-                                }    
-				if(!$oItem){
-					$mode_edition = ToolBox::MODE_CREATE;
-				}
-			}else{
-				$mode_edition = ToolBox::MODE_CREATE;
-			}
+                $oAdmin_class_service   = $this->get("admin_class_service");
+		$oItem                  = $oAdmin_class_service->getEntityToManageByNamespaceAndId($entity_type_to_manage, $id_item);
+                $aItemsLang             = $oAdmin_class_service->getaEntityLangToManageByNamespaceAndId($entity_type_to_manage, $id_item);      
+                $aLangsAvailable        = $oAdmin_class_service->getALangsAvailable();
+                $name_in_current_lang   = $oAdmin_class_service->getUserName($entity_type_to_manage,$lang);        
+                $mode_edition           = $this->modeEdition($id_item, $oItem);  
 
-			/* @var $oAdminFormService Zgroupe\AdminForm\AdminFormService */
-			$oAdminFormService = $this->get("admin_form_service");
-			$oAdminFormService->setEntity($oItem);                   
-                        $oAdminFormService->setEntityLang($oItemLang);
-                        $oAdminFormService->setALangs($aLangsAvailable);
-			$aRowsProperty = $oAdminFormService->getRowProperty($lang,$request,$mode_edition);
-              
-			$aErrors = array();
-			if ($request->getMethod() == 'POST'){
-				$aRows = $oAdminFormService->checkErrorsForm();
-				if($oAdminFormService->isFormErrorFree()){
-					$id_item = $oAdminFormService->save($mode_edition);
-					$this->get('session')->setFlash('update_ok', "Save Ok");
-					return $this->redirect($this->generateUrl("admin_item_modify", array("item_type"=>$this->getRequest()->get("item_type"), "id_item"=>$id_item  )));
-				}	
-			}	
+		/* @var $oAdminFormService Zgroupe\AdminForm\AdminFormService */
+		$oAdminFormService = $this->get("admin_form_service");
+		$oAdminFormService->setEntity($oItem);                   
+                $oAdminFormService->setaEntityLang($aItemsLang);
+                $oAdminFormService->setALangs($aLangsAvailable);
+		$aRowsProperty = $oAdminFormService->getRowProperty($lang,$request,$mode_edition);   
+                if ($request->getMethod() == 'POST'){
+                        if($oAdminFormService->isFormErrorFree()){
+                                $id_item = $oAdminFormService->save($mode_edition);
+                                $this->get('session')->setFlash('update_ok', "Save Ok");
+                                return $this->redirect($this->generateUrl("admin_item_modify", 
+                                                        array("item_type"=>$this->getRequest()->get("item_type"), 
+                                                              "id_item"=>$id_item 
+                                                             )
+                                                                         )
+                                                       );
+                        }	
+                }	
 
-			return array("aRowsProperty" => $aRowsProperty, "mode"=> ToolBox::$aModes[$mode_edition], "Type" ,"update_status" =>"","module_name" =>$oAdmin_class_service->getUserName($entity_type_to_manage,$lang),	"item_type"			=> $entity_type_to_manage);
-		}else{
-			throw $this->createNotFoundException('You cannot manage this entity');
-		}			
+                return array(   "aRowsProperty" => $aRowsProperty, 
+                                "mode"          => ToolBox::$aModes[$mode_edition],
+                                "module_name"   =>$name_in_current_lang,	
+                                "item_type"	=> $entity_type_to_manage);
+
     }	
 	
 	

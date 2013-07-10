@@ -56,7 +56,7 @@ class RowFactory {
                     $oRow->setLength($oAnnotation->length);
                     $oRow->setDisable($oAnnotation->disable);
                     $oRow->setIs_require($oAnnotation->require);
-                    
+        
                     if($is_form_submited){
                         $oRow->setValue($aValueSubmited);
                     }else{

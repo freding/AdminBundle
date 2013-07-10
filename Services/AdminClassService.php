@@ -109,6 +109,29 @@ class AdminClassService{
         
         
         
+        public function getEntityToManageByNamespaceAndId($namespace_class, $id){
+            $oEntity = $this->_em->getRepository($namespace_class)->findOneById($id);
+            if(!$oEntity)
+                $oEntity = $this->getEntityToManage ($namespace_class);
+            return $oEntity;
+        }
+        
+        public function getaEntityLangToManageByNamespaceAndId($namespace_class, $id){
+            $aEntityLang   = array();
+            $namespace_lang = $this->getLangClassNamespace($namespace_class);
+            foreach ($this->aLangsAvailable as $lang) {
+                $oEntityLang = $this->_em->getRepository($namespace_lang)->findOneBy(array("id"=>$id,"lang"=>$lang));
+                if($oEntityLang){
+                   $aEntityLang[$lang]  = $oEntityLang; 
+                }else{
+                   $oEntityLangNew      = new $namespace_lang();
+                   $oEntityLangNew->setLang($lang);
+                   $aEntityLang[$lang]  = $oEntityLangNew;
+                }
+            }
+            return $aEntityLang;
+        }
+        
         public function isEntitySortable($namespace_class){
             try{
                 $oEntity = new $namespace_class();

@@ -19,7 +19,7 @@ class AdminFormService{
         /** @var \Fredb\AdminBundle\Services\AdministrableEntity\AdministrableEntity $oAdministrableEntity */
 	private $oClass = null;
         
-        private $oClassLang = null;
+        private $aClassLang = array();
         
 	/** @ var array of  RowAbstractLink */
 	private $aRowsLink = array();
@@ -41,8 +41,8 @@ class AdminFormService{
             $this->oClass = $oAdministrableEntity;
         }
         
-        public function setEntityLang(\Fredb\AdminBundle\Services\AdministrableEntity\AdministrableLangEntity $oEntityLang){
-            $this->oClassLang = $oEntityLang;
+        public function setaEntityLang($aClassLang){
+            $this->aClassLang = $aClassLang;
         }
         
         public function setALangs($aLangs){
@@ -115,60 +115,26 @@ class AdminFormService{
             
             
             /** introspection ClassLang  */
-            $aAnnotationsForClass = $this->getaAnnotationsContentForClass($this->oClassLang, AbstractAnnotation::$aAnnotationsProperty);
+            if(isset($this->aClassLang[$lang])){
+                $oClassLang = $this->aClassLang[$lang];
+                $aAnnotationsForClass = $this->getaAnnotationsContentForClass($oClassLang, AbstractAnnotation::$aAnnotationsProperty);
 
-            foreach ($aAnnotationsForClass as $annotationForClass) {
-                $oAnnotation            = $annotationForClass["oAnnotation"];
-                $oContentObject         = $annotationForClass["content"];
-                $oContentObject->setAccessible(true);
-		$value_attribute        = $oContentObject->getValue($this->oClassLang);
-                foreach($this->aLangs as $lang_available){
-                    $this->aRowsProperty[]  = $this->oRowFactory->getRowProperty($oAnnotation, $lang, $this->oClassLang, $oContentObject->name,$request,$mode_edition, $value_attribute, $lang_available); 
-                }    
+                foreach ($aAnnotationsForClass as $annotationForClass) {
+                    $oAnnotation            = $annotationForClass["oAnnotation"];
+                    $oContentObject         = $annotationForClass["content"];
+                    $oContentObject->setAccessible(true);
+                    foreach($this->aLangs as $lang_available){
+                        $value_attribute        = $oContentObject->getValue($this->aClassLang[$lang_available]);
+                        $this->aRowsProperty[]  = $this->oRowFactory->getRowProperty($oAnnotation, $lang, $this->aClassLang[$lang_available], $oContentObject->name,$request,$mode_edition, $value_attribute, $lang_available); 
+                    }    
+                }
             }
-            
             
             return $this->aRowsProperty;
 	}
         
         
-        
- 
-        
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-	/**
-	 * @return array of RowAbstract
-	 */
-	public function checkErrorsForm(){
-		if(count($this->aRowsProperty )<1)
-			throw new \Exception("Rows must be set to be checked(please call getRows() )");
-		
-		foreach ($this->aRowsProperty as $oRow){
-			/* @var $oRow RowAbstract */
-			
-			
-		}
-		
-		
-		return $this->aRowsProperty;
-	}
 	
 	public function isFormErrorFree(){
 		if(count($this->aRowsProperty )<1)
@@ -190,11 +156,17 @@ class AdminFormService{
                     $this->_em->flush();     
 		}
 
-
-                
-                
-		foreach ($this->aRowsProperty as $oRow)
-			$oRow->prepareSave($this->oClass, $this->oClassLang, $this->_em);
+		foreach ($this->aRowsProperty as $oRow){
+                    if($oRow->getIs_langueable()){
+                        $oClassLang = $this->aClassLang[$oRow->getLang()];
+                        $oClassLang->setId($this->oClass->getId());
+                        $oRow->prepareSave($oClassLang);
+                        $this->_em->persist($oClassLang);
+                    }else{
+                        $oRow->prepareSave($this->oClass);    
+                    }
+                }
+			
 
 		$this->oClass->setCreationDate();
 		$this->_em->flush();
