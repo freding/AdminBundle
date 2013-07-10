@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="rLeftcol"><b>{{oRow.name}}{% if oRow.is_langueable == true %} ({{ oRow.lang }}) {% endif %}</b></div>
         <div class="rRightcol">
-<input name="{{oRow.property_name}}" id="activer" type="checkbox" value="{{constant('Fredb\\AdminBundle\\Services\\ToolBox::ACTIVATED')}}"  {% if oRow.value == constant('Fredb\\AdminBundle\\Services\\ToolBox::ACTIVATED')  %} checked="checked" {% endif %} />
+<input name="{% if oRow.is_langueable == true %}{{oRow.property_name}}[{{oRow.lang}}]{% else %}{{oRow.property_name}}{% endif %}" id="activer" type="checkbox" value="{{constant('Fredb\\AdminBundle\\Services\\ToolBox::ACTIVATED')}}"  {% if oRow.value == constant('Fredb\\AdminBundle\\Services\\ToolBox::ACTIVATED')  %} checked="checked" {% endif %} />
 	</div>
 	<div class="clear"></div>
 </div>

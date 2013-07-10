@@ -26,6 +26,7 @@ class AdminFormService{
 	/** @ var array of  RowAbstractProperty */
 	private $aRowsProperty = array(); 
         
+        private $aLangs = array();
         
 	public function __construct(CachedReader $oAnnotationReader  , \Doctrine\ORM\EntityManager $oEntityManager, \Fredb\AdminBundle\Services\Row\RowFactory $oRowFactory){
 		$this->_em		 = $oEntityManager;
@@ -42,6 +43,10 @@ class AdminFormService{
         
         public function setEntityLang(\Fredb\AdminBundle\Services\AdministrableEntity\AdministrableLangEntity $oEntityLang){
             $this->oClassLang = $oEntityLang;
+        }
+        
+        public function setALangs($aLangs){
+            $this->aLangs = $aLangs;
         }
         
         
@@ -94,7 +99,7 @@ class AdminFormService{
 	/**
 	 * @return array of RowAbstractProperty
 	 */
-	public function getRowProperty($lang, $request, $mode_edition, $aLangsAvailable){
+	public function getRowProperty($lang, $request, $mode_edition){
             $this->isEntitySetException(); 
 
             /** introspection Class  */
@@ -111,12 +116,13 @@ class AdminFormService{
             
             /** introspection ClassLang  */
             $aAnnotationsForClass = $this->getaAnnotationsContentForClass($this->oClassLang, AbstractAnnotation::$aAnnotationsProperty);
+
             foreach ($aAnnotationsForClass as $annotationForClass) {
                 $oAnnotation            = $annotationForClass["oAnnotation"];
                 $oContentObject         = $annotationForClass["content"];
                 $oContentObject->setAccessible(true);
 		$value_attribute        = $oContentObject->getValue($this->oClassLang);
-                foreach($aLangsAvailable as $lang_available){
+                foreach($this->aLangs as $lang_available){
                     $this->aRowsProperty[]  = $this->oRowFactory->getRowProperty($oAnnotation, $lang, $this->oClassLang, $oContentObject->name,$request,$mode_edition, $value_attribute, $lang_available); 
                 }    
             }
@@ -178,15 +184,17 @@ class AdminFormService{
 	
 	
 	public function save($mode_edition){
-		
-		if($mode_edition == ToolBox::MODE_CREATE){
-			$this->_em->persist($this->oClass);
-			$this->_em->flush();
-		}
-		
 
+		if($mode_edition == ToolBox::MODE_CREATE){
+                    $this->_em->persist($this->oClass);
+                    $this->_em->flush();     
+		}
+
+
+                
+                
 		foreach ($this->aRowsProperty as $oRow)
-			$oRow->prepareSave($this->oClass);
+			$oRow->prepareSave($this->oClass, $this->oClassLang, $this->_em);
 
 		$this->oClass->setCreationDate();
 		$this->_em->flush();

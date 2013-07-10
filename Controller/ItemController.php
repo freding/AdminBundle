@@ -98,7 +98,8 @@ class ItemController extends Controller
 			$oAdminFormService = $this->get("admin_form_service");
 			$oAdminFormService->setEntity($oItem);                   
                         $oAdminFormService->setEntityLang($oItemLang);
-			$aRowsProperty = $oAdminFormService->getRowProperty($lang,$request,$mode_edition, $aLangsAvailable);
+                        $oAdminFormService->setALangs($aLangsAvailable);
+			$aRowsProperty = $oAdminFormService->getRowProperty($lang,$request,$mode_edition);
               
 			$aErrors = array();
 			if ($request->getMethod() == 'POST'){

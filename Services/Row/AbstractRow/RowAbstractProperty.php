@@ -4,6 +4,7 @@
 namespace Fredb\AdminBundle\Services\Row\AbstractRow;
 
 use Fredb\AdminBundle\Services\AdministrableEntity\AdministrableEntity;
+use Fredb\AdminBundle\Services\AdministrableEntity\AdministrableLangEntity;
 /**
  *
  * @author fredericbourbigot
@@ -25,7 +26,7 @@ abstract class RowAbstractProperty extends RowAbstract{
     
 	abstract public function getErrorMessages();
 
-	abstract public function prepareSave(AdministrableEntity &$oClass);
+	abstract public function prepareSave(AdministrableEntity &$oClass, AdministrableLangEntity $oEntityLang, \Doctrine\ORM\EntityManager $oEntityManager);
 
         
         

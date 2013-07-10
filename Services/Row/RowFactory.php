@@ -63,6 +63,7 @@ class RowFactory {
                         if($mode_edition == \Fredb\AdminBundle\Services\ToolBox::MODE_CREATE){
                                 $oRow->setValue($oAnnotation->default_value[$lang]);
                         }else{
+                           
                                 $oRow->setValue($value_attribute);
                         }
                     }
