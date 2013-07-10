@@ -118,7 +118,10 @@ class AdminClassService{
         
         public function getaEntityLangToManageByNamespaceAndId($namespace_class, $id){
             $aEntityLang   = array();
+            
             $namespace_lang = $this->getLangClassNamespace($namespace_class);
+            if($namespace_lang == null)
+                return $aEntityLang;
             foreach ($this->aLangsAvailable as $lang) {
                 $oEntityLang = $this->_em->getRepository($namespace_lang)->findOneBy(array("id"=>$id,"lang"=>$lang));
                 if($oEntityLang){
