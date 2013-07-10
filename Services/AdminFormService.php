@@ -18,6 +18,9 @@ class AdminFormService{
         private $oRowFactory;
         /** @var \Fredb\AdminBundle\Services\AdministrableEntity\AdministrableEntity $oAdministrableEntity */
 	private $oClass = null;
+        
+        private $oClassLang = null;
+        
 	/** @ var array of  RowAbstractLink */
 	private $aRowsLink = array();
 	/** @ var array of  RowAbstractProperty */
@@ -36,6 +39,11 @@ class AdminFormService{
         public function setEntity(\Fredb\AdminBundle\Services\AdministrableEntity\AdministrableEntity $oAdministrableEntity){
             $this->oClass = $oAdministrableEntity;
         }
+        
+        public function setEntityLang(\Fredb\AdminBundle\Services\AdministrableEntity\AdministrableLangEntity $oEntityLang){
+            $this->oClassLang = $oEntityLang;
+        }
+        
         
 	public function isEntitySet(){
             if($this->oClass === null){
@@ -64,20 +72,64 @@ class AdminFormService{
 	}
         
         
+        private function getaAnnotationsContentForClass($oClass, $aListAnnotationAvailable){
+            $aAnnotations = array();
+            $reflClass = new \ReflectionClass(get_class($oClass));   
+            $aProperties = $reflClass->getProperties();   
+            foreach ($aProperties as $properties){ 		
+                foreach($aListAnnotationAvailable as $annotation_type){
+                    $propertieAnnotation = @$this->oAnnotationReader->getPropertyAnnotation($properties,$annotation_type); 
+                    if($propertieAnnotation instanceof $annotation_type){
+                        $aAnnotations[]= array("oAnnotation"=>$propertieAnnotation,"content"=>$properties);
+                    }
+
+                }	
+            }     
+                                
+            return $aAnnotations;               
+        }
+        
+        
         
 	/**
 	 * @return array of RowAbstractProperty
 	 */
-	public function getRowProperty(){
+	public function getRowProperty($lang, $request, $mode_edition, $aLangsAvailable){
             $this->isEntitySetException(); 
-            $aRows = array();
-		
-                
-            return $aRows;
+
+            /** introspection Class  */
+            $aAnnotationsForClass = $this->getaAnnotationsContentForClass($this->oClass, AbstractAnnotation::$aAnnotationsProperty);
+            foreach ($aAnnotationsForClass as $annotationForClass) {
+                $oAnnotation            = $annotationForClass["oAnnotation"];
+                $oContentObject         = $annotationForClass["content"];
+                $oContentObject->setAccessible(true);
+		$value_attribute        = $oContentObject->getValue($this->oClass);
+                $this->aRowsProperty[]  = $this->oRowFactory->getRowProperty($oAnnotation, $lang, $this->oClass, $oContentObject->name,$request,$mode_edition, $value_attribute);    
+            }
+            
+            
+            
+            /** introspection ClassLang  */
+            $aAnnotationsForClass = $this->getaAnnotationsContentForClass($this->oClassLang, AbstractAnnotation::$aAnnotationsProperty);
+            foreach ($aAnnotationsForClass as $annotationForClass) {
+                $oAnnotation            = $annotationForClass["oAnnotation"];
+                $oContentObject         = $annotationForClass["content"];
+                $oContentObject->setAccessible(true);
+		$value_attribute        = $oContentObject->getValue($this->oClassLang);
+                foreach($aLangsAvailable as $lang_available){
+                    $this->aRowsProperty[]  = $this->oRowFactory->getRowProperty($oAnnotation, $lang, $this->oClassLang, $oContentObject->name,$request,$mode_edition, $value_attribute, $lang_available); 
+                }    
+            }
+            
+            
+            return $this->aRowsProperty;
 	}
         
         
         
+ 
+        
+
         
         
         
@@ -86,6 +138,61 @@ class AdminFormService{
         
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+	/**
+	 * @return array of RowAbstract
+	 */
+	public function checkErrorsForm(){
+		if(count($this->aRowsProperty )<1)
+			throw new \Exception("Rows must be set to be checked(please call getRows() )");
+		
+		foreach ($this->aRowsProperty as $oRow){
+			/* @var $oRow RowAbstract */
+			
+			
+		}
+		
+		
+		return $this->aRowsProperty;
+	}
+	
+	public function isFormErrorFree(){
+		if(count($this->aRowsProperty )<1)
+			throw new \Exception("Rows must be set to be checked(please call getRows() )");
+		$is_form_error_free = true;
+		foreach ($this->aRowsProperty as $oRow){
+			/* @var $oRow RowAbstract */
+			if($oRow->getErrorMessages()!=false)
+				return false;
+		}
+		return $is_form_error_free;
+	}
+	
+	
+	public function save($mode_edition){
+		
+		if($mode_edition == ToolBox::MODE_CREATE){
+			$this->_em->persist($this->oClass);
+			$this->_em->flush();
+		}
+		
+
+		foreach ($this->aRowsProperty as $oRow)
+			$oRow->prepareSave($this->oClass);
+
+		$this->oClass->setCreationDate();
+		$this->_em->flush();
+		return $this->oClass->getId();
+	}
+	
         
         
         

@@ -13,9 +13,9 @@
 <form method="post" enctype="multipart/form-data">
     <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
 
-{% for oRow in aRows %}
-  {% if oRow.getTemplate != "" %}
-	{% include oRow.getTemplate with {'oRow': oRow} %}
+{% for oRow in aRowsProperty %}
+  {% if oRow.getTemplate_name != "" %}
+	{% include oRow.getTemplate_name with {'oRow': oRow} %}
   {% endif %}   
 {% endfor %}
 

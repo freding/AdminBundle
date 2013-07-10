@@ -72,7 +72,9 @@ class ItemController extends Controller
                 /* @var $oAdmin_class_service Fredb\AdminBundle\Services\AdminClassService  */
                 $oAdmin_class_service = $this->get("admin_class_service");
 		$oItem                = $oAdmin_class_service->getEntityToManage($entity_type_to_manage);
-
+                $oItemLang            = $oAdmin_class_service->getLangClass($entity_type_to_manage);
+                $aLangsAvailable      = $oAdmin_class_service->getALangsAvailable();
+                        
 		if($oItem){
 			$mode_edition ="";
 			$id_item = $request->get("id_item");
@@ -80,21 +82,24 @@ class ItemController extends Controller
 			if(isset($id_item)){
 				$mode_edition = ToolBox::MODE_MODIFY;
 				$oItem = $this->getDoctrine()->getRepository($entity_type_to_manage)->findOneById($id_item);
+                                if($oItemLang){
+                                    $oItemLangTest = $this->getDoctrine()->getRepository($oAdmin_class_service->getLangClassNamespace($entity_type_to_manage))->findOneById(array("id"=>$id_item,"lang"=>$lang));
+                                    if($oItemLangTest)
+                                        $oItemLang = $oItemLangTest;
+                                }    
 				if(!$oItem){
 					$mode_edition = ToolBox::MODE_CREATE;
-					$oItem = new $entity_type_to_manage();
 				}
 			}else{
-                        
 				$mode_edition = ToolBox::MODE_CREATE;
-				$oItem = new $entity_type_to_manage();
-                  
 			}
 
 			/* @var $oAdminFormService Zgroupe\AdminForm\AdminFormService */
 			$oAdminFormService = $this->get("admin_form_service");
-			$oAdminFormService->setClassForForm($oItem);
-			$aRows = $oAdminFormService->getRows($request,$mode_edition,$current_language);
+			$oAdminFormService->setEntity($oItem);                   
+                        $oAdminFormService->setEntityLang($oItemLang);
+			$aRowsProperty = $oAdminFormService->getRowProperty($lang,$request,$mode_edition, $aLangsAvailable);
+              
 			$aErrors = array();
 			if ($request->getMethod() == 'POST'){
 				$aRows = $oAdminFormService->checkErrorsForm();
@@ -105,7 +110,7 @@ class ItemController extends Controller
 				}	
 			}	
 
-					return array("aRows" => $aRows, "mode"=> ToolBox::$aModes[$mode_edition], "Type" ,"update_status" =>"","module_name" =>$oModule->getEnglishName(),	"item_type"			=> $this->getRequest()->get("item_type"));
+			return array("aRowsProperty" => $aRowsProperty, "mode"=> ToolBox::$aModes[$mode_edition], "Type" ,"update_status" =>"","module_name" =>$oAdmin_class_service->getUserName($entity_type_to_manage,$lang),	"item_type"			=> $entity_type_to_manage);
 		}else{
 			throw $this->createNotFoundException('You cannot manage this entity');
 		}			

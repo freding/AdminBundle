@@ -2,7 +2,9 @@
 namespace Fredb\AdminBundle\Annotations\ConcretAnnotations\Property;
 use Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractVisualAnnotation;
 
-/** @Annotation */
+/** @Annotation 
+ *  require user_name
+ */
 class Text extends AbstractVisualAnnotation
 {
 
@@ -17,7 +19,7 @@ class Text extends AbstractVisualAnnotation
         return "Fredb\AdminBundle\Services\Row\ConcretRow\Property\TextRow";
     }
     public function getType() {
-        return self::TYPE_CLASS;
+        return self::TYPE_PROPERTY;
     }
 
     public function getTemplateName() {

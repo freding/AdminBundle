@@ -5,11 +5,10 @@ namespace Fredb\AdminBundle\Services\AdministrableEntity;
  *
  * @author fredericbourbigot
  */
-interface AdministrableLangEntity extends AdministrableEntity {
+interface AdministrableLangEntity {
    
-    public function getNamespaceLangEntity();
-    public function getLangFieldId();
-    public function getLangFieldLang();
+    public function getId();
+    public function getLang();
     
 }
 

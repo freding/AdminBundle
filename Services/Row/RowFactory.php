@@ -4,6 +4,9 @@ namespace Fredb\AdminBundle\Services\Row;
 
 use Doctrine\Common\Annotations\Annotation;
 use Symfony\Component\HttpFoundation\Request;
+use Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractAnnotation;
+use Fredb\AdminBundle\Services\Row\ConcretRow\Property;
+use Fredb\AdminBundle\Services\AdministrableEntity\AdministrableLangEntity;
 /**
  *
  * @author fredericbourbigot
@@ -43,21 +46,68 @@ class RowFactory {
         
         
 
-	public function getRowProperty($oAnnotation){
+	public function getRowProperty(AbstractAnnotation $oAnnotation, $lang, $oClass, $property_name, $request, $mode_edition, $value_attribute, $lang_available = null){
                 $oRow = null;
-		$aValueSubmited    = $request->get($propertie_name);
+		$aValueSubmited    = $request->get($property_name);
 		$is_form_submited = ($request->getMethod() == 'POST');
                 
-                
-		if(get_class($oAnnotation) == "Fredb\AdminBundle\Annotations\ConcretAnnotations\Property\Text"){
+		if(get_class($oAnnotation) == AbstractAnnotation::$aAnnotationsProperty[AbstractAnnotation::ANNOTATION_TEXT]){
+                    $oRow = new Property\TextRow();
+                    $oRow->setLength($oAnnotation->length);
+                    $oRow->setDisable($oAnnotation->disable);
+                    $oRow->setIs_require($oAnnotation->require);
                     
-			
-				
-				
-				
+                    if($is_form_submited){
+                        $oRow->setValue($aValueSubmited);
+                    }else{
+                        if($mode_edition == \Fredb\AdminBundle\Services\ToolBox::MODE_CREATE){
+                                $oRow->setValue($oAnnotation->default_value[$lang]);
+                        }else{
+                                $oRow->setValue($value_attribute);
+                        }
+                    }
+                    
+                    
+                    
+                }else if(get_class($oAnnotation) == AbstractAnnotation::$aAnnotationsProperty[AbstractAnnotation::ANNOTATION_CHECKBOX]){   
+                    $oRow = new Property\CheckBoxRow();
+                    
+                    if($is_form_submited){
+                        $oRow->setValue($aValueSubmited);
+                    }else{
+			if($mode_edition == \Fredb\AdminBundle\Services\ToolBox::MODE_CREATE){
+                            $oRow->setValue($oAnnotation->default_value);
+			}else{
+                            $oRow->setValue($value_attribute);
+			}
+                    } 
+                    
                 }else{
-			throw new \Exception("Can not create Row from type : ".\Zend_Debug::dump($oAnnotation));
+                    throw new \Exception("Can not create Row from annotation : ".get_class($oAnnotation));
 		}
+                
+                if(isset($oAnnotation->user_name[$lang])){
+                    $oRow->setName($oAnnotation->user_name[$lang]);
+                }else{
+                    
+                    throw new \Exception("'user_name' is not defined in
+                                          - Class : '".  get_class($oClass)."'
+                                          - Property :'".$property_name."'                         
+
+                                          - Lang :'".$lang."'
+                                          - Annotation type: '".get_class($oAnnotation)."'   
+                                        ");    
+                }
+                
+                if($oClass instanceof AdministrableLangEntity){
+                    $oRow->setIs_langueable(true);
+                    $oRow->setLang($lang_available);
+                }
+                
+                $oRow->setIs_form_submited($is_form_submited);
+                $oRow->setTemplate_name($oAnnotation->getTemplateName());
+                $oRow->setProperty_name($property_name);
+                
                 
 		return $oRow;
 	}

@@ -75,10 +75,28 @@ class AdminClassService{
             foreach ($this->aRowsClass as $oClassRow){ 
                 if($oClassRow->getClass_namespace() == $class_namespace)
                     return true;
-  
             }
             return $find;
+        }
+        
+        
+        
+        public function getLangClass($namespace_class){
+            $namespace_lang = $this->aRowsClass[$namespace_class]->lang_class_namespace;
+            if($namespace_lang){
+                try{
+                   $namespace_lang = new $namespace_lang();
+                }  catch (Exception $e){
+                    throw new \Exception("You cannot manage this entity lang");
+                }
+            }
             
+            return $namespace_lang;
+        }
+        
+        
+        public function getLangClassNamespace($namespace_class){
+            return $this->aRowsClass[$namespace_class]->lang_class_namespace; 
         }
         
         

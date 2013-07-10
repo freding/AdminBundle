@@ -3,12 +3,16 @@
 
 namespace Fredb\AdminBundle\Services\Row\AbstractRow;
 
+use Fredb\AdminBundle\Services\AdministrableEntity\AdministrableEntity;
 /**
  *
  * @author fredericbourbigot
  */
 abstract class RowAbstractProperty extends RowAbstract{
 	
+    
+    const ERROR_FILL_FIELD		= "Please fill this field";
+    const ERROR_PRICE_FORMAT            = "Le prix ne doit contenir que des chiffres(un point pour la décimal) et aucun espace";    
 
     protected $is_langueable;
     protected $lang;
@@ -17,10 +21,11 @@ abstract class RowAbstractProperty extends RowAbstract{
     protected $value;
     protected $is_form_submited;
     protected $mode_edition;
-
+    protected $template_name;
+    
 	abstract public function getErrorMessages();
 
-	abstract public function prepareSave();
+	abstract public function prepareSave(AdministrableEntity &$oClass);
 
         
         
@@ -82,6 +87,14 @@ abstract class RowAbstractProperty extends RowAbstract{
         }
 
     
-        
+        public function getTemplate_name() {
+            return $this->template_name;
+        }
+
+        public function setTemplate_name($template_name) {
+            $this->template_name = $template_name;
+        }
+
+
         
 }

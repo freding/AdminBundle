@@ -8,8 +8,8 @@ use Fredb\AdminBundle\Services\Row\AbstractRow\RowAbstractClass;
 class ManageByBoRow extends RowAbstractClass {
     
     public $order;
-    private $mother_node;  
-    private $lang_class_namespace;
+    public $mother_node;  
+    public $lang_class_namespace;
     
     
     public function getOrder() {
