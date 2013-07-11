@@ -1,0 +1,8 @@
+<div class="row">
+    <div class="rLeftcol"><b>{{oRow.name}}{% if oRow.is_langueable == true %} ({{ oRow.lang }}) {% endif %}{% if oRow.is_require == true %}*{% endif %}:</b></div>
+    <div class="rRightcol">
+    {% include 'FredbAdminBundle:ViewBlock:admin_form_errors.html.twig' with {'aErrors': oRow.getErrorMessages} %}
+    <input type="text" name="{% if oRow.is_langueable == true %}{{oRow.property_name}}[{{oRow.lang}}]{% else %}{{oRow.property_name}}{% endif %}" value="{{oRow.value}}" class="datepicker">
+</div>
+    <div class="clear"></div>
+</div>

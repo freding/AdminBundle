@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractAnnotation;
 use Fredb\AdminBundle\Services\Row\ConcretRow\Property;
 use Fredb\AdminBundle\Services\AdministrableEntity\AdministrableLangEntity;
+use Fredb\AdminBundle\Annotations\ConcretAnnotations\Property\Text;
+use Fredb\AdminBundle\Annotations\ConcretAnnotations\Property\CheckBox;
 /**
  *
  * @author fredericbourbigot
@@ -47,18 +49,34 @@ class RowFactory {
         
 
 	public function getRowProperty(AbstractAnnotation $oAnnotation, $lang, $oClass, $property_name, $request, $mode_edition, $value_attribute, $lang_available = null){
-                $oRow = null;
-		$aValueSubmited    = $request->get($property_name);
-		$is_form_submited = ($request->getMethod() == 'POST');
-                
-		if(get_class($oAnnotation) == AbstractAnnotation::$aAnnotationsProperty[AbstractAnnotation::ANNOTATION_TEXT]){
-                    $oRow = new Property\TextRow();
+                $oRow               = null;
+		$aValueSubmited     = $request->get($property_name);
+		$is_form_submited   = ($request->getMethod() == 'POST');
+                $row_class          =$oAnnotation->getRowClass();  
+                $oRow               = new $row_class();
+		if($oAnnotation instanceof Text){
+                    if($oAnnotation instanceof Text\LongText){
+                        $oRow->setHeight($oAnnotation->height);
+                        $oRow->setRich($oAnnotation->rich);
+                    }else if($oAnnotation instanceof Text\Date){    
+
+                    }else if($oAnnotation instanceof Text\Color){    
+
+                    }
                     $oRow->setLength($oAnnotation->length);
                     $oRow->setDisable($oAnnotation->disable);
                     $oRow->setIs_require($oAnnotation->require);
         
+
+                    
                     if($is_form_submited){
-                        $oRow->setValue($aValueSubmited);
+                        if($lang_available){
+                            if(isset($aValueSubmited[$lang])){
+                                $oRow->setValue($aValueSubmited[$lang]);
+                            } 
+                        }else{
+                            $oRow->setValue($aValueSubmited);
+                        }    
                     }else{
                         if($mode_edition == \Fredb\AdminBundle\Services\ToolBox::MODE_CREATE){
                                 $oRow->setValue($oAnnotation->default_value[$lang]);
@@ -70,11 +88,17 @@ class RowFactory {
                     
                     
                     
-                }else if(get_class($oAnnotation) == AbstractAnnotation::$aAnnotationsProperty[AbstractAnnotation::ANNOTATION_CHECKBOX]){   
+                }else if($oAnnotation instanceof CheckBox){   
                     $oRow = new Property\CheckBoxRow();
                     
                     if($is_form_submited){
-                        $oRow->setValue($aValueSubmited);
+                        if($lang_available){
+                            if(isset($aValueSubmited[$lang])){
+                                $oRow->setValue($aValueSubmited[$lang]);
+                            } 
+                        }else{
+                            $oRow->setValue($aValueSubmited);
+                        } 
                     }else{
 			if($mode_edition == \Fredb\AdminBundle\Services\ToolBox::MODE_CREATE){
                             $oRow->setValue($oAnnotation->default_value);

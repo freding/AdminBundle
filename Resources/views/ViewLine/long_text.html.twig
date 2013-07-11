@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="rLeftcol"><b>{{oRow.name}}{% if oRow.is_langueable == true %} ({{ oRow.lang }}) {% endif %}{% if oRow.is_require == true %}*{% endif %}:</b></div>
+    <div class="rRightcol">
+    {% include 'FredbAdminBundle:ViewBlock:admin_form_errors.html.twig' with {'aErrors': oRow.getErrorMessages} %}
+    <textarea name="{% if oRow.is_langueable == true %}{{oRow.property_name}}[{{oRow.lang}}]{% else %}{{oRow.property_name}}{% endif %}" class="{% if oRow.rich == true %}mceSelect {% endif %}desc_lang" rows="{{oRow.height}}" cols="{{oRow.getLength}}" {% if oRow.disable == true %}disabled{% endif%}>{{oRow.value}}</textarea>
+		
+</div>
+    <div class="clear"></div>
+</div>
