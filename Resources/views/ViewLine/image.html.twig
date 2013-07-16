@@ -4,6 +4,11 @@
 				
                                                  <div class="rRightcol"><input type="file" name="{{oRow.getTag}}" /></div>
 						 {{oRow.getImgAtIndex(0) | raw}}
+                                                 {% if oRow.isImageSet == true %}
+                                                     <input type="hidden" id="path_ajax_delete_image" value="{{path('admin_ajax_delete_image')}}">
+                                                     {% set detach_image= {"id_entity":oRow.getId,"class_entity":oRow.getUrlClass_namespace, "tag":oRow.getTag}  %}   
+                                                     <div class="delete_image" rel="{{detach_image | json_encode}}">{% trans %}Delete image{% endtrans %}</div>
+                                                 {% endif %}    
 			<div class="clear"></div>
 		</div>  
 </div>

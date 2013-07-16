@@ -874,6 +874,11 @@
                 <target>Le contenu de ce champ est déjà utilisé</target>
             </trans-unit>
 
+         <trans-unit id="156">
+                <source>Delete image</source>
+                <target>Supprimer l'image</target>
+            </trans-unit>
+
 
 
 

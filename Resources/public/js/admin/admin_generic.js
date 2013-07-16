@@ -2,7 +2,18 @@
 	var item = function() {
 
 
-
+		function _deleteImage(){
+                        var path_delete_image = $("#path_ajax_delete_image").val();
+			$(".delete_image").click(
+                            function(){    
+				$.post(path_delete_image, {datas:$(this).attr("rel")}, 
+                                    function(data){
+					location.reload();
+                                    }
+                                , "html");
+                            }
+                        );
+		}
 
 
 		function _changeDesignerForProduct(){
@@ -41,7 +52,7 @@
 
 
                                     function(){
-                                        if (confirm("Vous désirez vraiment supprimer?")) {                                   
+                                        if (confirm("Delete item?")) {                                   
                                             $.post(path_delete, {id_item:$(this).attr("rel"),class_name:$("#div_sort").attr('rel')}, 
                                                 function(data){
                                                     location.reload();
@@ -393,7 +404,7 @@
 				
 		                                                                                        
 		//return { addSubRubricHomeReload:_addSubRubricHomeReload, addSubRubricHome:_addSubRubricHome,saveSeo:_saveSeo, changeSubRubricNameValidate:_changeSubRubricNameValidate, changeSubRubricName:_changeSubRubricName , addSubRubricProduct:_addSubRubricProduct,removeLinkSubRub:_removeLinkSubRub, deleteItem : _deleteItem,sortRecord: _sortRecord, addRubric:_addRubric, removeRubric:_removeRubric, uploadVideo:_uploadVideo, addLinkVideo:_addLinkVideo, removeLinkVideo:_removeLinkVideo, addSubRubric:_addSubRubric}
-		return {changeDesignerForProduct:_changeDesignerForProduct ,deleteComposite:_deleteComposite, addPage:_addPage, addPageUi:_addPageUi, sortBlock:_sortBlock,removeBlock:_removeBlock, addBlock:_addBlock, colorpicker:_colorpicker,getListBlockForPage:_getListBlockForPage,datepicker:_datepicker, uploadVideo:_uploadVideo,sortItemFromList:_sortItemFromList, detachItemFromList:_detachItemFromList,sortRecord: _sortRecord,removeItemFromFullList:_removeItemFromFullList,addLinkItemToList:_addLinkItemToList}
+		return {deleteImage:_deleteImage,changeDesignerForProduct:_changeDesignerForProduct ,deleteComposite:_deleteComposite, addPage:_addPage, addPageUi:_addPageUi, sortBlock:_sortBlock,removeBlock:_removeBlock, addBlock:_addBlock, colorpicker:_colorpicker,getListBlockForPage:_getListBlockForPage,datepicker:_datepicker, uploadVideo:_uploadVideo,sortItemFromList:_sortItemFromList, detachItemFromList:_detachItemFromList,sortRecord: _sortRecord,removeItemFromFullList:_removeItemFromFullList,addLinkItemToList:_addLinkItemToList}
 	}();
         
         
@@ -417,6 +428,7 @@
                 item.removeBlock();
                 item.addPageUi();
 		item.deleteComposite();	
+                item.deleteImage();
                 //item.changeDesignerForProduct();
 	});   
         

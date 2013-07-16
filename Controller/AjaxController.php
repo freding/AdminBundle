@@ -14,6 +14,26 @@ use Symfony\Component\HttpFoundation\Response;
 class AjaxController extends Controller
 {
 	
+    
+    /**
+     * @Secure(roles="ROLE_ADMIN")
+     * @Route("/admin/ajax/deleteimage",name="admin_ajax_delete_image")
+     */
+    public function deleteimageAction()
+    {        
+	$aDatas         = json_decode($this->getRequest()->get("datas"));
+	$id_entity      = $aDatas->id_entity;	
+	$class_entity   = urldecode($aDatas->class_entity);
+	$tag            = $aDatas->tag;
+        
+        $oEntity        = $this->getDoctrine()->getEntityManager()->getRepository($class_entity)->findOneById($id_entity);
+        if($oEntity)
+            $this->get("entity_item_service")->removeImageFromEntity($oEntity,  $tag);
+        return new Response('');
+    }
+    
+    
+    
     /**
      * @Secure(roles="ROLE_ADMIN")
      * @Route("/admin/ajax/sortcompletelist",name="sort_complete_list")

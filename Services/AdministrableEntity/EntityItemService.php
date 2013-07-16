@@ -146,7 +146,20 @@ class EntityItemService{
 		}
 	}
 	
-	
+	public function removeImageFromEntity(AdministrableEntity $oEntityInDb,  $tag){
+		$dql="DELETE FredbAdminBundle:JEntityItem j 
+		WHERE j.idEntity = ".$oEntityInDb->getId()." and j.typeEntity = '".$oEntityInDb->getTag()."' 
+		and j.typeItem = '".\Fredb\AdminBundle\Entity\Picture::STR_TYPE_ENTITY."'
+                and j.tag='".$tag."'    
+                ";
+		$query = $this->_em->createQuery($dql);
+		$result = $query->execute();
+		if($result>0){
+			return true;
+		}else{
+			return false;
+		}
+        }
 
 	/**
 	 * @param EntityItemInterface $oXToReturn
@@ -330,7 +343,7 @@ class EntityItemService{
 		      $adapter = new \Zend_File_Transfer_Adapter_Http();
 		      $adapter->addValidator('MimeType',false,array('image/gif', 'image/jpeg', 'image/png' ),$input_name);
 		      $ext ="";	
-                      $file_name = $adapter->getFileName();
+                      $file_name = $adapter->getFileName($input_name);
                       if(sizeof($file_name) == 0)
                           return false;
 		      switch ($adapter->getMimeType($input_name)){

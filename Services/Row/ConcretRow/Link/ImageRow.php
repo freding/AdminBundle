@@ -43,6 +43,20 @@ class ImageRow extends RowAbstractLink {
         return $format;
     }
     
+    public function isImageSet(){
+        $return                 = false;
+        $oPictureType		= new \Fredb\AdminBundle\Entity\Picture;
+        $id_current_entity	= $this->getId();
+        if(!empty($id_current_entity)){
+            $oCurrentEntity = $this->oEm->getRepository($this->getClass_namespace())->findOneById($this->getId());
+            try{ 		
+                $aPictures = $this->oEntityItemService->getItemsFromEntity($oPictureType, $oCurrentEntity,$this->getTag());	
+                if(count($aPictures)>0)
+                    $return = true;
+            }catch (\Exception $e){}
+        }
+        return $return;
+    }
     
     public function getImgAtIndex($index = 0){
         $oPictureType		= new \Fredb\AdminBundle\Entity\Picture;

@@ -334,3 +334,12 @@ ul.firstsub{}
 .delete_composite{
 	cursor: pointer;
 }
+
+
+.delete_image{
+	cursor: pointer; 
+        background-color: black;
+        color:white;
+        text-align: center;
+        margin:10px;
+}
