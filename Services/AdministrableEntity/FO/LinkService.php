@@ -21,7 +21,6 @@ class LinkService {
         $this->oAnnotationReader    = $oAnnotationReader;
     }
     
-
     public function getAItemsForEntityAndProperty(AdministrableEntity $oEntity, $property_name){
         $oAnnotation        = $this->getAnnotationForEntityAndProperty($oEntity, $property_name);
         $class_item_linked  = $oAnnotation->class_item_linked;
@@ -53,7 +52,6 @@ class LinkService {
         }
     }
     
-    
     private function getAnnotationForEntityAndProperty(AdministrableEntity $oEntity, $property_name){
         $return             = array();
         $reflClass          = new \ReflectionClass(get_class($oEntity));
@@ -66,9 +64,6 @@ class LinkService {
             throw new Exception("Annotation not found for class: ".get_class($oEntity).", property: ".$property_name);
         return $oAnnotation;
     }
-    
-    
-    
     
 }
 
