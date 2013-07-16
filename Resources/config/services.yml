@@ -29,3 +29,6 @@ services:
         class:        Fredb\AdminBundle\Services\AdminClassService    
         arguments:    ["@annotations_reader","@doctrine.orm.entity_manager","@row_factory",%aLangs%]
         
+    pictures_service:
+        class:        Fredb\AdminBundle\Services\AdministrableEntity\PicturesService    
+        arguments:    ["@doctrine.orm.entity_manager", "@entity_item_service", "@annotations_reader"]
