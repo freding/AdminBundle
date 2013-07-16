@@ -14,7 +14,7 @@ class RowFactoryTest extends BaseTestCase
     
     
     
-    
+    /**
     public function testGetRowClass()
     {
         
@@ -40,7 +40,7 @@ class RowFactoryTest extends BaseTestCase
         
         
     }
-    
+    */
     
 
     
