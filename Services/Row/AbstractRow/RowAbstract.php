@@ -11,6 +11,9 @@ abstract class RowAbstract{
 	
     protected $name;
     protected $class_namespace;
+    protected $user_lang;
+    
+
     
     public function getName() {
         return $this->name;
@@ -40,6 +43,14 @@ abstract class RowAbstract{
     
     public function setClass_namespace($class_namespace) {
         $this->class_namespace = $class_namespace;
+    }
+
+    public function getUser_lang() {
+        return $this->user_lang;
+    }
+
+    public function setUser_lang($user_lang) {
+        $this->user_lang = $user_lang;
     }
 
 

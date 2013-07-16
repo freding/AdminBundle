@@ -8,17 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="TBL_picture")
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Fredb\AdminBundle\Repository\PictureRepository")
  */
-class Picture{
+class Picture implements \Fredb\AdminBundle\Services\AdministrableEntity\AdministrableEntity{
 
-
-	const FULL_SIZE = "full";
-	static $aFull		= array("name"=>self::FULL_SIZE	,"folder"=>"full/");
-
-	
-		
-	
+    const STR_TYPE_ENTITY	= "Picture";
     /**
      * @var integer $id
      * @ORM\Id 
@@ -63,11 +56,8 @@ class Picture{
      * @var string $name
      * @ORM\Column(name="PICTURE_name",type="string")
      */
-    protected $name;	
-	
+    protected $name;
 
-    
-    
     public function getId() {
         return $this->id;
     }
@@ -80,8 +70,8 @@ class Picture{
         return $this->creationDate;
     }
 
-    public function setCreationDate(intger $creationDate) {
-        $this->creationDate = $creationDate;
+    public function setCreationDate() {
+        $this->creationDate = time();
     }
 
     public function getActive() {
@@ -124,8 +114,17 @@ class Picture{
         $this->name = $name;
     }
 
+    public function getType()
+    {
+        return self::STR_TYPE_ENTITY;
+    }
 
-    
-    
+    public function getNameIdentifier($lang) {
+        return $this->getName();
+    }
+
+    public function getTag() {
+        return self::STR_TYPE_ENTITY;
+    }  
     
 }

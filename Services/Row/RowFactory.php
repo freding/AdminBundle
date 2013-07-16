@@ -17,11 +17,13 @@ class RowFactory {
 
 	/** @var \Doctrine\ORM\EntityManager $oEntityManager  */
 	protected $_em;
+        /** @var \Fredb\AdminBundle\Services\AdministrableEntity\EntityItemService $oEntityItemService */
+        protected $oEntityItemService;  
 
 
-
-	public function __construct(\Doctrine\ORM\EntityManager $oEntityManager){
-		$this->_em			   = $oEntityManager;
+	public function __construct(\Doctrine\ORM\EntityManager $oEntityManager, \Fredb\AdminBundle\Services\AdministrableEntity\EntityItemService $oEntityItemService){
+		$this->_em                  = $oEntityManager;
+                $this->oEntityItemService   = $oEntityItemService;
 
 	}
 
@@ -48,68 +50,26 @@ class RowFactory {
         
         
 
-	public function getRowProperty(AbstractAnnotation $oAnnotation, $lang, $oClass, $property_name, $request, $mode_edition, $value_attribute, $lang_available = null){
-                $oRow               = null;
+	public function getRow(AbstractAnnotation $oAnnotation, $lang, $oClass, $property_name, $request, $mode_edition, $value_attribute, $lang_available = null){
 		$aValueSubmited     = $request->get($property_name);
 		$is_form_submited   = ($request->getMethod() == 'POST');
-                $row_class          =$oAnnotation->getRowClass();  
-                $oRow               = new $row_class();
-		if($oAnnotation instanceof Text){
-                    if($oAnnotation instanceof Text\LongText){
-                        $oRow->setHeight($oAnnotation->height);
-                        $oRow->setRich($oAnnotation->rich);
-                    }else if($oAnnotation instanceof Text\Date){    
-
-                    }else if($oAnnotation instanceof Text\Color){    
-
-                    }
-                    $oRow->setLength($oAnnotation->length);
-                    $oRow->setDisable($oAnnotation->disable);
-                    $oRow->setIs_require($oAnnotation->require);
-        
-
-                    
-                    if($is_form_submited){
-                        if($lang_available){
-                            if(isset($aValueSubmited[$lang])){
-                                $oRow->setValue($aValueSubmited[$lang]);
-                            } 
-                        }else{
-                            $oRow->setValue($aValueSubmited);
-                        }    
-                    }else{
-                        if($mode_edition == \Fredb\AdminBundle\Services\ToolBox::MODE_CREATE){
-                                $oRow->setValue($oAnnotation->default_value[$lang]);
-                        }else{
-                           
-                                $oRow->setValue($value_attribute);
-                        }
-                    }
-                    
-                    
-                    
-                }else if($oAnnotation instanceof CheckBox){   
-                    $oRow = new Property\CheckBoxRow();
-                    
-                    if($is_form_submited){
-                        if($lang_available){
-                            if(isset($aValueSubmited[$lang])){
-                                $oRow->setValue($aValueSubmited[$lang]);
-                            } 
-                        }else{
-                            $oRow->setValue($aValueSubmited);
-                        } 
-                    }else{
-			if($mode_edition == \Fredb\AdminBundle\Services\ToolBox::MODE_CREATE){
-                            $oRow->setValue($oAnnotation->default_value);
-			}else{
-                            $oRow->setValue($value_attribute);
-			}
-                    } 
-                    
+                $row_class          = $oAnnotation->getRowClass();
+                if($row_class == "Fredb\AdminBundle\Services\Row\ConcretRow\Property\TextRow\TextToUrlRow"){
+                    $oRow               = new $row_class($oAnnotation, $this->_em, $oClass);
+                }else if($row_class == "Fredb\AdminBundle\Services\Row\ConcretRow\Link\ListeRow"){    
+                    $oRow               = new $row_class($oAnnotation, $this->_em, $this->oEntityItemService, $oClass);
+                }else if($row_class == "Fredb\AdminBundle\Services\Row\ConcretRow\Link\ImageRow"){    
+                    $oRow               = new $row_class($oAnnotation, $this->_em, $this->oEntityItemService, $oClass);
                 }else{
-                    throw new \Exception("Can not create Row from annotation : ".get_class($oAnnotation));
-		}
+                    $oRow               = new $row_class($oAnnotation);
+                }    
+                if($oRow instanceof AbstractRow\RowAbstractProperty)
+                    $oRow->setRowValue($oAnnotation, $is_form_submited, $aValueSubmited, $mode_edition, $value_attribute, $lang_available, $lang);
+                $id_class = $oClass->getId();               
+                if(!empty($id_class) and ($oAnnotation instanceof \Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractLinkAnnotation)){
+                    $oRow->setId($oClass->getId());
+                }
+                
                 
                 if(isset($oAnnotation->user_name[$lang])){
                     $oRow->setName($oAnnotation->user_name[$lang]);
@@ -128,24 +88,19 @@ class RowFactory {
                     $oRow->setIs_langueable(true);
                     $oRow->setLang($lang_available);
                 }
-                
+                $oRow->setMode_edition($mode_edition);
                 $oRow->setIs_form_submited($is_form_submited);
                 $oRow->setTemplate_name($oAnnotation->getTemplateName());
                 $oRow->setProperty_name($property_name);
-                
-                
+                $oRow->setUser_lang($lang);
+                $oRow->setClass_namespace(get_class($oClass));
 		return $oRow;
 	}
 	
 	
 	
 			
-			
-	public function getRowLink(){
-                $oRow = null;  
-            
-		return $oRow;
-        }		
+	
 			
 			
 			

@@ -68,51 +68,16 @@ class AjaxController extends Controller
      */
     public function addlinkitemtolistAction()
     {        
-		$curent_lang		= $this->get('session')->getLocale();
+		$curent_lang		= $this->getRequest()->get("_locale");
 		$aDatas			= json_decode($this->getRequest()->get("datas"));
 		$id_item_to_link	= $this->getRequest()->get("id_item");
-		$oEntity			= $this->getDoctrine()->getRepository($aDatas->class_entity)->findOneById($aDatas->id_entity);
-		$oItem			= $this->getDoctrine()->getRepository($aDatas->class_item)->findOneById($id_item_to_link);	
+		$oEntity		= $this->getDoctrine()->getRepository(urldecode($aDatas->class_entity))->findOneById($aDatas->id_entity);
+		$oItem			= $this->getDoctrine()->getRepository(urldecode($aDatas->class_item))->findOneById($id_item_to_link);	
 		if($oEntity and $oItem){
 			/* @var $oEntityItemService \Zgroupe\EntityItem\EntityItemService */
 			$oEntityItemService = $this->get("entity_item_service");
 			$oEntityItemService->addItemsToEntity(array($oItem), $oEntity);
-		}
-		try{
-			if($oItem instanceof \Fred\DatasBundle\Entity\Video and ($oEntity instanceof \Fred\DatasBundle\Entity\Channel or $oEntity instanceof \Fred\DatasBundle\Entity\Hightlight)){
-				$oSiteName		= $this->getDoctrine()->getEntityManager()->getRepository("FredDatasBundle:Style")->findOneById(\Fred\DatasBundle\Entity\Style::ID_TITLE_PROJECT);
-				//Alert mail
-				$aAlerts = $this->getDoctrine()->getEntityManager()->getRepository("FredDatasBundle:Alert")->findBy(  array( "type" => $oEntity->getType(), "num" => $oEntity->getId()   ));
-				foreach ($aAlerts as $oAlert){
-					$string_view =$this->renderView("FredFoBundle:Mail:newvideo.html.twig", array("oEntity" =>$oEntity, "oItem"=>$oItem, "url"=>$oItem->getUrlItem($oAlert->getLang(),$oEntity,"",true),"lang"=>$oAlert->getLang()));
-					$oMail = new \Zend_Mail("UTF-8");
-					$oMail->setSubject($this->get('translator')->trans("A new video is available",array(),'messages',$oAlert->getLang()));
-					$oMail->setFrom($oSiteName->getDesc(), $this->get('translator')->trans("A new video is available",array(),'messages',$oAlert->getLang()));
-					$oMail->addTo($oAlert->getMail());
-					$oMail->setBodyHtml($string_view);
-					$oMail->send();
-				}
-
-				//update status twitter
-					        $oStyleTwitterToken		= $this->getDoctrine()->getEntityManager()->getRepository("FredDatasBundle:Style")->findOneById(\Fred\DatasBundle\Entity\Style::ID_TWITTER_TOKEN);
-						$oStyleTwitterPass			= $this->getDoctrine()->getEntityManager()->getRepository("FredDatasBundle:Style")->findOneById(\Fred\DatasBundle\Entity\Style::ID_TWITTER_PASS);
-					        $oStyleTwitterConsumer		= $this->getDoctrine()->getEntityManager()->getRepository("FredDatasBundle:Style")->findOneById(\Fred\DatasBundle\Entity\Style::ID_TWITTER_CONSUMER);
-						$oStyleTwitterConsumerPass	= $this->getDoctrine()->getEntityManager()->getRepository("FredDatasBundle:Style")->findOneById(\Fred\DatasBundle\Entity\Style::ID_TWITTER_CONSUMER_PASS);
-						$pass = $oStyleTwitterPass->getDesc();
-						if(!empty($pass)){
-							$token = new \Zend_Oauth_Token_Access();
-							$token->setToken($oStyleTwitterToken->getDesc())->setTokenSecret($oStyleTwitterPass->getDesc());
-							$options = array(
-							'accessToken'    => $token,
-							'consumerKey'    => $oStyleTwitterConsumer->getDesc(),
-							'consumerSecret' => $oStyleTwitterConsumerPass->getDesc());
-							$twitter    = new \Zend_Service_Twitter($options);
-							$twitter->account->verifyCredentials();
-							$url = \Zgroupe\ToolBox::makeTinyURL($oItem->getUrlItem($curent_lang,$oEntity,"",true));
-							$twitter->status->update('A new video is available on '.$oSiteName->getDesc().' : '.$url);
-						}			
-			}
-		}catch(Exception $e){ echo "error Alerts";}	
+		}	
         return new Response('');
     }	
 	    
@@ -126,8 +91,8 @@ class AjaxController extends Controller
     public function sortlistAction()
     {        
 		$aDatas			= json_decode($this->getRequest()->get("datas"));	
-		$oEntity			= $this->getDoctrine()->getRepository($aDatas->class_entity)->findOneById($aDatas->id_entity);
-		$item_class		= $aDatas->class_item;
+		$oEntity		= $this->getDoctrine()->getRepository(urldecode($aDatas->class_entity))->findOneById($aDatas->id_entity);
+		$item_class		= urldecode($aDatas->class_item);
 		$ids_ranking		= $this->getRequest()->get("ids_ranking") ;
 		$ids_record		= $this->getRequest()->get("ids_record") ;
                 $aRankings      = explode("_",$ids_ranking);
@@ -155,8 +120,8 @@ class AjaxController extends Controller
     public function detachitemfromlistAction()
     {        
 		$aDatas = json_decode($this->getRequest()->get("datas"));
-		$oEntity =$this->getDoctrine()->getRepository($aDatas->class_entity)->findOneById($aDatas->id_entity);
-		$oItem   =$this->getDoctrine()->getRepository($aDatas->class_item)->findOneById($aDatas->id_item);
+		$oEntity =$this->getDoctrine()->getRepository(urldecode($aDatas->class_entity))->findOneById($aDatas->id_entity);
+		$oItem   =$this->getDoctrine()->getRepository(urldecode($aDatas->class_item))->findOneById($aDatas->id_item);
 		if($oEntity and $oItem){
 			/* @var $oEntityItemService \Zgroupe\EntityItem\EntityItemService */
 			$oEntityItemService = $this->get("entity_item_service");

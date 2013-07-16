@@ -13,6 +13,16 @@ class LongTextRow extends TextRow {
         protected $rich;
     
     
+    public function __construct(\Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractAnnotation $oAnnotation) {
+         parent::__construct($oAnnotation);
+         $this->setHeight($oAnnotation->height);
+         $this->setRich($oAnnotation->rich);
+    }
+        
+
+        
+        
+        
         public function getHeight() {
             return $this->height;
         }

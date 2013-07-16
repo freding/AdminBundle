@@ -869,7 +869,10 @@
                 <target>Slideshow</target>
             </trans-unit>
 
-
+         <trans-unit id="155">
+                <source>Field content already set</source>
+                <target>Le contenu de ce champ est déjà utilisé</target>
+            </trans-unit>
 
 
 

@@ -14,11 +14,30 @@ class TextRow extends RowAbstractProperty {
     protected $disable;
     
     
-	public function __construct(){
-
-
-	}
+    public function __construct(\Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractAnnotation $oAnnotation) {
+        $this->setLength($oAnnotation->length);
+        $this->setDisable($oAnnotation->disable);
+        $this->setIs_require($oAnnotation->require);
+    }	
     
+    public function setRowValue($oAnnotation, $is_form_submited, $aValueSubmited, $mode_edition, $value_attribute, $lang_available, $lang){
+        if($is_form_submited){
+            if($lang_available){
+                if(isset($aValueSubmited[$lang_available])){
+                    $this->setValue($aValueSubmited[$lang_available]);
+                } 
+            }else{
+                $this->setValue($aValueSubmited);
+            }  
+ 
+        }else{
+            if($mode_edition == \Fredb\AdminBundle\Services\ToolBox::MODE_CREATE){
+                    $this->setValue($oAnnotation->default_value[$lang]);
+            }else{
+                    $this->setValue($value_attribute);
+            }
+        } 
+    }    
     
     public function getErrorMessages() {
         $status =  false;
@@ -28,7 +47,8 @@ class TextRow extends RowAbstractProperty {
                 $value_field = "";
                 if($this->is_langueable){
                     $aValues = $this->getValue();
-                    $value_field = $aValues[$this->lang];
+                    if(isset($aValues[$this->lang]))
+                        $value_field = $aValues[$this->lang];
                 }else{
                    $value_field = $this->getValue(); 
                 }
@@ -45,15 +65,9 @@ class TextRow extends RowAbstractProperty {
     public function prepareSave(&$oClass) {
         $reflClass = new \ReflectionClass(get_class($oClass));
         $attribut = $reflClass->getProperty($this->getProperty_name());
-        $attribut->setAccessible(true);   
-        
-        if($this->is_langueable){
-            $aValues = $this->getValue();
-            $value_field = $aValues[$this->lang];
-            $attribut->setValue($oClass, $value_field);
-        }else{
-            $attribut->setValue($oClass, $this->getValue());
-        }    
+        $attribut->setAccessible(true); 
+        $attribut->setValue($oClass, $this->getValue());
+
     }
     
     

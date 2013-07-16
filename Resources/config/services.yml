@@ -12,9 +12,13 @@ services:
         class:          Doctrine\Common\Annotations\CachedReader
         arguments:    ["@annotations_reader_brut","@annotations_apc",true]
       
+    entity_item_service:
+        class:        Fredb\AdminBundle\Services\AdministrableEntity\EntityItemService
+        arguments:    ["@doctrine.orm.entity_manager"]
+      
     row_factory:
         class:        Fredb\AdminBundle\Services\Row\RowFactory    
-        arguments:    ["@doctrine.orm.entity_manager"]
+        arguments:    ["@doctrine.orm.entity_manager", "@entity_item_service"]
     admin_form_service:
         class:        Fredb\AdminBundle\Services\AdminFormService    
         arguments:    ["@annotations_reader","@doctrine.orm.entity_manager","@row_factory"]
@@ -25,6 +29,3 @@ services:
         class:        Fredb\AdminBundle\Services\AdminClassService    
         arguments:    ["@annotations_reader","@doctrine.orm.entity_manager","@row_factory",%aLangs%]
         
-    entity_item_service:
-        class:        Fredb\AdminBundle\Services\AdministrableEntity\EntityItemService
-        arguments:    ["@doctrine.orm.entity_manager"]

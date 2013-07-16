@@ -16,6 +16,20 @@ class ToolBox {
 	
         const DEFAULT_SELECT_VALUE = "none";
 	
+	public static function resizeImage($source, $destination, $width, $height) {
+            
+		$thumb = \PhpThumbFactory::create($source);
+		$thumb->resize($width, $height);
+		$thumb->save($destination);
+	}
+	
+	public static function cropImage($source, $destination, $width, $height) {
+		$thumb = \PhpThumbFactory::create($source);
+		//$thumb->cropFromCenter($width, $height);
+		$thumb->adaptiveResize($width, $height);
+		$thumb->save($destination);
+	}
+        
 	public static function normaliza($string){
 		$string = self::nonaccent($string);
 		$entree = array('#[áàâäã]#','#[ÁÀÂÄÃ]#','#[éèêë]#','#[ÉÈÊË]#','#[íìîï]#','#[ÍÌÎÏ]#','#[óòôöõ]#','#[ÓÒÔÖÕ]#','#[úùûü]#','#[ÚÙÛÜ]#','#ÿ#','#Ÿ#','#ç#','#Ç#','# #','#[^.a-zA-Z0-9_-]#');

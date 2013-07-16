@@ -68,12 +68,20 @@ class AdminFormService{
 	/**
 	 * @return array of RowAbstractLink
 	 */
-	public function getRowLink(){
+	public function getRowLink($lang, $request, $mode_edition){
             $this->isEntitySetException(); 
-            $aRows = array();
-		
-                
-            return $aRows;
+
+            /** introspection Class  */
+            $aAnnotationsForClass = $this->getaAnnotationsContentForClass($this->oClass, AbstractAnnotation::$aAnnotationsLink);
+            foreach ($aAnnotationsForClass as $annotationForClass) {
+                $oAnnotation            = $annotationForClass["oAnnotation"];
+                $oContentObject         = $annotationForClass["content"];
+                $oContentObject->setAccessible(true);
+		$value_attribute        = $oContentObject->getValue($this->oClass);
+                $this->aRowsLink[]      = $this->oRowFactory->getRow($oAnnotation, $lang, $this->oClass, $oContentObject->name,$request,$mode_edition, $value_attribute); 
+               
+            }   
+            return $this->aRowsLink;
 	}
         
         
@@ -109,7 +117,7 @@ class AdminFormService{
                 $oContentObject         = $annotationForClass["content"];
                 $oContentObject->setAccessible(true);
 		$value_attribute        = $oContentObject->getValue($this->oClass);
-                $this->aRowsProperty[]  = $this->oRowFactory->getRowProperty($oAnnotation, $lang, $this->oClass, $oContentObject->name,$request,$mode_edition, $value_attribute);    
+                $this->aRowsProperty[]  = $this->oRowFactory->getRow($oAnnotation, $lang, $this->oClass, $oContentObject->name,$request,$mode_edition, $value_attribute);    
             }
             
             
@@ -125,11 +133,10 @@ class AdminFormService{
                     $oContentObject->setAccessible(true);
                     foreach($this->aLangs as $lang_available){
                         $value_attribute        = $oContentObject->getValue($this->aClassLang[$lang_available]);
-                        $this->aRowsProperty[]  = $this->oRowFactory->getRowProperty($oAnnotation, $lang, $this->aClassLang[$lang_available], $oContentObject->name,$request,$mode_edition, $value_attribute, $lang_available); 
+                        $this->aRowsProperty[]  = $this->oRowFactory->getRow($oAnnotation, $lang, $this->aClassLang[$lang_available], $oContentObject->name,$request,$mode_edition, $value_attribute, $lang_available); 
                     }    
                 }
             }
-            
             return $this->aRowsProperty;
 	}
         
@@ -165,19 +172,16 @@ class AdminFormService{
                     }else{
                         $oRow->prepareSave($this->oClass);    
                     }
-                }
-			
+                }	
 
+                foreach ($this->aRowsLink as $oRowLink) {
+                        $oRowLink->prepareSave($this->oClass); 
+                }
+                
 		$this->oClass->setCreationDate();
 		$this->_em->flush();
 		return $this->oClass->getId();
 	}
-	
-        
-        
-        
-        
-        
 	
 	
 	

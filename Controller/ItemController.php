@@ -99,7 +99,8 @@ class ItemController extends Controller
 		$oAdminFormService->setEntity($oItem);                   
                 $oAdminFormService->setaEntityLang($aItemsLang);
                 $oAdminFormService->setALangs($aLangsAvailable);
-		$aRowsProperty = $oAdminFormService->getRowProperty($lang,$request,$mode_edition);   
+		$aRowsProperty  = $oAdminFormService->getRowProperty($lang,$request,$mode_edition); 
+                $aRowsLink      = $oAdminFormService->getRowLink($lang,$request,$mode_edition);
                 if ($request->getMethod() == 'POST'){
                         if($oAdminFormService->isFormErrorFree()){
                                 $id_item = $oAdminFormService->save($mode_edition);
@@ -113,7 +114,8 @@ class ItemController extends Controller
                         }	
                 }	
 
-                return array(   "aRowsProperty" => $aRowsProperty, 
+                return array(   "aRowsLink"     => $aRowsLink,
+                                "aRowsProperty" => $aRowsProperty, 
                                 "mode"          => ToolBox::$aModes[$mode_edition],
                                 "module_name"   =>$name_in_current_lang,	
                                 "item_type"	=> $entity_type_to_manage);

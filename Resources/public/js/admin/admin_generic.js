@@ -44,7 +44,7 @@
                                         if (confirm("Vous désirez vraiment supprimer?")) {                                   
                                             $.post(path_delete, {id_item:$(this).attr("rel"),class_name:$("#div_sort").attr('rel')}, 
                                                 function(data){
-                                                    //location.reload();
+                                                    location.reload();
                                                 }
                                             , "html")
                                         }

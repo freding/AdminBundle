@@ -5,6 +5,7 @@ namespace Fredb\AdminBundle\Services\Row\AbstractRow;
 
 use Fredb\AdminBundle\Services\AdministrableEntity\AdministrableEntity;
 use Fredb\AdminBundle\Services\AdministrableEntity\AdministrableLangEntity;
+use Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractAnnotation;
 /**
  *
  * @author fredericbourbigot
@@ -13,7 +14,7 @@ abstract class RowAbstractProperty extends RowAbstract{
 	
     
     const ERROR_FILL_FIELD		= "Please fill this field";
-    const ERROR_PRICE_FORMAT            = "Le prix ne doit contenir que des chiffres(un point pour la décimal) et aucun espace";    
+   
 
     protected $is_langueable;
     protected $lang;
@@ -25,11 +26,9 @@ abstract class RowAbstractProperty extends RowAbstract{
     protected $template_name;
     
 	abstract public function getErrorMessages();
-
 	abstract public function prepareSave(&$oClass);
-
-        
-        
+        abstract public function __construct(AbstractAnnotation $oAnnotation);
+        abstract public function setRowValue($oAnnotation, $is_form_submited, $aValueSubmited, $mode_edition, $value_attribute, $lang_available, $lang);
 
         public function getIs_langueable() {
             return $this->is_langueable;

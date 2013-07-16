@@ -60,7 +60,7 @@ class EntityItemService{
 
 		$order_id_index =1;
 		foreach ($aItemsToSort as $oItem){ /* @var $oItem EntityItemInterface */
-			if(!$oItem instanceof EntityItemInterface)
+			if(!$oItem instanceof AdministrableEntity)
 				throw new \Exception("Wrong Type");			
 			$oJEntityItem = $this->_em->getRepository("FredbAdminBundle:JEntityItem")->findOneBy(array('idEntity' => $oEntityInDb->getId(), 'typeEntity' => $oEntityInDb->getTag(),'idItem' => $oItem->getId(), 'typeItem' => $oItem->getTag()));
 			if(isset($oJEntityItem)){ /* @var $oJEntityItem JEntityItem */
@@ -154,7 +154,8 @@ class EntityItemService{
 	 * @return array
 	 */
 	private function getXsfromY($oXToReturn, $oYInDb, $type = self::ASSOC_TYPE_ITEMS_ENTITY, $tag=null,$number_result=null,$first_result=null){
-
+            $oXToReturn_namespace   = get_class($oXToReturn);        
+            $oYInDb_namespace       = get_class($oYInDb);
 		if(!$this->isEntityStored($oYInDb)){
 			throw new \Exception("instance must exist in DataBase");
 		}
@@ -162,7 +163,7 @@ class EntityItemService{
 		if($tag)
 			$sql_tag_part = " and j.tag='".$tag."'"; 
 		if($type == self::ASSOC_TYPE_ITEMS_ENTITY){
-			$dql = "SELECT r FROM FredbAdminBundle:".$oXToReturn->getTag()." r, FredbAdminBundle:JEntityItem j , FredbAdminBundle:".$oYInDb->getTag()." e
+			$dql = "SELECT r FROM ".$oXToReturn_namespace." r, FredbAdminBundle:JEntityItem j , ".$oYInDb_namespace." e
 			where e.id=j.idEntity 
 			and r.id=j.idItem
 			and j.typeEntity='".$oYInDb->getTag() ."' 
@@ -172,7 +173,7 @@ class EntityItemService{
 			order by j.orderId
 			"; 
 		}elseif($type == self::ASSOC_TYPE_ENTITIES_ITEM){
-			$dql = "SELECT e FROM FredbAdminBundle:".$oXToReturn->getTag()." e, FredbAdminBundle:JEntityItem j , FredbAdminBundle:".$oYInDb->getTag()." r
+			$dql = "SELECT e FROM ".$oXToReturn_namespace." e, FredbAdminBundle:JEntityItem j , ".$oYInDb_namespace." r
 			where e.id=j.idEntity 
 			and r.id=j.idItem
 			and j.typeEntity='".$oXToReturn->getTag() ."' 
@@ -298,7 +299,8 @@ class EntityItemService{
 					//$error_message = 'PRODUCT_ERROR_UPLOAD';echo $error_message;
 				}
 		      }
-		}catch(\Exception $e){	
+		}catch(\Exception $e){
+                    //\Zend_Debug::dump($e);
 			//$error_message = 'PRODUCT_ERROR_UPLOAD_FORMAT_PICTURE';echo $error_message;
 		}
 		
@@ -322,12 +324,15 @@ class EntityItemService{
 	 */
 	
 	public function addPicturesToEntity(AdministrableEntity $oEntity,		$input_name,		array $aPicturesFormat,		$delete_item_already_linked = false, $crop = false,$tag=false){
-	
+
 		try{
 
 		      $adapter = new \Zend_File_Transfer_Adapter_Http();
 		      $adapter->addValidator('MimeType',false,array('image/gif', 'image/jpeg', 'image/png' ),$input_name);
-		      $ext ="";		
+		      $ext ="";	
+                      $file_name = $adapter->getFileName();
+                      if(sizeof($file_name) == 0)
+                          return false;
 		      switch ($adapter->getMimeType($input_name)){
 		      	case 'image/gif':
 		      		$ext ="gif";
@@ -339,32 +344,43 @@ class EntityItemService{
 		      		$ext ="png";
 		      	break;	
 		      }  
-	
+       
 		      if($adapter->isValid($input_name)){
 				$name_md5 		= md5(time().$adapter->getFileName($input_name, false).$tag);
-				$name_md5_ext 	= $name_md5.".".$ext;
-				$url_picture_full	= self::getFrontDirectory().  \Fredb\AdminBundle\Entity\Picture::$aFull["folder"].$name_md5_ext;
+				$name_md5_ext           = $name_md5.".".$ext;
+                                $folder_full            = self::getFrontDirectory(). \Fredb\AdminBundle\Services\Row\ConcretRow\Link\ImageRow::$aFull["folder"];
+                                $directory_exist        = $this->isFolderExist($folder_full);
+                                if(!$directory_exist)
+                                    $this->createFolder ($folder_full);
+				$url_picture_full	= self::getFrontDirectory(). \Fredb\AdminBundle\Services\Row\ConcretRow\Link\ImageRow::$aFull["folder"].$name_md5_ext;
 				$adapter->addFilter('Rename', $url_picture_full);
 				
 				if($adapter->receive($input_name)){ 
 					foreach ($aPicturesFormat as  $aPictureFormat){
+                                            $folder_image       = self::getFrontDirectory().$aPictureFormat["folder"];
+                                            $folder_image_exist = $this->isFolderExist($folder_image);
+                                            if(!$folder_image_exist)
+                                                $this->createFolder ($folder_image);
 						if($crop){
-                                                    \Zgroupe\ToolBox::cropImage($url_picture_full, self::getFrontDirectory().$aPictureFormat["folder"].$name_md5_ext, $aPictureFormat["width"], $aPictureFormat["height"]);
+                                                    \Fredb\AdminBundle\Services\ToolBox::cropImage($url_picture_full, $folder_image.$name_md5_ext, $aPictureFormat["width"], $aPictureFormat["height"]);
 						}else{				
-                                                    \Zgroupe\ToolBox::resizeImage($url_picture_full, self::getFrontDirectory().$aPictureFormat["folder"].$name_md5_ext, $aPictureFormat["width"], $aPictureFormat["height"]);
+                                                    \Fredb\AdminBundle\Services\ToolBox::resizeImage($url_picture_full, $folder_image.$name_md5_ext, $aPictureFormat["width"], $aPictureFormat["height"]);
 						}
-					}	
-					$oPicture = new \Fred\DatasBundle\Entity\Picture;
-					$oPicture->setName($name_md5_ext);
-					$oPicture->setActive(\Zgroupe\ToolBox::ACTIVATED);
-					$oPicture->setCreationDate(time());
-					$oPicture->setOwnerId($oEntity->getId());
-					$oPicture->setOwnerKind($oEntity->getTag());
-					$this->_em->persist($oPicture);
+					}
+                                 
+					$oPicture = new \Fredb\AdminBundle\Entity\Picture();     
+					$oPicture->setName($name_md5_ext);  
+					$oPicture->setActive(\Fredb\AdminBundle\Services\ToolBox::ACTIVATED);
+					//$oPicture->setCreationDate(\time());
+					//$oPicture->setOwnerId($oEntity->getId());echo "fefefz1";die();
+					//$oPicture->setOwnerKind($oEntity->getTag());
+                                        
+                                        $this->_em->persist($oPicture);  
 					$this->_em->flush();
+    
 					$oEntityMerge = $this->_em->merge($oEntity);
 					if($delete_item_already_linked)
-						$this->removeRelationItemTypeFromEntity($oEntityMerge, $oPicture->getTag(),$tag);
+						$this->removeRelationItemTypeFromEntity($oEntityMerge, $oPicture->getType(),$tag);
 					$this->addItemsToEntity(array($oPicture), $oEntityMerge,$tag);
 					
 				}else{
@@ -372,15 +388,20 @@ class EntityItemService{
 				}
 		      }
 		}catch(\Exception $e){
+                    \Zend_Debug::dump($e->getMessage());die();
 			//$error_message = 'PRODUCT_ERROR_UPLOAD_FORMAT_PICTURE';echo $error_message;
 		}	
 	} 	
 	
 	
 	
+	public function isFolderExist($folder_path){
+            return is_dir($folder_path);
+        }
 	
-	
-	
+	public function createFolder($folder_path){
+            mkdir($folder_path, 0777, true);
+        }
 	
 	
 	public function getFirstEntityLinkedToItem(AdministrableEntity $oItem){

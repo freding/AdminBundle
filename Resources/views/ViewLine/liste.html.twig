@@ -1,0 +1,84 @@
+<div class="block_style">
+	<h2>{{ oRow.getName | trans }}</h2>
+<br>
+
+{% if oRow.getMode_edition == constant('Fredb\\AdminBundle\\Services\\ToolBox::MODE_CREATE')%}
+	{% trans %}You must save before link items{% endtrans %}
+{% else %}
+
+<input type="hidden" id="path_select_item_for_list" value="{{path('add_link_item_to_list')}}">
+<input type="hidden" id="path_ajax_sort_item_list" value="{{path('sort_list')}}">
+<input type="hidden" id="path_ajax_delete_item_list" value="{{path('detach_item_from_list')}}">
+
+{% set add_item= {"id_entity":oRow.id,"class_entity":oRow.getUrlClass_namespace,"class_item":oRow.getUrlClass_item_linked}  %}
+<select name="select_item_for_list" class="select_item_for_list_id" rel='{{ add_item | json_encode }}'>
+                                
+                                <option value="{{constant('Fredb\\AdminBundle\\Services\\ToolBox::DEFAULT_SELECT_VALUE')}}">{% trans %}Choose item to add{% endtrans %}</option>
+                                
+                               {% for oItemToLink in oRow.getaItemToLink %}
+                                  <option value="{{ oItemToLink.getId }}"> {{ oItemToLink.getNameIdentifier(oRow.lang) }} </option>
+                               {% endfor %}     
+ </select> 
+
+
+
+
+<div class="div_list">
+		<table width="100%" border="0" cellspacing="2" cellpadding="2" class="tlisting">
+			<thead>	
+			  <tr>
+				<th width="20">&nbsp;</th>
+				<th width="20">{% trans %}Order{% endtrans %}</th>
+				<th>{% trans %}Name{% endtrans %}</th>
+                                <th>{% trans %}Creation date{% endtrans %}</th>
+				<th width="100">{% trans %}Detach Item{% endtrans %}</th>
+			  </tr>
+			</thead>
+			<tbody>
+			
+
+			{% set boucle =1 %}
+			{% set classe_name = "" %}
+			{% for oItem in oRow.getaItems %}
+                            
+                                        <tr class="{{classe_name}}" {% if classe_name == "alt" %}{% set classe_name ="" %}{% else %}{% set classe_name ="alt" %}{% endif %} id="channel_row_{{oItem.getId}}">
+							{% set sort_item= {"id_entity":oRow.getId,"class_entity":oRow.getUrlClass_namespace, "class_item":oRow.getUrlClass_item_linked}  %}
+							<input type="hidden" class="sort_item_id" value="{{ sort_item | json_encode }}">
+							<td class="item"><div class="item ui-state-default ui-corner-all {{oRow.getName}}"><span class="btnSort ui-icon ui-icon-arrow-4">&nbsp;</span></div></td>
+							<td align="center"><span class='count' id="channelid_{{oItem.getId}}" rel="{{ boucle }}">{{boucle}}{% set boucle=boucle+1 %}</span></td>
+
+
+                                            <td><a href="{{path('admin_item_modify',{'_locale':oRow.user_lang,'item_type':oRow.getType,'id_item':oItem.getId})}}" title="{% trans %}Click to edit{% endtrans %}">
+						 {{ oItem.getNameIdentifier(oRow.user_lang) }}
+					    </a></td>
+
+                                            <td><a href="{{path('admin_item_modify',{'_locale':oRow.user_lang,'item_type':oRow.getType,'id_item':oItem.getId})}}" title="{% trans %}Click to edit{% endtrans %}">
+						 {% if oItem.getCreationDate %}{{ oItem.getCreationDate |date("m/d/Y") }}{% else %}{% trans%}No date available{% endtrans %}{% endif%}
+					    </a></td>
+
+						
+                                                <td align="center">
+						{% set detach_item= {"id_entity":oRow.getId,"class_entity":oRow.getUrlClass_namespace, "id_item":oItem.getId,"class_item":oRow.getUrlClass_item_linked}  %}								
+							<a class="item_detach" rel='{{detach_item | json_encode}}' >
+							      <div class="btnBin">{% trans %}Delete{% endtrans %}</div>
+                                                        </a>
+						</td>		
+                                        </tr>       
+			{% else %}
+				<tr><td colspan="5" align="center"><strong>
+					{% trans %}No Item Yet{% endtrans %}
+				</strong></td></tr>
+			{% endfor %}
+
+			</tbody>
+		</table>	
+	
+	
+	
+	
+</div>
+
+{% endif %}
+
+<br>
+</div>

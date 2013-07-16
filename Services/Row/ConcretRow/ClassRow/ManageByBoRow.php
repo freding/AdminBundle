@@ -36,7 +36,7 @@ class ManageByBoRow extends RowAbstractClass {
         $this->lang_class_namespace = $lang_class_namespace;
     }
 
-    
+
     
     
 }
