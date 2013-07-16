@@ -1,6 +1,7 @@
 <?php
-namespace Fredb\AdminBundle\Services\AdministrableEntity;
+namespace Fredb\AdminBundle\Services\AdministrableEntity\FO;
 use Doctrine\Common\Annotations\CachedReader;
+use Fredb\AdminBundle\Services\AdministrableEntity\AdministrableEntity;
 /**
  *
  * @author fredericbourbigot
