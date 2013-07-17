@@ -29,9 +29,8 @@ class Test2 implements \Fredb\AdminBundle\Services\AdministrableEntity\Administr
     
 	/** @LINK_ROW\Image(user_name={"fr":"image test2","en":"image test2"},constant_format_pictures="aImageTest",tag="tag2",crop="false",id_fo_image="0") */
 	protected $link_image1;
-    
-    
-	/**
+
+        /**
 	 * @var integer $id
 	 * @ORM\Id 
 	 * @ORM\Column(name="TEST_id",type="integer")

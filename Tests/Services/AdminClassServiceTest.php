@@ -12,7 +12,7 @@ class AdminClassServiceTest extends BaseTestCase
     public function setUp() {
         parent::setUp();
         $this->createClient();
-        $this->importDatabaseSchema();
+        //$this->importDatabaseSchema();
         $this->oContainer           = self::$kernel->getContainer();
         $this->oAdminClassService   = $this->oContainer->get("admin_class_service");
     }
