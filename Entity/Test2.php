@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Fredb\AdminBundle\Annotations\ConcretAnnotations\Property as PROPERTY_ROW;
 use Fredb\AdminBundle\Annotations\ConcretAnnotations\Link as LINK_ROW;
 use Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow\ManageByBo;
+
 /**
  * @ORM\Table(name="TBL_test2")
  * @ORM\Entity
