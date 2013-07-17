@@ -1,7 +1,6 @@
 <?php 
 namespace Fredb\AdminBundle\Annotations\AbstractAnnotations;
-//use Doctrine\Common\Annotations\Annotation;
-use Doctrine\ORM\Mapping\Annotation;
+use Doctrine\Common\Annotations\Annotation;
 /** @Annotation */
 Abstract class AbstractAnnotation extends Annotation
 {
