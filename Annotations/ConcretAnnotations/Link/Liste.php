@@ -1,8 +1,9 @@
 <?php 
 namespace Fredb\AdminBundle\Annotations\ConcretAnnotations\Link;
 
-/** @Annotation 
- *  require user_name
+/**
+ * @Annotation
+ * @Target("PROPERTY")
  */
 class Liste extends \Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractLinkAnnotation
 {

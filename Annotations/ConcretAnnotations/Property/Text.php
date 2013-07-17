@@ -2,8 +2,9 @@
 namespace Fredb\AdminBundle\Annotations\ConcretAnnotations\Property;
 use Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractVisualAnnotation;
 
-/** @Annotation 
- *  require user_name
+/**
+ * @Annotation
+ * @Target("PROPERTY")
  */
 class Text extends AbstractVisualAnnotation
 {

@@ -2,7 +2,10 @@
 namespace Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow;
 use Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractNoVisualAnnotation;
 
-/** @Annotation */
+/**
+ * @Annotation
+ * @Target("CLASS")
+ */
 class ManageByBo extends AbstractNoVisualAnnotation
 {
 

@@ -1,7 +1,8 @@
 <?php 
 namespace Fredb\AdminBundle\Annotations\ConcretAnnotations\Link;
-/** @Annotation 
- *  require user_name
+/**
+ * @Annotation
+ * @Target("PROPERTY")
  */
 class Image extends \Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractLinkAnnotation
 {

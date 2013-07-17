@@ -2,7 +2,10 @@
 namespace Fredb\AdminBundle\Annotations\ConcretAnnotations\Property;
 use Fredb\AdminBundle\Annotations\AbstractAnnotations\AbstractVisualAnnotation;
 
-/** @Annotation */
+/**
+ * @Annotation
+ * @Target("PROPERTY")
+ */
 class CheckBox extends AbstractVisualAnnotation
 {
 

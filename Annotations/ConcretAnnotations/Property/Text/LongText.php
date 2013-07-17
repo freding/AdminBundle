@@ -2,8 +2,9 @@
 namespace Fredb\AdminBundle\Annotations\ConcretAnnotations\Property\Text;
 use Fredb\AdminBundle\Annotations\ConcretAnnotations\Property\Text;
 
-/** @Annotation 
- *  require user_name
+/**
+ * @Annotation
+ * @Target("PROPERTY")
  */
 class LongText extends Text
 {
