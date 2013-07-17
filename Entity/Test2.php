@@ -9,6 +9,7 @@ use Fredb\AdminBundle\Annotations\ConcretAnnotations\Link as LINK_ROW;
 /**
  * @ORM\Table(name="TBL_test2")
  * @ORM\Entity
+ * @CLASS_ROW\ManageByBo(user_name={"fr":"Test2 name","en":"Test2 en"},order=1,lang_class_namespace="\Fredb\AdminBundle\Entity\Test2Lang",mother_node={"fr":"Parent","en":"Parent en"})
  */
 class Test2 implements \Fredb\AdminBundle\Services\AdministrableEntity\AdministrableEntity, \Fredb\AdminBundle\Services\AdministrableEntity\SortableEntity {
 
