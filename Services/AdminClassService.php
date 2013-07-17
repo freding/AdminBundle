@@ -30,6 +30,7 @@ class AdminClassService{
                 $this->oRowFactory       = $oRowFactory; 
                 $this->aLangsAvailable   = $aLangs;
                 $this->aEntityNamespaces = $this->_em->getConfiguration()->getMetadataDriverImpl()->getAllClassNames();
+                \Zend_Debug::dump($this->aEntityNamespaces);
                 $this->getRowClass();
 	}	
 	
