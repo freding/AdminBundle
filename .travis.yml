@@ -5,6 +5,7 @@ php:
 
 before_script:
   - composer install --dev
+  - phpenv config-add Tests/config.ini
   - "mysql -e 'create database admin_annotation;'"
   
 script: phpunit --coverage-text
