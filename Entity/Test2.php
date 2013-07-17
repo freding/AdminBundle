@@ -2,7 +2,7 @@
 
 namespace Fredb\AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
-use Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow as CLASS_ROW;
+use \Fredb\AdminBundle\Annotations\ConcretAnnotations\ClassRow as CLASS_ROW;
 use Fredb\AdminBundle\Annotations\ConcretAnnotations\Property as PROPERTY_ROW;
 use Fredb\AdminBundle\Annotations\ConcretAnnotations\Link as LINK_ROW;
 
