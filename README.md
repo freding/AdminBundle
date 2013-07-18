@@ -14,9 +14,11 @@ For PHP / Symfony2
 - Color, date, rich text...
 
 ## Images:
-http://gkan.zgroupe.net/image/img1.png
-http://gkan.zgroupe.net/image/img2.png
-http://gkan.zgroupe.net/image/img3.png
+![login](http://gkan.zgroupe.net/image/img1.png)
+
+![list](http://gkan.zgroupe.net/image/img2.png)
+
+![item](http://gkan.zgroupe.net/image/img3.png)
 
 
 ## Installation:
