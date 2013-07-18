@@ -36,3 +36,7 @@ services:
     link_service:
         class:        Fredb\AdminBundle\Services\AdministrableEntity\FO\LinkService    
         arguments:    ["@doctrine.orm.entity_manager", "@entity_item_service", "@annotations_reader"]        
+        
+    lang_service:
+        class:        Fredb\AdminBundle\Services\AdministrableEntity\FO\LangService    
+        arguments:    ["@doctrine.orm.entity_manager", "@annotations_reader"]    
