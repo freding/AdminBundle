@@ -13,6 +13,21 @@ For PHP / Symfony2
 - generate url key,
 - Color, date, rich text...
 
+
+For exemple if you have two entities:
+
+- Product,
+
+- Designer,
+
+If you want to create on product page a list of designers that should be linked to product, put into Product Entity:
+
+    /** @Fredb\AdminBundle\Annotations\ConcretAnnotations\Property\Liste(user_name={"fr":"lier entity test","en":"link entity test"},class_item_linked="Acme\DemoBundle\Entity\Designer" ) */
+    protected $link_test;  
+
+And you will have "Designer" box in your admin(just like Designer box on third picture below)
+
+
 ## Images:
 ![login](http://gkan.zgroupe.net/image/img1.png)
 
