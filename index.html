@@ -59,7 +59,7 @@
 <li>configure sql connexion</li>
 </ul><p>1 - Adding <strong>"fredb/admin-bundle": "dev-master"</strong>    in require section of your "composer.json"</p>
 
-<p>2 - php composer.phar install</p>
+<p>2 - php composer.phar update</p>
 
 <p>3 - Adding AdminBundle to your Kernel :
  in "/app/AppKernel.php" add this line to $bundles array:</p>
@@ -72,7 +72,7 @@
 
 <pre><code> _admin:
       resource: "@FredbAdminBundle/Resources/config/routing.yml"
-      prefix:   /admin
+      prefix:   /
 </code></pre>
 
 <p>5 - import security context:
