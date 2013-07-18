@@ -93,7 +93,7 @@ execute : php app/console assets:install web/ --symlink
 
 
 
-You can know create your own Entity. 
+You can now create your own Entity. 
 
 Have a look to 'Fredb/AdminBundle/annotation/ConcretAnnotations' folder to find what you need to create Back-office.
 You can find sample in 'Fredb/AdminBundle/Dummy/Entity'.
