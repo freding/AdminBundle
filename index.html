@@ -76,12 +76,19 @@
 </code></pre>
 
 <p>5 - import security context:
- in " /app/config/config.yml"
- add</p>
+ in " /app/config/security.yml"
+ put</p>
 
-<pre><code>imports:
-    - { resource: parameters.yml }
+<pre><code> imports:
     - { resource: '@FredbAdminBundle/Resources/config/security.yml' }
+
+
+ security:
+    providers:
+        in_memory:
+            memory:  
+                users:
+                    user: { password: mode, roles: 'ROLE_ADMIN' }
 </code></pre>
 
 <p>6 - import asset:
@@ -93,6 +100,17 @@
 </code></pre>
 
 <p>execute : php app/console assets:install web/ --symlink</p>
+
+<p>7 - create table require for linking Entity/pictures...</p>
+
+<pre><code>php app/console doctrine:schema:update --force
+</code></pre>
+
+<p>You can know create your own Entity. </p>
+
+<p>Have a look to 'Fredb/AdminBundle/annotation/ConcretAnnotations' folder to find what you need to create Back-office.
+You can find sample in 'Fredb/AdminBundle/Dummy/Entity'.
+Wiki is coming soon.</p>
 
 <p>Images:</p>
 
