@@ -33,7 +33,7 @@ class LayoutsController extends Controller
     { 		
          $aProject =  $this->container->getParameter("project_name");
          if(!isset($aProject[$lang]))  
-             throw new \Exception("Project name is not defined in lang '".$lang."'.");
+             throw new \Exception("Project name is not defined in lang '".$lang."'. Please overright 'project_name' parameters in /app/config/parameters.yml");
         $templating = $this->get('templating');
         $contenu = $templating->render('FredbAdminBundle:Layouts:project.html.twig', array("name"=>$aProject[$lang]));
         $oResponse = new Response($contenu);
