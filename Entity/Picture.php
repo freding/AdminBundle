@@ -21,7 +21,7 @@ class Picture implements \Fredb\AdminBundle\Services\AdministrableEntity\Adminis
     protected $id;
 	
     /**
-     * @var intger $creationDate
+     * @var integer $creationDate
      * @ORM\Column(name="PICTURE_creation_date",type="integer")
      */
     protected $creationDate;    
@@ -34,7 +34,7 @@ class Picture implements \Fredb\AdminBundle\Services\AdministrableEntity\Adminis
     protected $active;
 
     /**
-     * @var intger $ownerId
+     * @var integer $ownerId
      * @ORM\Column(name="PICTURE_owner_id",type="integer")
      */
     protected $ownerId;
@@ -86,7 +86,7 @@ class Picture implements \Fredb\AdminBundle\Services\AdministrableEntity\Adminis
         return $this->ownerId;
     }
 
-    public function setOwnerId(intger $ownerId) {
+    public function setOwnerId(integer $ownerId) {
         $this->ownerId = $ownerId;
     }
 
