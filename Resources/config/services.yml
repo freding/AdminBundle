@@ -1,6 +1,7 @@
 parameters:
     aLangs: ["fr","en"]
     default_lang : "fr"
+    project_name : {"fr":"Nom du projet","en":"Project name"}
 
 services:
     annotations_reader_brut:
@@ -40,3 +41,4 @@ services:
     lang_service:
         class:        Fredb\AdminBundle\Services\AdministrableEntity\FO\LangService    
         arguments:    ["@doctrine.orm.entity_manager", "@annotations_reader"]    
+        

@@ -151,7 +151,7 @@ $(function() {
 	<div id="header">
 		<div id="project_header">
 			<div id="project_title">
-				<p class="project_title">Project</p>
+                                {{ render(controller('FredbAdminBundle:Layouts:project',{"lang":app.request.locale})) }}
 				<p class="welcome_title">{% trans %}Welcome to{% endtrans %} <span class="welcome_title_bold">B</span>ack <span class="welcome_title_bold">O</span>ffice </p>
 			</div>
                         
@@ -159,7 +159,7 @@ $(function() {
                         
 			<div class="lang_admin">
                             <a href="{{ path("home_admin",{"_locale":"fr"}) }}"><img src="{{ asset('bundles/fredbadmin/image/fr/icon.png') }}"></a>
-                            <a href="{{ path("home_admin",{"_locale":"fr"}) }}"><img src="{{ asset('bundles/fredbadmin/image/en/icon.png') }}"></a>    
+                            <a href="{{ path("home_admin",{"_locale":"en"}) }}"><img src="{{ asset('bundles/fredbadmin/image/en/icon.png') }}"></a>    
                         </div>
 			<div class="clear"></div>
 		</div>
