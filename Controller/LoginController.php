@@ -42,7 +42,14 @@ class LoginController extends Controller
         return array('name' => $name);
     }    
     
-    
-    
+    /**
+     * @Route("/log/loginout", name="logout")
+     */
+    public function logoutAction()
+    {   
+        session_unset();
+        return $this->redirect($this->get("router")->generate("admin_index"));
+        
+    }
     
 }
