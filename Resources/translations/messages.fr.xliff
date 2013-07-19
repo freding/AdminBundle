@@ -881,6 +881,20 @@
 
 
 
+         <trans-unit id="157">
+                <source>Username</source>
+                <target>Nom</target>
+            </trans-unit>
+
+         <trans-unit id="158">
+                <source>Password</source>
+                <target>Mot de passe</target>
+            </trans-unit>
+
+         <trans-unit id="159">
+                <source>Enter</source>
+                <target>Entrez</target>
+            </trans-unit>
 
 
         </body>

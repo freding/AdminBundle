@@ -13,12 +13,12 @@
 				<div id="login_container">
 					<form action="{{ path('login_check') }}" method="post">
 						<div id="loginRow">
-							Username :
+							{% trans %}Username{% endtrans %} :
 							<input type="text" id="username" name="_username" value="{{ last_username }}" />
 						</div>
 
 						<div id="loginRow">
-							Password:
+							{% trans %}Password{% endtrans %} :
 							<input type="password" id="password" name="_password" />
 							<input type="hidden" name="language" value="fr" />
 							<input type="hidden" name="_target_path" value="/admin" />
@@ -27,7 +27,7 @@
 
 
 						<div id="loginRow">
-							<button type="submit" name="login" class="btnGeneric">Entrez</button>
+							<button type="submit" name="login" class="btnGeneric">{% trans %}Enter{% endtrans %}</button>
 						</div>
 
 					</form>
