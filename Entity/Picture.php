@@ -86,7 +86,7 @@ class Picture implements \Fredb\AdminBundle\Services\AdministrableEntity\Adminis
         return $this->ownerId;
     }
 
-    public function setOwnerId(integer $ownerId) {
+    public function setOwnerId($ownerId) {
         $this->ownerId = $ownerId;
     }
 
