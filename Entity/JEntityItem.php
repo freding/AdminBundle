@@ -49,14 +49,14 @@ class JEntityItem {
     
     /**
      * @var integer $orderId
-     * @ORM\Column(name="ENTITY_ITEM_order_id",type="integer", columnDefinition="NULL")
+     * @ORM\Column(name="ENTITY_ITEM_order_id",type="integer", nullable=true)
      */
     protected $orderId;    
     
 
      /**
      * @var string $tag
-     * @ORM\Column(name="ENTITY_ITEM_tag",type="string", columnDefinition="NULL")
+     * @ORM\Column(name="ENTITY_ITEM_tag",type="string", nullable=true)
      */
     protected $tag;     
 	
