@@ -154,7 +154,13 @@ $(function() {
 				<p class="project_title">Project</p>
 				<p class="welcome_title">{% trans %}Welcome to{% endtrans %} <span class="welcome_title_bold">B</span>ack <span class="welcome_title_bold">O</span>ffice </p>
 			</div>
-			<div><img src="" style="width:226px;float:right;margin-right:27px;"></div>
+                        
+                         
+                        
+			<div class="lang_admin">
+                            <a href="{{ path("home_admin",{"_locale":"fr"}) }}"><img src="{{ asset('bundles/fredbadmin/image/fr/icon.png') }}"></a>
+                            <a href="{{ path("home_admin",{"_locale":"fr"}) }}"><img src="{{ asset('bundles/fredbadmin/image/en/icon.png') }}"></a>    
+                        </div>
 			<div class="clear"></div>
 		</div>
 		<div id="header_border"></div>
