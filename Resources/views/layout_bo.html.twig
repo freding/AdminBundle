@@ -4,20 +4,20 @@
 	
 
 {% stylesheets 
-        'bundles/fredbadmin/ui/css/custom-theme/jquery-ui-1.8.5.custom.css'
-        'bundles/fredbadmin/css/layout.css'
-        'bundles/fredbadmin/css/admin/login.css'
-        'bundles/fredbadmin/fredbadmin/css/ie.css'
-        'bundles/fredbadmin/fredbadmin/css/ie6.css'
-        'bundles/fredbadmin/fredbadmin/css/ie7.css'
-        'bundles/fredbadmin/fredbadmin/css/ie8.css'
+        '@FredbAdminBundle/Resources/public/ui/css/custom-theme/jquery-ui-1.8.5.custom.css'
+        '@FredbAdminBundle/Resources/public/css/layout.css'
+        '@FredbAdminBundle/Resources/public/css/admin/login.css'
+        '@FredbAdminBundle/Resources/public/css/ie.css'
+        '@FredbAdminBundle/Resources/public/css/ie6.css'
+        '@FredbAdminBundle/Resources/public/css/ie7.css'
+        '@FredbAdminBundle/Resources/public/css/ie8.css'
    filter="cssrewrite" %}
   <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
 {% endstylesheets %}
 
 {% javascripts
-    'bundles/fredbadmin/js/jquery.js'
-    'bundles/fredbadmin/ui/js/jquery-ui-1.8.5.custom.min.js'
+    '@FredbAdminBundle/Resources/public/js/jquery.js'
+    '@FredbAdminBundle/Resources/public/ui/js/jquery-ui-1.8.5.custom.min.js'
  %}
     <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
