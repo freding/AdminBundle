@@ -10,8 +10,8 @@
 				<li class="root">
 					<a class="no-icon">{{oRow.name[lang]}}</a>
 					<ul class="first-sub">
-                                            <li><a href="{{ path('admin_item_list',{'item_type': oRow.getUrlClass_namespace }) }}">{% trans %}List{% endtrans %}</a></li>
-                                            <li><a href="{{ path('admin_item_create',{'item_type': oRow.getUrlClass_namespace }) }}">{% trans %}Create{% endtrans %}</a></li>
+                                            <li><a href="{{ path('admin_item_list',{'item_type': oRow.getUrlClass_namespace,'_locale': lang }) }}">{% trans %}List{% endtrans %}</a></li>
+                                            <li><a href="{{ path('admin_item_create',{'item_type': oRow.getUrlClass_namespace,'_locale': lang }) }}">{% trans %}Create{% endtrans %}</a></li>
 					</ul>
 				</li>
 			</ul>
