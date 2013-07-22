@@ -48,11 +48,11 @@
 							<td align="center"><span class='count' id="channelid_{{oItem.getId}}" rel="{{ boucle }}">{{boucle}}{% set boucle=boucle+1 %}</span></td>
 
 
-                                            <td><a href="{{path('admin_item_modify',{'_locale':oRow.user_lang,'item_type':oRow.getType,'id_item':oItem.getId})}}" title="{% trans %}Click to edit{% endtrans %}">
+                                            <td><a href="{{path('admin_item_modify',{'_locale':oRow.user_lang,'item_type':oRow.getUrlClass_item_linked,'id_item':oItem.getId})}}" title="{% trans %}Click to edit{% endtrans %}">
 						 {{ oItem.getNameIdentifier(oRow.user_lang) }}
 					    </a></td>
 
-                                            <td><a href="{{path('admin_item_modify',{'_locale':oRow.user_lang,'item_type':oRow.getType,'id_item':oItem.getId})}}" title="{% trans %}Click to edit{% endtrans %}">
+                                            <td><a href="{{path('admin_item_modify',{'_locale':oRow.user_lang,'item_type':oRow.getUrlClass_item_linked,'id_item':oItem.getId})}}" title="{% trans %}Click to edit{% endtrans %}">
 						 {% if oItem.getCreationDate %}{{ oItem.getCreationDate |date("m/d/Y") }}{% else %}{% trans%}No date available{% endtrans %}{% endif%}
 					    </a></td>
 
