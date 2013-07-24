@@ -8,10 +8,10 @@
 .jstree a.no-link { cursor: pointer; margin-left:0}
 .jstree ul ul a { white-space:normal; margin-left:2px; width:163px;}
 .jstree ul ul ul a { white-space:normal; margin-left:2px; width:150px;}
-.jstree-classic .jstree-open-root div.first-sub-padding{ margin:0; padding:0; height: 5px; margin-left:6px; background-image:url("/image/d.png"); background-color:transparent; background-position:-92px 0; background-repeat:repeat-y;}
+.jstree-classic .jstree-open-root div.first-sub-padding{ margin:0; padding:0; height: 5px; margin-left:6px; background-image:url("/bundles/fredbadmin/image/d.png"); background-color:transparent; background-position:-92px 0; background-repeat:repeat-y;}
 
 .jstree-classic li, 
-.jstree-classic ins{ background-image:url("/image/d.png"); background-repeat:no-repeat; background-color:transparent; }
+.jstree-classic ins{ background-image:url("/bundles/fredbadmin/image/d.png"); background-repeat:no-repeat; background-color:transparent; }
 .jstree-classic li { background-position:-92px 0; background-repeat:repeat-y;  }
 .jstree-classic li.jstree-last { background:transparent; }
 .jstree-classic .jstree-open > ins { background-position:-74px 0; }
@@ -25,7 +25,7 @@
 .jstree-classic .jstree-clicked { background:navy; border:1px solid navy; padding:0 2px 0 0px; color:white; }
 .jstree-classic a .jstree-icon { background-position:-80px -18px; }
 .jstree-classic .jstree-open > a .jstree-icon { background-position:-74px -33px; }
-.jstree-classic a.jstree-loading .jstree-icon { background:url("/image/throbber.gif") center center no-repeat !important; }
+.jstree-classic a.jstree-loading .jstree-icon { background:url("/bundles/fredbadmin/image/throbber.gif") center center no-repeat !important; }
 .jstree-classic .root  > ins{ margin: 10px 0 0 6px; position: absolute; z-index: 99999;}
 .jstree-classic .jstree-open a.no-link  div > .jstree-icon  { background-position:-92px 0; background-repeat:repeat-y;}
 .jstree-classic .jstree-closed a.no-link  div > .jstree-icon  { background:transparent;}
@@ -50,9 +50,9 @@
 
 
 #vakata-dragged.jstree-classic ins { background:transparent !important; }
-#vakata-dragged.jstree-classic .jstree-ok { background:url("/image/d.png") -2px -53px no-repeat !important; }
-#vakata-dragged.jstree-classic .jstree-invalid { background:url("/image/d.png") -18px -53px no-repeat !important; }
-#jstree-marker.jstree-classic { background:url("/image/d.png") -41px -57px no-repeat !important; }
+#vakata-dragged.jstree-classic .jstree-ok { background:url("/bundles/fredbadmin/image/d.png") -2px -53px no-repeat !important; }
+#vakata-dragged.jstree-classic .jstree-invalid { background:url("/bundles/fredbadmin/image/d.png") -18px -53px no-repeat !important; }
+#jstree-marker.jstree-classic { background:url("/bundles/fredbadmin/image/d.png") -41px -57px no-repeat !important; }
 
 .jstree-classic a.jstree-search { color:aqua; }
 
