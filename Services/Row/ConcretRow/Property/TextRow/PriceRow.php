@@ -13,11 +13,12 @@ class PriceRow extends TextRow {
     
     public function getErrorMessages() {
         $message =parent::getErrorMessages();
-        if((!is_numeric($this->getValue()))){
-             $aErrors[] = self::ERROR_PRICE_FORMAT;
-             $message = $aErrors;
+        if($this->is_form_submited){
+            if((!is_numeric($this->getValue()))){
+                 $aErrors[] = self::ERROR_PRICE_FORMAT;
+                 $message = $aErrors;
+            }
         }
-        
         return $message;
     }
 

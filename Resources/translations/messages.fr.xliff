@@ -897,6 +897,12 @@
             </trans-unit>
 
 
+         <trans-unit id="160">
+                <source>Only one field must be set</source>
+                <target>Un seul champ doit être renseigné</target>
+            </trans-unit>
+
+
         </body>
     </file>
 </xliff>

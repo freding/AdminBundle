@@ -1,0 +1,23 @@
+
+
+<div class="block_style">
+<h2>{{oRow.name}} {% if oRow.is_require == true %}*{% endif %}</h2>
+
+	<div class="row_video_links">
+		<div class="video_links"> {% include 'FredbAdminBundle:ViewBlock:admin_form_errors.html.twig' with {'aErrors': oRow.getErrorMessages} %} </div>
+		<div class="row">
+			<div class="rLeftcol"><b>Url fichier :</b></div>
+                        <div class="rRightcol"><input type="text" name="{{oRow.property_name}}[{{ constant('Fredb\\AdminBundle\\Services\\Row\\ConcretRow\\Property\\TextRow\\VideoRow::TYPE_FICHIER') }}]" id="video" class="select" value="{{ oRow.value[constant('Fredb\\AdminBundle\\Services\\Row\\ConcretRow\\Property\\TextRow\\VideoRow::TYPE_FICHIER')]  }}">
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="row">
+			<div class="rLeftcol"><b>Code embeded :</b></div>
+			<div class="rRightcol"><input type="text" name="{{oRow.property_name}}[{{ constant('Fredb\\AdminBundle\\Services\\Row\\ConcretRow\\Property\\TextRow\\VideoRow::TYPE_PERMALIEN') }}]" id="permalien" class="select" value="{{ oRow.value[constant('Fredb\\AdminBundle\\Services\\Row\\ConcretRow\\Property\\TextRow\\VideoRow::TYPE_PERMALIEN')] }}">
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+	</div>
+
+</div>
