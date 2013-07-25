@@ -45,6 +45,11 @@ class AdminClassService{
         
         private function sortRows(){
             usort($this->aRowsClass, array( $this ,'compareFieldsOrder')); 
+            $aTempRow = array();
+            foreach ($this->aRowsClass as $oRows) {
+                $aTempRow[$oRows->getClass_namespace()] = $oRows;
+            }
+            $this->aRowsClass = $aTempRow;
         }
                 
 	/**
@@ -63,8 +68,7 @@ class AdminClassService{
                 }	
             }    
             
-            //$this->sortRows();
-            
+            $this->sortRows();
             return $this->aRowsClass;
 	}
 	
