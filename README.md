@@ -2,7 +2,7 @@ AdminBundle
 ===========
 
 Create Back-office by annotations in Entities (PHP/Symfony2)
-# This bundle allows to create Back-office only with annotations in your Entities.
+# Create Back-office only with annotations in your Entities.
 For PHP / Symfony2
 
 Have a look to this bundle on Youtube : http://www.youtube.com/channel/UCnIexKoNgMwnaUHsLzYuzYQ
